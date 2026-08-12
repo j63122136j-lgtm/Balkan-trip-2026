@@ -1,205 +1,114 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#f5f5f7">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="巴爾幹行程">
-  <title>巴爾幹 Travel Dashboard</title>
-  <style>
-    :root {
-      --bg:#f5f5f7; --card:rgba(255,255,255,.82); --text:#1d1d1f; --muted:#77777d;
-      --line:rgba(0,0,0,.08); --blue:#0071e3; --shadow:0 18px 50px rgba(0,0,0,.07);
-    }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body {
-      margin:0; font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;
-      color:var(--text); background:var(--bg);
-      background-image:linear-gradient(rgba(0,0,0,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.025) 1px,transparent 1px);
-      background-size:32px 32px;
-    }
-    button,input,textarea { font:inherit; }
-    a { color:inherit; text-decoration:none; }
-    .hidden { display:none !important; }
-    .shell { width:min(1040px, calc(100% - 28px)); margin:auto; }
-    .glass { background:var(--card); backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,.9); box-shadow:var(--shadow); }
-
-    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(245,245,247,.88); backdrop-filter:blur(20px); }
-    .topbar-inner { min-height:66px; display:flex; align-items:center; gap:12px; }
-    .logo { width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#111;color:#fff;font-size:18px; }
-    .brand { min-width:0; }
-    .brand strong { display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-    .brand span { display:block;font-size:11px;color:var(--muted);margin-top:2px; }
-    .top-actions { margin-left:auto; display:flex; gap:6px; }
-    .view-btn { border:0;background:#e9e9ec;padding:8px 11px;border-radius:999px;font-size:12px;cursor:pointer; }
-    .view-btn.active { background:#111;color:#fff; }
-
-    .hero { margin-top:22px; padding:28px; border-radius:30px; overflow:hidden; position:relative; }
-    .hero:after { content:""; position:absolute; right:-100px; top:-140px; width:340px;height:340px;border-radius:50%; background:radial-gradient(circle,rgba(0,113,227,.20),transparent 66%); }
-    .eyebrow { color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase; }
-    h1 { margin:8px 0 5px;font-size:clamp(28px,5vw,48px);letter-spacing:-.045em;line-height:1.02; }
-    .subtitle { margin:0;color:var(--muted);font-size:13px;line-height:1.6; }
-    .hero-meta { display:flex;gap:8px;flex-wrap:wrap;margin-top:16px; }
-    .hero-chip { background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:650; }
-    .stats { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px; }
-    .stat { background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:18px;padding:14px; }
-    .stat span { display:block;color:var(--muted);font-size:10px;margin-bottom:5px; }
-    .stat b { font-size:17px;letter-spacing:-.02em; }
-
-    .section { margin-top:18px; }
-    .section-card { border-radius:24px;padding:18px; }
-    .section-head { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px; }
-    .section-head h2 { margin:0;font-size:16px; }
-    .section-head p { margin:3px 0 0;color:var(--muted);font-size:11px; }
-
-    .route { display:flex;gap:8px;overflow-x:auto;padding:5px 2px 9px;scrollbar-width:thin; }
-    .route-node { display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:12px;font-weight:650; }
-    .route-dot { width:9px;height:9px;background:#111;border-radius:50%;box-shadow:0 0 0 4px #eee; }
-    .route-arrow { color:#aaa;margin-left:2px; }
-
-    .tabs { display:flex;gap:7px;overflow:auto;padding:4px 0 11px;position:sticky;top:66px;z-index:30;background:linear-gradient(var(--bg) 75%,transparent); }
-    .tab-btn { flex:none;border:0;background:#e9e9ec;color:#333;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer; }
-    .tab-btn.active { background:#111;color:#fff; }
-
-    #days-container { display:grid;gap:12px; }
-    .day-card { background:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.95);box-shadow:0 10px 30px rgba(0,0,0,.05);border-radius:24px;padding:18px; }
-    .day-head { display:flex;align-items:center;gap:9px;padding-bottom:12px;border-bottom:1px solid var(--line); }
-    .day-number { background:#eaf3ff;color:#0066c5;border-radius:9px;padding:6px 8px;font-size:11px;font-weight:850; }
-    .date-block { display:flex;align-items:baseline;gap:5px;font-size:12px; }
-    .date-block span { color:var(--muted);font-size:10px; }
-    .grow { flex:1; }
-    .region-pill { max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#f0f0f2;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:700; }
-    .day-title-row { display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:14px 0; }
-    .country-label { color:var(--muted);font-size:10px;font-weight:700;margin-bottom:3px; }
-    .day-title-row h3 { margin:0;font-size:20px;letter-spacing:-.025em; }
-    .map-btn { flex:none;background:#111;color:#fff;border-radius:11px;padding:8px 10px;font-size:11px;font-weight:700; }
-    .day-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:8px; }
-    .day-grid section { background:#f6f6f8;border:1px solid #ededf0;border-radius:16px;padding:12px;min-height:90px; }
-    .day-grid span { display:block;color:#999;font-size:9px;font-weight:850;letter-spacing:.08em;margin-bottom:7px; }
-    .day-grid p { margin:0;font-size:12px;line-height:1.55;font-weight:520; }
-    .meta-row { display:flex;gap:18px;flex-wrap:wrap;padding-top:12px;margin-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted); }
-    .meta-row b { color:#333; }
-    .note { margin-top:10px;background:#fff8de;border:1px solid #f3e5ad;border-radius:13px;padding:9px 11px;font-size:10px;color:#796019;line-height:1.5; }
-
-    .utility-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
-    .check-row { display:flex;gap:8px;margin-bottom:11px; }
-    .check-row input { flex:1;border:1px solid #ddd;border-radius:12px;padding:10px 11px;background:#fff;outline:none; }
-    .primary { border:0;background:#111;color:#fff;border-radius:12px;padding:10px 14px;font-weight:750;cursor:pointer; }
-    .ghost { border:0;background:#eee;border-radius:10px;padding:7px 10px;font-size:11px;cursor:pointer; }
-    .check-item { display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #ececef;border-radius:13px;padding:10px;margin-bottom:7px;font-size:12px; }
-    .check-item span { flex:1; }
-    .done { text-decoration:line-through;color:#999; }
-    .delete-item { border:0;background:transparent;color:#aaa;font-size:18px;cursor:pointer; }
-    textarea { width:100%;min-height:225px;border:1px solid #ddd;background:#fff;border-radius:14px;padding:12px;resize:vertical;outline:none;font-size:12px;line-height:1.6; }
-    .info-box { background:#f7f7f8;border:1px solid #ececef;border-radius:16px;padding:13px;margin-bottom:10px; }
-    .info-box span { display:block;color:var(--muted);font-size:9px;margin-bottom:4px; }
-    .info-box b { font-size:14px; }
-
-    footer { color:#999;text-align:center;font-size:10px;padding:35px 0 110px; }
-    .bottom-nav { display:none; }
-
-    @media (max-width:720px) {
-      .shell { width:min(100% - 20px, 1040px); }
-      .topbar-inner { min-height:60px; }
-      .top-actions { display:none; }
-      .hero { padding:20px;border-radius:24px; }
-      .stats { grid-template-columns:1fr 1fr; }
-      .tabs { top:60px; }
-      .day-card { padding:14px;border-radius:20px; }
-      .day-grid { grid-template-columns:1fr; }
-      .day-grid section { min-height:auto; }
-      .day-title-row h3 { font-size:18px; }
-      .utility-grid { grid-template-columns:1fr; }
-      .bottom-nav { display:flex;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border:1px solid rgba(0,0,0,.08);box-shadow:0 12px 40px rgba(0,0,0,.16);border-radius:999px;padding:6px;gap:4px; }
-      .bottom-nav button { border:0;background:transparent;border-radius:999px;padding:9px 13px;font-size:11px;font-weight:750; }
-      .bottom-nav button.active { background:#111;color:#fff; }
-    }
-  </style>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Balkan 2026">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Balkan 2026 · Travel Dashboard</title>
 </head>
 <body>
-  <header class="topbar">
-    <div class="shell topbar-inner">
-      <div class="logo">⌁</div>
-      <div class="brand">
-        <strong>巴爾幹 Travel Dashboard</strong>
-        <span id="trip-dates">2026.09.14 — 10.02</span>
-      </div>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+
+  <header class="topbar glass" id="topbar">
+    <div class="topbar-inner">
+      <button class="brand-button" data-target="home" aria-label="回首頁">
+        <span class="brand-mark">B</span>
+        <span><b>Balkan 2026</b><small id="top-date">09.14 — 10.02</small></span>
+      </button>
       <div class="top-actions">
-        <button class="view-btn active" data-view="itinerary">行程</button>
-        <button class="view-btn" data-view="checklist">清單 / 備忘</button>
+        <span class="offline-pill" id="network-state">ONLINE</span>
+        <button class="icon-button" id="theme-toggle" aria-label="切換深色模式">◐</button>
       </div>
     </div>
   </header>
 
-  <main class="shell">
-    <section class="hero glass">
-      <div class="eyebrow">Balkan Backpacking 2026</div>
-      <h1 id="trip-title">巴爾幹半島 19 天探索之旅</h1>
-      <p class="subtitle" id="trip-subtitle"></p>
-      <div class="hero-meta">
-        <span class="hero-chip">🎒 <span id="stat-bags"></span></span>
-        <span class="hero-chip">✈️ Return: DBV → GVA → PVG → TPE</span>
-      </div>
-      <div class="stats">
-        <div class="stat"><span>TRIP DAYS</span><b><span id="stat-days"></span> Days</b></div>
-        <div class="stat"><span>COUNTRIES</span><b><span id="stat-countries"></span></b></div>
-        <div class="stat"><span>TRAVEL STYLE</span><b>Backpack</b></div>
-        <div class="stat"><span>RETURN / 2 PAX</span><b id="stat-return"></b></div>
-      </div>
-    </section>
-
-    <section class="section section-card glass">
-      <div class="section-head">
-        <div><h2>Route</h2><p>由台北一路向南，Dubrovnik 收尾後經 Geneva 回台。</p></div>
-      </div>
-      <div class="route" id="route-line"></div>
-    </section>
-
-    <section id="itinerary-view" class="view section">
-      <div class="tabs" id="region-tabs"></div>
-      <div id="days-container"></div>
-    </section>
-
-    <section id="checklist-view" class="view hidden section">
-      <div class="utility-grid">
-        <div class="section-card glass">
-          <div class="section-head">
-            <div><h2>行李 / 訂票清單</h2><p>會儲存在這台裝置的瀏覽器中。</p></div>
-            <button id="reset-checklist" class="ghost">重設</button>
+  <main>
+    <section class="screen active" id="screen-home" data-screen="home">
+      <section class="hero reveal" id="hero">
+        <div class="hero-copy parallax" data-parallax="0.10">
+          <p class="eyebrow">BACKPACKING · 2026</p>
+          <h1>From the Alps<br>to the Adriatic.</h1>
+          <p class="hero-sub">兩個 Allpa 35L，19 天，從斯洛維尼亞一路南下到 Dubrovnik，最後繞進 Geneva 回台。</p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-target="trip">查看行程</button>
+            <button class="secondary-btn" id="install-btn" hidden>加入主畫面</button>
           </div>
-          <div class="check-row">
-            <input id="check-input" type="text" placeholder="新增行李或待辦事項…">
-            <button id="add-check-item" class="primary">新增</button>
-          </div>
-          <div id="checklist-list"></div>
         </div>
+        <div class="hero-orb parallax" data-parallax="-0.06"><span>19</span><small>DAYS</small></div>
+      </section>
 
-        <div class="section-card glass">
-          <div class="section-head"><div><h2>旅行備忘</h2><p>飯店、訂位代碼、車票等可暫存在這裡。</p></div></div>
-          <textarea id="notes" placeholder="輸入備忘，會自動儲存…"></textarea>
-        </div>
-      </div>
+      <section class="dashboard-grid reveal">
+        <article class="card progress-card glass">
+          <div class="card-head"><div><span class="kicker">JOURNEY</span><h2>Trip Progress</h2></div><span class="big-percent" id="trip-percent">0%</span></div>
+          <div class="progress-track"><i id="trip-progress-bar"></i></div>
+          <p id="progress-caption">距離出發還有一段時間。</p>
+          <div class="route-strip" id="route-strip"></div>
+        </article>
 
-      <div class="section-card glass section">
-        <div class="section-head"><div><h2>已確認資訊</h2><p>目前已鎖定的核心條件。</p></div></div>
-        <div class="utility-grid">
-          <div class="info-box"><span>RETURN FLIGHT</span><b>09/30 DBV 15:30 → GVA 17:25</b></div>
-          <div class="info-box"><span>LONG HAUL</span><b>10/01 GVA 12:00 → PVG 05:30+1</b></div>
-          <div class="info-box"><span>FINAL LEG</span><b>10/02 PVG 12:20 → TPE 14:25</b></div>
-          <div class="info-box"><span>RETURN PRICE</span><b>NT$32,242 / 2 pax</b></div>
-        </div>
-      </div>
+        <article class="card weather-card glass">
+          <div class="card-head"><div><span class="kicker">LIVE WEATHER</span><h2 id="weather-city">Ljubljana</h2></div><button class="tiny-btn" id="refresh-weather">更新</button></div>
+          <div class="weather-main"><span id="weather-icon">☀︎</span><b id="weather-temp">--°</b></div>
+          <div class="weather-meta"><span id="weather-text">等待更新</span><span id="weather-range">-- / --</span></div>
+          <small id="weather-note">旅程日期超出預報範圍時，顯示該城市目前天氣；離線時使用上次快取。</small>
+        </article>
+
+        <article class="card flight-card glass">
+          <span class="kicker">NEXT FLIGHT</span><div id="next-flight"></div>
+          <button class="text-btn" data-target="more">全部航班 →</button>
+        </article>
+
+        <article class="card today-card glass">
+          <span class="kicker">TODAY / FOCUS</span>
+          <div id="today-focus"></div>
+          <button class="text-btn" data-target="trip">打開 Timeline →</button>
+        </article>
+      </section>
     </section>
 
-    <footer>Trip data is loaded from <b>itinerary.js</b>. Update that file to refresh future versions of this dashboard.</footer>
+    <section class="screen" id="screen-trip" data-screen="trip">
+      <section class="section-header reveal">
+        <p class="eyebrow">ITINERARY</p><h1>19 days.<br>One continuous line.</h1>
+        <p>Day Tabs + Timeline。時間與步行為規劃值；跨境巴士、火車與 Tour 需近日期再次確認。</p>
+      </section>
+      <div class="day-tabs-wrap glass"><div class="day-tabs" id="day-tabs"></div></div>
+      <div class="day-detail" id="day-detail"></div>
+    </section>
+
+    <section class="screen" id="screen-budget" data-screen="budget">
+      <section class="section-header reveal"><p class="eyebrow">MONEY</p><h1>Budget, without<br>spreadsheet anxiety.</h1><p>計畫與實際支出都保存在本機。可直接在旅行途中更新。</p></section>
+      <div id="budget-dashboard"></div>
+    </section>
+
+    <section class="screen" id="screen-pack" data-screen="pack">
+      <section class="section-header reveal"><p class="eyebrow">PACK LIGHT</p><h1>Everything must earn<br>its 35 litres.</h1><p>兩人各一個 Allpa 35L。勾選狀態自動保存。</p></section>
+      <div id="packing-dashboard"></div>
+    </section>
+
+    <section class="screen" id="screen-more" data-screen="more">
+      <section class="section-header reveal"><p class="eyebrow">DETAILS</p><h1>Flights, checklist<br>& offline tools.</h1></section>
+      <div class="more-grid">
+        <article class="card glass"><div class="card-head"><div><span class="kicker">FLIGHTS</span><h2>已確認航班</h2></div></div><div id="flight-list"></div></article>
+        <article class="card glass"><div class="card-head"><div><span class="kicker">CHECKLIST</span><h2>行前待辦</h2></div><button class="tiny-btn" id="reset-checklist">重設</button></div><div class="add-row"><input id="check-input" placeholder="新增待辦…"><button id="add-check">＋</button></div><div id="checklist"></div></article>
+        <article class="card glass"><div class="card-head"><div><span class="kicker">NOTES</span><h2>旅行備忘</h2></div></div><textarea id="notes" placeholder="住宿門禁、訂位代碼、臨時交通…"></textarea></article>
+        <article class="card glass pwa-card"><span class="kicker">PWA / OFFLINE</span><h2>可離線使用</h2><p>行程、預算、Checklist 與最近一次天氣會留在裝置；Google Maps 導航與即時天氣仍需要網路。</p><button class="secondary-btn" id="install-btn-more">加入主畫面</button></article>
+      </div>
+    </section>
   </main>
 
-  <nav class="bottom-nav">
-    <button class="active" data-view="itinerary">行程</button>
-    <button data-view="checklist">清單 / 備忘</button>
+  <nav class="bottom-nav glass" aria-label="主要導覽">
+    <button class="nav-item active" data-target="home"><span>⌂</span><b>Home</b></button>
+    <button class="nav-item" data-target="trip"><span>◷</span><b>Trip</b></button>
+    <button class="nav-item" data-target="budget"><span>¥</span><b>Budget</b></button>
+    <button class="nav-item" data-target="pack"><span>◇</span><b>Pack</b></button>
+    <button class="nav-item" data-target="more"><span>•••</span><b>More</b></button>
   </nav>
 
   <script src="itinerary.js"></script>
