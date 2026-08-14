@@ -144,22 +144,79 @@
   async function updateWeather(){
     const day=D.days[activeDay-1]||D.days[0], city=D.weatherCities[day.weatherKey]||D.weatherCities.Ljubljana;
     $('#weather-city').textContent=city.label;
+    const dayPill=$('#day-weather-pill');
+    if(dayPill)dayPill.innerHTML=`<b>◌</b><span>${city.label}</span><strong>--°</strong>`;
     const url=`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=1`;
     try{
       const r=await fetch(url,{cache:'no-store'}); if(!r.ok) throw new Error('weather'); const j=await r.json();
       const [ic,txt]=weatherCode(j.current.weather_code); const item={city:city.label,temp:Math.round(j.current.temperature_2m),icon:ic,text:txt,max:Math.round(j.daily.temperature_2m_max[0]),min:Math.round(j.daily.temperature_2m_min[0]),at:Date.now()};save(STORE.weather,item);paintWeather(item);
-    }catch{const cached=load(STORE.weather,null);if(cached)paintWeather(cached,true);else{$('#weather-text').textContent='目前離線，尚無快取天氣'}}
+    }catch{const cached=load(STORE.weather,null);if(cached&&cached.city===city.label)paintWeather(cached,true);else{$('#weather-text').textContent='目前離線，尚無此城市的快取天氣';if(dayPill)dayPill.innerHTML=`<b>◌</b><span>${city.label}</span><strong>離線</strong>`}}
   }
-  function paintWeather(w,cached=false){$('#weather-city').textContent=w.city;$('#weather-temp').textContent=`${w.temp}°`;$('#weather-icon').textContent=w.icon;$('#weather-text').textContent=`${w.text}${cached?' · cached':''}`;$('#weather-range').textContent=`H ${w.max}° · L ${w.min}°`}
+  function paintWeather(w,cached=false){
+    $('#weather-city').textContent=w.city;$('#weather-temp').textContent=`${w.temp}°`;$('#weather-icon').textContent=w.icon;$('#weather-text').textContent=`${w.text}${cached?' · cached':''}`;$('#weather-range').textContent=`H ${w.max}° · L ${w.min}°`;
+    const dayPill=$('#day-weather-pill');
+    if(dayPill)dayPill.innerHTML=`<b>${w.icon}</b><span>${w.city}</span><strong>${w.temp}°</strong>`;
+  }
   $('#refresh-weather').addEventListener('click',updateWeather);
 
   function renderTabs(){
     $('#day-tabs').innerHTML=D.days.map(d=>`<button class="day-tab ${d.day===activeDay?'active':''}" data-day="${d.day}"><b>Day ${d.day}</b><small>${d.date}</small></button>`).join('');
     $$('.day-tab').forEach(b=>b.addEventListener('click',()=>{activeDay=+b.dataset.day;renderTabs();renderDay();updateWeather();}));
   }
+
+  const eventGuides={
+    '前往桃園機場':{why:'前往 TPE 辦理 SL395 報到；把晚餐、安檢與臨時狀況的緩衝一起留進去。',how:'依出發地搭機場捷運或預約車前往桃園機場；目標最晚起飛前 3 小時抵達。'},
+    'TPE → DMK':{why:'搭乘 SL395 前往曼谷廊曼機場，正式開始旅程。',how:'在 TPE 依看板找到 Thai Lion Air 櫃檯；抵達 DMK、入境取行李後再前往住宿。'},
+    '入住 Bangkok':{why:'午夜抵達後直接休息，不再安排宵夜或跨區移動。',how:'DMK 入境後以 Grab／機場排班計程車直達住宿；深夜不建議拖行李轉乘多段大眾運輸。'},
+    '前往 BKK':{why:'為了搭乘 22:45 的 TK069，建議約 19:00 前抵達 BKK 完成報到與安檢。',how:'先搭 MRT／BTS 接到 Makkasan 或 Phaya Thai，再轉 Airport Rail Link 直達 Suvarnabhumi；兩個 Allpa 若遇尖峰可改 Grab。'},
+    'BKK → IST':{why:'搭乘 TK069 夜航前往伊斯坦堡，隔天清晨抵達。',how:'抵達 BKK 後依看板找 Turkish Airlines 國際線報到櫃檯，完成托運、證照查驗與安檢。'},
+    '抵達 IST':{why:'04:45 抵達，這段有長轉機時間；是否進城以入境速度、睡眠與行李狀態決定。',how:'若進市區，可用 M11 地鐵轉市區軌道交通，或搭 Havaist；先確認回程動線再離開機場。'},
+    'Istanbul 短停留':{why:'利用長轉機看 Sultanahmet 一帶，但不以塞滿景點為目標。',how:'IST 往返市區以 M11 轉地鐵／電車或 Havaist；建議最晚約 14:00 開始回機場。'},
+    'IST → LJU':{why:'搭乘 TK1063 前往 Ljubljana，正式進入斯洛維尼亞與巴爾幹段。',how:'回到 IST 後依看板前往 Turkish Airlines 出發區；至少提前 2.5 小時回到機場。'},
+    '入住 Ljubljana':{why:'抵達後只安排進城與入住，保留隔天湖區早起體力。',how:'LJU 機場外搭 Ljubljana Airport 公車，或預約 Shuttle／GoOpti 直達市區住宿。'},
+    'Ljubljana → Bled':{why:'早出發避開湖區人潮，保留完整環湖與 Bohinj／Vintgar 時間。',how:'從 Ljubljana Bus Station 搭巴士到 Bled Union；下車後步行約 5 分鐘即可到湖邊。'},
+    'Bled → Bohinj / Vintgar':{why:'依天氣二選一：晴天優先 Bohinj，步道狀況合適再選 Vintgar。',how:'Bohinj 搭區域巴士前往 Ribčev Laz／Ukanc；Vintgar 依季節接駁或巴士資訊，班次近日期確認。'},
+    '返回 Ljubljana':{why:'回市區吃晚餐與休息，不在湖區拖到末班交通。',how:'從 Bohinj／Bled 搭區域巴士回 Ljubljana Bus Station；上車前再次確認末班時間。'},
+    'Ljubljana → Zagreb':{why:'上午完成跨境，讓下午仍有完整時間走 Zagreb 核心區。',how:'從 Ljubljana Bus Station 搭跨境巴士到 Zagreb Autobusni kolodvor；護照放隨身，抵達後搭電車或 Taxi 進中心。'},
+    'Zagreb → Plitvice':{why:'下午先住進湖區，換取隔天一早入園、避開旅行團。',how:'從 Zagreb Autobusni kolodvor 搭城際巴士；依住宿位置確認 Entrance 1、Entrance 2 或沿線站點下車。'},
+    '入住湖區':{why:'提早休息並整理隔天健走裝備。',how:'從巴士下車點步行或請住宿接送；先確認住宿離入口與站牌的距離。'},
+    'Plitvice → Zadar':{why:'下午離開山區，趕上 Zadar 海風琴與日落時段。',how:'從 Plitvice 沿線巴士站搭城際巴士到 Zadar Bus Station；班次與上車站近日期再次確認。'},
+    'Zadar → Split':{why:'上午南下，中午抵達後把下午完整留給 Split 古城。',how:'從 Zadar Central Bus Station 搭城際巴士到 Split Bus Station；車站就在港口與古城東側，步行即可進核心區。'},
+    '寄放行李 / Check-in':{why:'先放下 Allpa，再用輕裝走 Split 古城。',how:'從 Split Bus Station／港口步行前往 Old Town 周邊住宿；依入住時間寄放行李。'},
+    '港口集合':{why:'依跳島 Tour 的指定時間完成報到，避免錯過高速艇。',how:'住宿在 Old Town／港口周邊可步行前往；集合碼頭與櫃檯以 voucher 為準。'},
+    'Split → Mostar':{why:'早班跨境，讓中午後仍能完整走 Mostar 老城。',how:'從 Split Bus Station 搭跨境巴士到 Mostar Bus Station；護照與訂票憑證放隨身，邊境時間可能浮動。'},
+    'Check-in / 寄放背包':{why:'放下背包後直接進 Stari Most 與 Old Bazaar。',how:'Mostar Bus Station 到 Old Town 約步行 20–25 分鐘；炎熱或背包較重時改搭 Taxi。'},
+    '周邊半日遊（可選）':{why:'把 Blagaj、Počitelj、Kravica 串成一趟，避免逐點轉乘浪費時間。',how:'優先預訂 Mostar 出發的小團／包車；三地分散，大眾運輸不適合在半天內全部完成。'},
+    'Mostar → Sarajevo':{why:'優先搭景觀火車穿越 Neretva 河谷；無合適班次再切換巴士。',how:'由 Mostar Railway Station 上車至 Sarajevo；車票與 2026 班次近日期確認，備案為 Mostar Bus Station。'},
+    'Baščaršija 初探':{why:'抵達當晚先熟悉老城動線，隔天跨境前不再安排遠點。',how:'Sarajevo 車站到 Baščaršija 可搭電車或 Taxi；進老城後以步行為主。'},
+    'Sarajevo → Dubrovnik':{why:'全程最關鍵的移動日；越早抵達，留給 Dubrovnik 的有效時間越多。',how:'優先早班跨境巴士或預約 Transfer，從 Sarajevo 車站／指定點出發；護照隨身，抵達 Dubrovnik Gruž Bus Station。'},
+    '寄放 Allpa / Check-in':{why:'先放下背包，再進古城走 Stradun 與 Old Port。',how:'Gruž Bus Station 到 Pile Gate 搭市區巴士或 Taxi，約 15–25 分鐘；避免背包走古城階梯。'},
+    'Old Town → DBV':{why:'前往 DBV 搭乘 15:30 的 U21506；廉航需預留行李與安檢時間。',how:'從 Pile／Gruž 搭 Airport Shuttle 或 Taxi 到 Dubrovnik Airport；建議起飛前至少 2.5 小時抵達。'},
+    'DBV → GVA':{why:'搭乘 easyJet U21506 前往 Geneva，完成巴爾幹主段。',how:'依 easyJet App 完成線上報到並確認行李規則；抵達 GVA 後搭直達火車前往 Genève-Cornavin。'},
+    'Cornavin → GVA':{why:'前往 GVA 搭乘 12:00 的 MU218，長程航班需保留報到時間。',how:'從 Genève-Cornavin 搭直達火車到 Genève Aéroport，車程約 7 分鐘；加上候車與步行抓約 20 分鐘。'},
+    'GVA → PVG':{why:'搭乘 MU218 前往上海浦東，隔天轉機回台。',how:'在 GVA 依看板找 China Eastern 報到區；確認行李是否直掛 TPE 與 PVG 轉機方式。'},
+    '抵達 PVG':{why:'保留 6h50 轉機緩衝，先完成轉機安檢與下一段登機確認。',how:'跟隨 International Transfer／Transfer 指標，不入境市區；確認 MU5007 登機門與行李狀態。'},
+    'PVG → TPE':{why:'搭乘 MU5007 返回桃園，旅程最後一段。',how:'提早回到登機門等候；抵達 TPE 後完成入境、取行李與海關。'},
+    '抵達台灣':{why:'Balkan 2026 完成。',how:'依抵達航廈搭機場捷運、接送或排班計程車返家。'}
+  };
+  const eventKinds={move:['↗','交通'],flight:['✈','航班'],walk:['●','步行'],coffee:['☕','休息'],food:['◐','用餐'],stay:['⌂','住宿'],boat:['≈','船程']};
+  function guideFor(e){
+    const guide=eventGuides[e.title]||{};
+    const fallback={
+      move:'依行程標示的巴士／火車為主；班次、月台與上車點請在出發前再次確認。',
+      flight:'依航班看板辦理報到與登機；國際線原則上提前 2.5–3 小時抵達機場。',
+      walk:'景點之間以步行串聯；開啟 Google Maps 導航，下雨或體力不足時改搭市區交通。',
+      coffee:'依當下位置選順路店家，以步行為主，不為單一店家大幅折返。',
+      food:'優先選當下街區的順路餐廳；步行前往並保留現場候位時間。',
+      stay:'依住宿確認信的地址開啟導航；入住前先確認寄放行李與門禁方式。',
+      boat:'集合碼頭、報到時間與停靠點以 Tour voucher 及當日海況通知為準。'
+    };
+    return {why:guide.why||e.detail,how:guide.how||fallback[e.type]||'依 Google Maps 導航與現場指示前往。'};
+  }
   function renderDay(){
     const d=D.days[activeDay-1];
-    $('#day-detail').innerHTML=`<article class="day-hero reveal"><div class="day-hero-top"><div><span class="kicker">${d.country} · ${d.theme}</span><h2>${d.city}</h2><p>${d.summary}</p></div><span class="stay-pill">🏨 ${d.stay}</span></div></article><article class="timeline-card glass reveal"><div class="timeline">${d.events.map(e=>`<div class="timeline-row"><div class="timeline-time">${e.time}</div><div class="timeline-dot"></div><div class="timeline-content"><h3>${e.title}</h3><p>${e.detail}</p><div class="timeline-bottom"><span class="duration">${e.duration}</span><a class="map-link" href="${maps(e.map)}" target="_blank" rel="noopener">Google Maps ↗</a></div></div></div>`).join('')}</div></article>`;
+    const city=D.weatherCities[d.weatherKey]||D.weatherCities.Ljubljana;
+    $('#day-detail').innerHTML=`<article class="day-hero reveal"><div class="day-hero-top"><div><span class="kicker">${d.country} · ${d.theme}</span><h2>${d.city}</h2><p>${d.summary}</p></div><span class="day-weather-pill" id="day-weather-pill"><b>◌</b><span>${city.label}</span><strong>--°</strong></span></div></article><article class="timeline-card glass reveal"><div class="timeline">${d.events.map(e=>{const g=guideFor(e),kind=eventKinds[e.type]||['•','行程'];return `<div class="timeline-row"><div class="timeline-time">${e.time}</div><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-title-row"><h3>${e.title}</h3><span class="event-kind">${kind[0]} ${kind[1]}</span></div><p class="event-purpose">${g.why}</p><div class="event-how"><b>怎麼去</b><p>${g.how}</p></div><div class="timeline-bottom"><span class="duration">◷ ${e.duration}</span><a class="map-link" href="${maps(e.map)}" target="_blank" rel="noopener">Google Maps ↗</a></div></div></div>`}).join('')}</div></article>`;
     setTimeout(observeReveals,20);
   }
 

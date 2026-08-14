@@ -82,3 +82,53 @@
   .hero{min-height:350px;padding:26px 20px}
   .hero h1{font-size:38px}
 }
+
+/* Trip timeline readability · v3.3 */
+.day-hero{padding:28px 32px}
+.day-hero h2{font-size:clamp(32px,4.2vw,48px);line-height:1.02;letter-spacing:-.05em;margin:8px 0 10px}
+.day-hero p{font-size:14px;line-height:1.65}
+.day-weather-pill{height:max-content;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.day-weather-pill b{font-size:20px;line-height:1}
+.day-weather-pill span{font-size:11px;color:var(--muted);font-weight:700}
+.day-weather-pill strong{font-size:14px}
+.timeline-card{padding:32px 34px}
+.timeline:before{left:88px;top:10px;bottom:24px}
+.timeline-row{grid-template-columns:62px 28px 1fr;gap:12px;padding-bottom:34px}
+.timeline-row:last-child{padding-bottom:4px}
+.timeline-time{font-size:13px;padding-top:4px}
+.timeline-dot{width:16px;height:16px;margin-top:1px}
+.timeline-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.timeline-content h3{font-size:19px;line-height:1.25;margin:0 0 7px}
+.event-kind{flex:none;padding:5px 8px;border-radius:999px;background:var(--surface-solid);border:1px solid var(--line);font-size:9px;font-weight:800;color:var(--muted)}
+.timeline-content .event-purpose{font-size:14px;line-height:1.65;color:var(--muted);margin:0}
+.event-how{margin-top:12px;padding:12px 14px;border-radius:16px;background:rgba(0,113,227,.055);border:1px solid rgba(0,113,227,.10)}
+.event-how b{display:block;font-size:10px;letter-spacing:.08em;color:var(--blue);margin-bottom:4px}
+.event-how p{font-size:13px;line-height:1.6;color:var(--text);margin:0}
+.timeline-bottom{margin-top:12px;gap:10px}
+.duration{font-size:11px;padding:7px 10px}
+.map-link{font-size:11px;padding:8px 11px}
+
+@media(max-width:760px){
+  .day-hero{padding:22px}
+  .day-hero-top{display:flex;align-items:flex-start}
+  .day-hero h2{font-size:34px;line-height:1.06}
+  .day-hero p{font-size:13px}
+  .day-weather-pill{margin-top:0;padding:8px 10px}
+  .day-weather-pill span{display:none}
+  .timeline-card{padding:24px 16px}
+  .timeline:before{left:67px}
+  .timeline-row{grid-template-columns:44px 26px 1fr;gap:10px;padding-bottom:30px}
+  .timeline-time{font-size:12px}
+  .timeline-content h3{font-size:17px}
+  .timeline-content .event-purpose{font-size:13px}
+  .event-how{padding:11px 12px}
+  .event-how p{font-size:12px}
+}
+
+@media(max-width:390px){
+  .day-hero-top{display:block}
+  .day-weather-pill{display:inline-flex;margin-top:10px}
+  .day-weather-pill span{display:inline}
+  .timeline-title-row{display:block}
+  .event-kind{display:inline-block;margin-bottom:7px}
+}
