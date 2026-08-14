@@ -33,12 +33,12 @@ window.TRIP_DATA = {
   },
 
   flights: [
-    { date:"09/14", code:"SL395", from:"TPE", to:"DMK", depart:"21:20", arrive:"00:15+1", airline:"Thai Lion Air", status:"booked" },
-    { date:"09/16", code:"TK069", from:"BKK", to:"IST", depart:"22:45", arrive:"04:45+1", airline:"Turkish Airlines", status:"booked" },
-    { date:"09/17", code:"TK1063", from:"IST", to:"LJU", depart:"18:15", arrive:"19:30", airline:"Turkish Airlines", status:"booked" },
-    { date:"09/30", code:"U21506", from:"DBV", to:"GVA", depart:"15:30", arrive:"17:25", airline:"easyJet", status:"booked" },
-    { date:"10/01", code:"MU218", from:"GVA", to:"PVG", depart:"12:00", arrive:"05:30+1", airline:"China Eastern", status:"booked" },
-    { date:"10/02", code:"MU5007", from:"PVG", to:"TPE", depart:"12:20", arrive:"14:25", airline:"China Eastern", status:"booked" }
+    { date:"09/14", code:"SL395", from:"TPE", to:"DMK", depart:"21:20", arrive:"00:15+1", airline:"Thai Lion Air", status:"booked", fromTerminal:"待確認", toTerminal:"待確認" },
+    { date:"09/16", code:"TK069", from:"BKK", to:"IST", depart:"22:45", arrive:"04:45+1", airline:"Turkish Airlines", status:"booked", fromTerminal:"待確認", toTerminal:"待確認" },
+    { date:"09/17", code:"TK1063", from:"IST", to:"LJU", depart:"18:15", arrive:"19:30", airline:"Turkish Airlines", status:"booked", fromTerminal:"待確認", toTerminal:"待確認" },
+    { date:"09/30", code:"U21506", from:"DBV", to:"GVA", depart:"15:30", arrive:"17:25", airline:"easyJet", status:"booked", fromTerminal:"待確認", toTerminal:"T1" },
+    { date:"10/01", code:"MU218", from:"GVA", to:"PVG", depart:"12:00", arrive:"05:30+1", airline:"China Eastern", status:"booked", fromTerminal:"T1", toTerminal:"T1" },
+    { date:"10/02", code:"MU5007", from:"PVG", to:"TPE", depart:"12:20", arrive:"14:25", airline:"China Eastern", status:"booked", fromTerminal:"T1", toTerminal:"T2" }
   ],
 
   budgetDefaults: [

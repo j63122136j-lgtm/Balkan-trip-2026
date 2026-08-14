@@ -26,27 +26,92 @@
     $('#theme-toggle').addEventListener('click',()=>{const d=!document.documentElement.classList.contains('dark');document.documentElement.classList.toggle('dark',d);localStorage.setItem(STORE.theme,d?'dark':'light')});
   }
 
-  function tripProgress(){
+  function resolveActiveDay(){
     const start=new Date(`${D.meta.startDate}T00:00:00`), end=new Date(`${D.meta.endDate}T23:59:59`), now=new Date();
-    let pct=0,caption='';
-    if(now<start){const days=Math.ceil((start-now)/86400000);caption=`距離出發 ${days} 天。`;pct=0}
-    else if(now>end){pct=100;caption='旅程完成。Balkan 2026 已收藏。'}
-    else{pct=Math.max(0,Math.min(100,((now-start)/(end-start))*100));const d=Math.floor((now-start)/86400000)+1;caption=`Day ${d} / ${D.days.length} · 正在旅途中。`;activeDay=Math.min(d,D.days.length)}
-    $('#trip-percent').textContent=`${Math.round(pct)}%`;$('#trip-progress-bar').style.width=`${pct}%`;$('#progress-caption').textContent=caption;
-    $('#route-strip').innerHTML=D.route.map((x,i)=>`<span class="route-chip ${i<=Math.round((D.route.length-1)*pct/100)?'current':''}">${x}</span>`).join('');
+    if(now<start){activeDay=1;return}
+    if(now>end){activeDay=D.days.length;return}
+    activeDay=Math.min(Math.floor((now-start)/86400000)+1,D.days.length);
+  }
+
+  function flightDateTime(f){
+    const [m,d]=f.date.split('/').map(Number);
+    const [h,min]=f.depart.split(':').map(Number);
+    return new Date(2026,m-1,d,h,min||0);
   }
 
   function nextFlight(){
     const now=new Date();
-    const year=2026;
-    const list=D.flights.map(f=>{const [m,d]=f.date.split('/').map(Number);return {...f,dt:new Date(year,m-1,d)}});
-    const f=list.find(x=>x.dt>=new Date(now.getFullYear()===2026?now:new Date('2026-01-01')))||list[0];
-    $('#next-flight').innerHTML=`<div class="flight-route"><b class="airport-code">${f.from}</b><span class="flight-line"></span><b class="airport-code">${f.to}</b></div><div class="flight-meta"><b>${f.date} · ${f.depart} → ${f.arrive}</b><br>${f.code} · ${f.airline}</div>`;
+    const list=D.flights.map(f=>({...f,dt:flightDateTime(f)}));
+    const f=list.find(x=>x.dt>=now)||list[list.length-1];
+    const depTerminal=f.fromTerminal||'待確認';
+    const arrTerminal=f.toTerminal||'待確認';
+    const statusLabel=f.status==='booked'?'已訂 / 已出票':(f.status||'待確認');
+    $('#next-flight-status').textContent=f.status==='booked'?'✓ BOOKED':'CHECK';
+    $('#next-flight').innerHTML=`
+      <div class="flight-route"><b class="airport-code">${f.from}</b><span class="flight-line"></span><b class="airport-code">${f.to}</b></div>
+      <div class="flight-meta flight-meta-grid">
+        <div><span>時間</span><b>${f.date} · ${f.depart} → ${f.arrive}</b></div>
+        <div><span>航班</span><b>${f.code} · ${f.airline}</b></div>
+        <div><span>出發航廈</span><b>${f.from} · ${depTerminal}</b></div>
+        <div><span>抵達航廈</span><b>${f.to} · ${arrTerminal}</b></div>
+      </div>
+      <div class="flight-state"><span class="status-dot"></span>${statusLabel}</div>`;
   }
 
-  function todayFocus(){
-    const d=D.days[activeDay-1]||D.days[0];
-    $('#today-focus').innerHTML=`<h3>Day ${d.day} · ${d.city}</h3><p>${d.summary}</p><span class="duration">🏨 ${d.stay}</span>`;
+  function eventDate(day,event){
+    const [m,d]=day.date.split('/').map(Number);
+    const [h,min]=event.time.split(':').map(Number);
+    return new Date(2026,m-1,d,h||0,min||0);
+  }
+
+  function nextAttraction(){
+    const now=new Date();
+    const attractionTypes=new Set(['walk','coffee','food','boat']);
+    const beforeTrip=now < new Date(`${D.meta.startDate}T00:00:00`);
+    let found=null;
+    for(const day of D.days){
+      for(const e of day.events){
+        if(!attractionTypes.has(e.type)) continue;
+        if(beforeTrip || eventDate(day,e)>=now){found={day,event:e};break}
+      }
+      if(found) break;
+    }
+    if(!found){
+      const day=D.days[D.days.length-1];
+      const event=day.events.find(e=>attractionTypes.has(e.type))||day.events[0];
+      found={day,event};
+    }
+    const {day,event}=found;
+    $('#next-attraction').innerHTML=`
+      <div class="next-stop-title"><span>${day.date} · Day ${day.day}</span><h3>${event.title}</h3><p>${event.detail}</p></div>
+      <div class="next-stop-meta"><span>${event.time}</span><span>${event.duration}</span><span>${day.city}</span></div>
+      <div class="card-actions">
+        <a class="primary-link" href="${maps(event.map)}" target="_blank" rel="noopener">Google Maps ↗</a>
+        <button class="text-btn inline" data-open-day="${day.day}">查看 Day ${day.day} →</button>
+      </div>`;
+  }
+
+  function tomorrowFocus(){
+    const now=new Date();
+    const start=new Date(`${D.meta.startDate}T00:00:00`), end=new Date(`${D.meta.endDate}T23:59:59`);
+    let targetDay;
+    if(now<start) targetDay=D.days[0];
+    else if(now>end) targetDay=D.days[D.days.length-1];
+    else targetDay=D.days[Math.min(activeDay,D.days.length-1)];
+    $('#tomorrow-day-badge').textContent=`DAY ${targetDay.day}`;
+    const highlights=targetDay.events.slice(0,3).map(e=>`<li><b>${e.time}</b><span>${e.title}</span></li>`).join('');
+    $('#tomorrow-focus').innerHTML=`
+      <h3>${targetDay.city}</h3>
+      <p>${targetDay.summary}</p>
+      <ul class="tomorrow-list">${highlights}</ul>
+      <button class="text-btn inline" data-open-day="${targetDay.day}">打開明日 Timeline →</button>`;
+  }
+
+  function bindOpenDayButtons(){
+    $$('[data-open-day]').forEach(btn=>btn.addEventListener('click',()=>{
+      activeDay=Number(btn.dataset.openDay)||1;
+      renderTabs();renderDay();updateWeather();setScreen('trip');
+    }));
   }
 
   const weatherCode = c => ({0:['☀︎','晴朗'],1:['☀︎','大致晴朗'],2:['◒','局部多雲'],3:['☁︎','陰天'],45:['≋','霧'],48:['≋','霧'],51:['☂','毛毛雨'],53:['☂','毛毛雨'],55:['☂','毛毛雨'],61:['☂','小雨'],63:['☂','雨'],65:['☂','大雨'],71:['❄︎','小雪'],73:['❄︎','雪'],75:['❄︎','大雪'],80:['☂','陣雨'],81:['☂','陣雨'],82:['☂','強陣雨'],95:['ϟ','雷雨']}[c]||['◌','天氣']);

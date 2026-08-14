@@ -46,31 +46,76 @@
         <div class="hero-orb parallax" data-parallax="-0.06"><span>19</span><small>DAYS</small></div>
       </section>
 
-      <section class="dashboard-grid reveal">
-        <article class="card progress-card glass">
-          <div class="card-head"><div><span class="kicker">JOURNEY</span><h2>Trip Progress</h2></div><span class="big-percent" id="trip-percent">0%</span></div>
-          <div class="progress-track"><i id="trip-progress-bar"></i></div>
-          <p id="progress-caption">距離出發還有一段時間。</p>
-          <div class="route-strip" id="route-strip"></div>
+      <section class="home-cockpit reveal">
+        <article class="card home-currency glass">
+          <div class="card-head">
+            <div><span class="kicker">QUICK CONVERT</span><h2>價格換算</h2></div>
+            <button class="tiny-btn" id="refresh-rate">更新</button>
+          </div>
+          <div class="home-rate-grid">
+            <label class="currency-field">
+              <span>貨幣</span>
+              <select id="currency-select" aria-label="選擇到訪國家的貨幣">
+                <option value="EUR">🇪🇺 EUR · 歐元</option>
+                <option value="THB">🇹🇭 THB · 泰銖</option>
+                <option value="TRY">🇹🇷 TRY · 土耳其里拉</option>
+                <option value="BAM">🇧🇦 BAM · 波士尼亞馬克</option>
+                <option value="CHF">🇨🇭 CHF · 瑞士法郎</option>
+                <option value="CNY">🇨🇳 CNY · 人民幣</option>
+              </select>
+            </label>
+            <label class="currency-field">
+              <span>當地金額</span>
+              <input id="currency-amount" type="number" min="0" step="any" inputmode="decimal" value="100">
+            </label>
+            <div class="home-rate-result">
+              <span>約台幣</span>
+              <strong id="currency-output">—</strong>
+              <small id="currency-rate-note">取得匯率中…</small>
+            </div>
+          </div>
         </article>
 
-        <article class="card weather-card glass">
-          <div class="card-head"><div><span class="kicker">LIVE WEATHER</span><h2 id="weather-city">Ljubljana</h2></div><button class="tiny-btn" id="refresh-weather">更新</button></div>
-          <div class="weather-main"><span id="weather-icon">☀︎</span><b id="weather-temp">--°</b></div>
-          <div class="weather-meta"><span id="weather-text">等待更新</span><span id="weather-range">-- / --</span></div>
-          <small id="weather-note">旅程日期超出預報範圍時，顯示該城市目前天氣；離線時使用上次快取。</small>
+        <article class="card next-stop-card glass">
+          <div class="card-head">
+            <div><span class="kicker">NEXT STOP</span><h2>接下來的景點</h2></div>
+            <span class="status-dot"></span>
+          </div>
+          <div id="next-attraction"></div>
         </article>
 
         <article class="card flight-card glass">
-          <span class="kicker">NEXT FLIGHT</span><div id="next-flight"></div>
+          <div class="card-head">
+            <div><span class="kicker">NEXT FLIGHT</span><h2>下一段航班</h2></div>
+            <span class="booked" id="next-flight-status">✓ BOOKED</span>
+          </div>
+          <div id="next-flight"></div>
           <button class="text-btn" data-target="more">全部航班 →</button>
         </article>
 
-        <article class="card today-card glass">
-          <span class="kicker">TODAY / FOCUS</span>
-          <div id="today-focus"></div>
-          <button class="text-btn" data-target="trip">打開 Timeline →</button>
+        <article class="card tomorrow-card glass">
+          <div class="card-head">
+            <div><span class="kicker">TOMORROW / FOCUS</span><h2>明天重點</h2></div>
+            <span class="day-badge" id="tomorrow-day-badge">DAY —</span>
+          </div>
+          <div id="tomorrow-focus"></div>
         </article>
+
+        <article class="card weather-slim glass">
+          <div>
+            <span class="kicker">WEATHER</span>
+            <div class="weather-slim-main">
+              <b id="weather-city">Ljubljana</b>
+              <span id="weather-icon">☀︎</span>
+              <strong id="weather-temp">--°</strong>
+              <span id="weather-text">等待更新</span>
+              <span id="weather-range">-- / --</span>
+            </div>
+          </div>
+          <button class="tiny-btn" id="refresh-weather">更新</button>
+          <small id="weather-note">離線時使用最近一次快取。</small>
+        </article>
+      </section>
       </section>
     </section>
 
@@ -82,36 +127,6 @@
 
     <section class="screen" id="screen-budget" data-screen="budget">
       <div class="page-head"><div><span class="kicker">MONEY</span><h1>預算與匯率</h1></div><p>支出與換算集中在這裡</p></div>
-      <section class="currency-card glass" aria-labelledby="currency-title">
-        <div class="currency-head">
-          <div><span class="kicker">CURRENCY</span><h2 id="currency-title">當地貨幣 → 台幣</h2></div>
-          <button class="tiny-btn" id="refresh-rate">更新匯率</button>
-        </div>
-        <div class="currency-converter">
-          <label class="currency-field">
-            <span>貨幣</span>
-            <select id="currency-select" aria-label="選擇到訪國家的貨幣">
-              <option value="EUR">🇪🇺 EUR · 歐元</option>
-              <option value="THB">🇹🇭 THB · 泰銖</option>
-              <option value="TRY">🇹🇷 TRY · 土耳其里拉</option>
-              <option value="BAM">🇧🇦 BAM · 波士尼亞馬克</option>
-              <option value="CHF">🇨🇭 CHF · 瑞士法郎</option>
-              <option value="CNY">🇨🇳 CNY · 人民幣</option>
-            </select>
-          </label>
-          <label class="currency-field amount-field">
-            <span>當地金額</span>
-            <input id="currency-amount" type="number" min="0" step="any" inputmode="decimal" value="100" aria-label="輸入當地貨幣金額">
-          </label>
-          <div class="currency-equals" aria-hidden="true">=</div>
-          <div class="currency-result">
-            <span>約台幣</span>
-            <strong id="currency-output">—</strong>
-            <small id="currency-rate-note">取得即時匯率中…</small>
-          </div>
-        </div>
-        <p class="currency-disclaimer">匯率為市場參考值；刷卡、ATM、換匯所的實際成交價會包含價差或手續費。離線時使用最近一次快取。</p>
-      </section>
       <div id="budget-dashboard"></div>
     </section>
 
