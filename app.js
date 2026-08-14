@@ -33,33 +33,7 @@
     else if(now>end){pct=100;caption='旅程完成。Balkan 2026 已收藏。'}
     else{pct=Math.max(0,Math.min(100,((now-start)/(end-start))*100));const d=Math.floor((now-start)/86400000)+1;caption=`Day ${d} / ${D.days.length} · 正在旅途中。`;activeDay=Math.min(d,D.days.length)}
     $('#trip-percent').textContent=`${Math.round(pct)}%`;$('#trip-progress-bar').style.width=`${pct}%`;$('#progress-caption').textContent=caption;
-    const currentRouteIndex=Math.round((D.route.length-1)*pct/100);
-    $('#route-strip').innerHTML=D.route.map((x,i)=>`
-      <button class="route-chip ${i<=currentRouteIndex?'visited':''} ${i===currentRouteIndex&&pct>0?'current':''}" data-route="${x}" aria-label="前往 ${x} 行程">
-        <span class="route-dot"></span><span>${x}</span>
-      </button>`).join('');
-    $$('.route-chip').forEach(btn=>btn.addEventListener('click',()=>jumpToRoute(btn.dataset.route)));
-  }
-
-  function jumpToRoute(route){
-    const aliases={
-      'Taipei':['Taipei'], 'Shanghai':['Shanghai'], 'Geneva':['Geneva'], 'Dubrovnik':['Dubrovnik'],
-      'Sarajevo':['Sarajevo'], 'Mostar':['Mostar'], 'Split':['Split'], 'Zadar':['Zadar'],
-      'Plitvice':['Plitvice'], 'Zagreb':['Zagreb'], 'Bled':['Bled'], 'Ljubljana':['Ljubljana'],
-      'Istanbul':['Istanbul'], 'Bangkok':['Bangkok']
-    };
-    const keys=aliases[route]||[route];
-    const day=D.days.find(d=>keys.some(k=>d.weatherKey===k||d.city.includes(k)||d.city.toLowerCase().includes(k.toLowerCase())));
-    if(!day) return;
-    activeDay=day.day;
-    renderTabs();
-    renderDay();
-    updateWeather();
-    setScreen('trip');
-    requestAnimationFrame(()=>{
-      const active=$(`.day-tab[data-day="${activeDay}"]`);
-      active?.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-    });
+    $('#route-strip').innerHTML=D.route.map((x,i)=>`<span class="route-chip ${i<=Math.round((D.route.length-1)*pct/100)?'current':''}">${x}</span>`).join('');
   }
 
   function nextFlight(){
