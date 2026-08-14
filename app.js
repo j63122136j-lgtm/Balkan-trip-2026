@@ -3,7 +3,7 @@
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const fmt = n => new Intl.NumberFormat('zh-TW',{style:'currency',currency:'TWD',maximumFractionDigits:0}).format(Number(n)||0);
-  const STORE = {theme:'balkan_v3_theme',budget:'balkan_v3_budget',packing:'balkan_v3_packing',checks:'balkan_v3_checks',notes:'balkan_v3_notes',weather:'balkan_v3_weather'};
+  const STORE = {theme:'balkan_v3_theme',budget:'balkan_v3_budget',packing:'balkan_v3_packing',checks:'balkan_v3_checks',notes:'balkan_v3_notes',weather:'balkan_v3_weather',rates:'balkan_v3_rates'};
   let activeDay = 1;
   let deferredPrompt = null;
 
@@ -72,6 +72,49 @@
     setTimeout(observeReveals,20);
   }
 
+  const currencyMeta={
+    EUR:{name:'歐元',symbol:'€'},THB:{name:'泰銖',symbol:'฿'},TRY:{name:'土耳其里拉',symbol:'₺'},
+    BAM:{name:'波士尼亞馬克',symbol:'KM'},CHF:{name:'瑞士法郎',symbol:'CHF'},CNY:{name:'人民幣',symbol:'¥'}
+  };
+  let currentRate=null;
+  function getRateCache(){return load(STORE.rates,{})}
+  function setRateCache(code,rate,date){const all=getRateCache();all[code]={rate,date,at:Date.now()};save(STORE.rates,all)}
+  function paintCurrency(){
+    const code=$('#currency-select').value, amount=Number($('#currency-amount').value)||0, meta=currencyMeta[code];
+    if(!currentRate||currentRate.code!==code){$('#currency-output').textContent='—';return}
+    $('#currency-output').textContent=fmt(amount*currentRate.rate);
+    const source=currentRate.cached?'快取':'即時';
+    $('#currency-rate-note').textContent=`1 ${code} ≈ ${currentRate.rate.toFixed(currentRate.rate<1?4:3)} TWD · ${source}${currentRate.date?` · ${currentRate.date}`:''}`;
+  }
+  async function updateRate(force=false){
+    const code=$('#currency-select').value;
+    const cached=getRateCache()[code];
+    if(!force&&cached&&Date.now()-cached.at<6*3600000){currentRate={code,...cached,cached:true};paintCurrency();return}
+    $('#currency-rate-note').textContent='更新匯率中…';
+    const lc=code.toLowerCase();
+    const urls=[
+      `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${lc}.json`,
+      `https://latest.currency-api.pages.dev/v1/currencies/${lc}.json`
+    ];
+    for(const url of urls){
+      try{
+        const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('rate');
+        const j=await r.json(), rate=Number(j[lc]?.twd);
+        if(!rate)throw new Error('TWD rate unavailable');
+        setRateCache(code,rate,j.date||'');currentRate={code,rate,date:j.date||'',at:Date.now(),cached:false};paintCurrency();return;
+      }catch(_){ }
+    }
+    if(cached){currentRate={code,...cached,cached:true};paintCurrency();$('#currency-rate-note').textContent+=` · 目前離線`;}
+    else{currentRate=null;$('#currency-output').textContent='—';$('#currency-rate-note').textContent='目前無法取得匯率，連線後再試一次。'}
+  }
+  function initCurrency(){
+    const sel=$('#currency-select'), amt=$('#currency-amount');
+    sel.addEventListener('change',()=>{currentRate=null;updateRate(true)});
+    amt.addEventListener('input',paintCurrency);
+    $('#refresh-rate').addEventListener('click',()=>updateRate(true));
+    updateRate();
+  }
+
   function renderBudget(){
     let b=load(STORE.budget,D.budgetDefaults);
     const totalPlan=b.reduce((s,x)=>s+(+x.planned||0),0),totalSpent=b.reduce((s,x)=>s+(+x.spent||0),0),remaining=totalPlan-totalSpent;
@@ -109,5 +152,5 @@
   $('#install-btn').addEventListener('click',install);$('#install-btn-more').addEventListener('click',install);
   if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
 
-  initTheme();tripProgress();nextFlight();todayFocus();renderTabs();renderDay();renderBudget();renderPacking();renderFlights();renderChecks();network();updateWeather();observeReveals();
+  initTheme();tripProgress();nextFlight();todayFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderChecks();network();updateWeather();observeReveals();
 })();

@@ -31,6 +31,7 @@
   </header>
 
   <main>
+    <!-- Only the home screen carries the large Apple-style campaign headline. -->
     <section class="screen active" id="screen-home" data-screen="home">
       <section class="hero reveal" id="hero">
         <div class="hero-copy parallax" data-parallax="0.10">
@@ -74,31 +75,58 @@
     </section>
 
     <section class="screen" id="screen-trip" data-screen="trip">
-      <section class="section-header reveal">
-        <p class="eyebrow">ITINERARY</p><h1>19 days.<br>One continuous line.</h1>
-        <p>Day Tabs + Timeline。時間與步行為規劃值；跨境巴士、火車與 Tour 需近日期再次確認。</p>
-      </section>
+      <div class="page-head"><div><span class="kicker">ITINERARY</span><h1>行程</h1></div><p>Day 1–19 · Timeline</p></div>
       <div class="day-tabs-wrap glass"><div class="day-tabs" id="day-tabs"></div></div>
       <div class="day-detail" id="day-detail"></div>
     </section>
 
     <section class="screen" id="screen-budget" data-screen="budget">
-      <section class="section-header reveal"><p class="eyebrow">MONEY</p><h1>Budget, without<br>spreadsheet anxiety.</h1><p>計畫與實際支出都保存在本機。可直接在旅行途中更新。</p></section>
+      <div class="page-head"><div><span class="kicker">MONEY</span><h1>預算與匯率</h1></div><p>支出與換算集中在這裡</p></div>
+      <section class="currency-card glass" aria-labelledby="currency-title">
+        <div class="currency-head">
+          <div><span class="kicker">CURRENCY</span><h2 id="currency-title">當地貨幣 → 台幣</h2></div>
+          <button class="tiny-btn" id="refresh-rate">更新匯率</button>
+        </div>
+        <div class="currency-converter">
+          <label class="currency-field">
+            <span>貨幣</span>
+            <select id="currency-select" aria-label="選擇到訪國家的貨幣">
+              <option value="EUR">🇪🇺 EUR · 歐元</option>
+              <option value="THB">🇹🇭 THB · 泰銖</option>
+              <option value="TRY">🇹🇷 TRY · 土耳其里拉</option>
+              <option value="BAM">🇧🇦 BAM · 波士尼亞馬克</option>
+              <option value="CHF">🇨🇭 CHF · 瑞士法郎</option>
+              <option value="CNY">🇨🇳 CNY · 人民幣</option>
+            </select>
+          </label>
+          <label class="currency-field amount-field">
+            <span>當地金額</span>
+            <input id="currency-amount" type="number" min="0" step="any" inputmode="decimal" value="100" aria-label="輸入當地貨幣金額">
+          </label>
+          <div class="currency-equals" aria-hidden="true">=</div>
+          <div class="currency-result">
+            <span>約台幣</span>
+            <strong id="currency-output">—</strong>
+            <small id="currency-rate-note">取得即時匯率中…</small>
+          </div>
+        </div>
+        <p class="currency-disclaimer">匯率為市場參考值；刷卡、ATM、換匯所的實際成交價會包含價差或手續費。離線時使用最近一次快取。</p>
+      </section>
       <div id="budget-dashboard"></div>
     </section>
 
     <section class="screen" id="screen-pack" data-screen="pack">
-      <section class="section-header reveal"><p class="eyebrow">PACK LIGHT</p><h1>Everything must earn<br>its 35 litres.</h1><p>兩人各一個 Allpa 35L。勾選狀態自動保存。</p></section>
+      <div class="page-head"><div><span class="kicker">PACK</span><h1>裝備</h1></div><p>Allpa 35L × 2</p></div>
       <div id="packing-dashboard"></div>
     </section>
 
     <section class="screen" id="screen-more" data-screen="more">
-      <section class="section-header reveal"><p class="eyebrow">DETAILS</p><h1>Flights, checklist<br>& offline tools.</h1></section>
+      <div class="page-head"><div><span class="kicker">TOOLS</span><h1>航班與工具</h1></div><p>Checklist · Notes · Offline</p></div>
       <div class="more-grid">
         <article class="card glass"><div class="card-head"><div><span class="kicker">FLIGHTS</span><h2>已確認航班</h2></div></div><div id="flight-list"></div></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">CHECKLIST</span><h2>行前待辦</h2></div><button class="tiny-btn" id="reset-checklist">重設</button></div><div class="add-row"><input id="check-input" placeholder="新增待辦…"><button id="add-check">＋</button></div><div id="checklist"></div></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">NOTES</span><h2>旅行備忘</h2></div></div><textarea id="notes" placeholder="住宿門禁、訂位代碼、臨時交通…"></textarea></article>
-        <article class="card glass pwa-card"><span class="kicker">PWA / OFFLINE</span><h2>可離線使用</h2><p>行程、預算、Checklist 與最近一次天氣會留在裝置；Google Maps 導航與即時天氣仍需要網路。</p><button class="secondary-btn" id="install-btn-more">加入主畫面</button></article>
+        <article class="card glass pwa-card"><span class="kicker">PWA / OFFLINE</span><h2>可離線使用</h2><p>行程、預算、Checklist、最近一次天氣與最近一次匯率會留在裝置；Google Maps 導航與即時更新仍需要網路。</p><button class="secondary-btn" id="install-btn-more">加入主畫面</button></article>
       </div>
     </section>
   </main>
