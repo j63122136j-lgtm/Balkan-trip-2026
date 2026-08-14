@@ -1,4 +1,4 @@
-const VERSION='balkan-v3.2.0';
+const VERSION='balkan-v3.2.1';
 const APP_CACHE=`${VERSION}-app`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const APP_SHELL=['./','./index.html','./styles.css','./itinerary.js','./app.js','./manifest.webmanifest','./icons/icon.svg','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch-icon.png'];

@@ -148,25 +148,32 @@
     const code=$('#currency-select').value, amount=Number($('#currency-amount').value)||0, meta=currencyMeta[code];
     if(!currentRate||currentRate.code!==code){$('#currency-output').textContent='—';return}
     $('#currency-output').textContent=fmt(amount*currentRate.rate);
-    const source=currentRate.cached?'快取':'即時';
-    $('#currency-rate-note').textContent=`1 ${code} ≈ ${currentRate.rate.toFixed(currentRate.rate<1?4:3)} TWD · ${source}${currentRate.date?` · ${currentRate.date}`:''}`;
+    const state=currentRate.cached?'快取':currentRate.provider;
+    $('#currency-rate-note').textContent=`1 ${code} ≈ ${currentRate.rate.toFixed(currentRate.rate<1?4:3)} TWD · ${state}${currentRate.date?` · ${currentRate.date}`:''}`;
   }
   async function updateRate(force=false){
     const code=$('#currency-select').value;
     const cached=getRateCache()[code];
-    if(!force&&cached&&Date.now()-cached.at<6*3600000){currentRate={code,...cached,cached:true};paintCurrency();return}
+    if(!force&&cached&&Date.now()-cached.at<12*3600000){currentRate={code,...cached,cached:true};paintCurrency();return}
     $('#currency-rate-note').textContent='更新匯率中…';
-    const lc=code.toLowerCase();
-    const urls=[
-      `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${lc}.json`,
-      `https://latest.currency-api.pages.dev/v1/currencies/${lc}.json`
+    const providers=[
+      {
+        name:'Frankfurter',
+        url:`https://api.frankfurter.dev/v2/rate/${code}/TWD`,
+        parse:j=>({rate:Number(j.rate),date:j.date||''})
+      },
+      {
+        name:'ExchangeRate-API',
+        url:`https://open.er-api.com/v6/latest/${code}`,
+        parse:j=>({rate:Number(j.rates?.TWD),date:j.time_last_update_utc?new Date(j.time_last_update_utc).toISOString().slice(0,10):''})
+      }
     ];
-    for(const url of urls){
+    for(const provider of providers){
       try{
-        const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('rate');
-        const j=await r.json(), rate=Number(j[lc]?.twd);
+        const r=await fetch(provider.url,{cache:'no-store'});if(!r.ok)throw new Error('rate');
+        const j=await r.json(), {rate,date}=provider.parse(j);
         if(!rate)throw new Error('TWD rate unavailable');
-        setRateCache(code,rate,j.date||'');currentRate={code,rate,date:j.date||'',at:Date.now(),cached:false};paintCurrency();return;
+        setRateCache(code,rate,date);currentRate={code,rate,date,at:Date.now(),cached:false,provider:provider.name};paintCurrency();return;
       }catch(_){ }
     }
     if(cached){currentRate={code,...cached,cached:true};paintCurrency();$('#currency-rate-note').textContent+=` · 目前離線`;}
@@ -215,7 +222,15 @@
   window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('#install-btn').hidden=false;});
   async function install(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null}else alert('iPhone：Safari → 分享 →「加入主畫面」。')}
   $('#install-btn').addEventListener('click',install);$('#install-btn-more').addEventListener('click',install);
-  if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+  if('serviceWorker' in navigator)window.addEventListener('load',()=>{
+    let refreshing=false;
+    navigator.serviceWorker.addEventListener('controllerchange',()=>{
+      if(refreshing)return;
+      refreshing=true;
+      location.reload();
+    });
+    navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+  });
 
-  initTheme();tripProgress();nextFlight();todayFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderChecks();network();updateWeather();observeReveals();
+  initTheme();resolveActiveDay();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderChecks();bindOpenDayButtons();network();updateWeather();observeReveals();
 })();
