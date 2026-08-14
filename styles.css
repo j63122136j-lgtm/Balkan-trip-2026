@@ -132,3 +132,41 @@
   .timeline-title-row{display:block}
   .event-kind{display:inline-block;margin-bottom:7px}
 }
+
+/* Compact mobile header + two cockpit blocks · v3.3.1 */
+.header-countdown{display:flex;align-items:baseline;gap:6px;padding:7px 10px;border-radius:999px;background:var(--surface-solid);border:1px solid var(--line);white-space:nowrap}
+.header-countdown strong{font-size:18px;letter-spacing:-.04em}
+.header-countdown span{font-size:7px;letter-spacing:.10em;font-weight:800;color:var(--muted);text-transform:uppercase}
+.home-cockpit{display:grid;grid-template-columns:1fr;grid-template-areas:none;gap:16px;margin-top:16px}
+.cockpit-pair{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--radius);overflow:hidden}
+.cockpit-section{min-width:0;padding:24px}
+.cockpit-section+.cockpit-section{border-left:1px solid var(--line)}
+.cockpit-section h2{font-size:20px;margin:5px 0 0;letter-spacing:-.025em}
+.home-currency,.next-stop-card,.tomorrow-card,.flight-card,.weather-slim{grid-area:auto}
+
+@media(max-width:760px){
+  .topbar-inner{min-height:58px;padding-top:calc(var(--safe-top) + 5px);padding-bottom:5px}
+  .offline-pill{display:none}
+  .top-actions{gap:6px}
+  .header-countdown{padding:6px 8px;gap:4px}
+  .header-countdown strong{font-size:16px}
+  .header-countdown span{max-width:42px;white-space:normal;line-height:1.05}
+  .icon-button{width:38px;height:38px}
+  #screen-home .hero{display:none}
+  .home-cockpit{gap:12px;margin-top:10px}
+  .cockpit-pair{grid-template-columns:1fr;border-radius:26px}
+  .cockpit-section{padding:18px}
+  .cockpit-section+.cockpit-section{border-left:0;border-top:1px solid var(--line)}
+  .home-rate-grid{margin-top:12px;gap:8px}
+  .currency-field select,.currency-field input{height:44px}
+  .home-rate-result{min-height:68px;padding:10px 13px}
+  .next-stop-title{margin-top:14px}
+}
+
+@media(max-width:390px){
+  .brand-button{gap:7px}
+  .brand-mark{width:28px;height:28px;border-radius:9px}
+  .brand-button b{font-size:12px}
+  .brand-button small{font-size:8px}
+  .header-countdown span{display:block;max-width:34px;font-size:6px}
+}

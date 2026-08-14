@@ -25,6 +25,9 @@
       </button>
       <div class="top-actions">
         <span class="offline-pill" id="network-state">ONLINE</span>
+        <div class="header-countdown" id="trip-countdown" aria-live="polite">
+          <strong id="countdown-number">—</strong><span id="countdown-label">DAYS TO GO</span>
+        </div>
         <button class="icon-button" id="theme-toggle" aria-label="切換深色模式">◐</button>
       </div>
     </div>
@@ -43,13 +46,11 @@
             <button class="secondary-btn" id="install-btn" hidden>加入主畫面</button>
           </div>
         </div>
-        <div class="hero-orb parallax" data-parallax="-0.06" id="trip-countdown" aria-live="polite">
-          <span id="countdown-number">—</span><small id="countdown-label">DAYS TO GO</small>
-        </div>
       </section>
 
       <section class="home-cockpit reveal">
-        <article class="card home-currency glass">
+        <article class="cockpit-pair glass">
+        <section class="cockpit-section home-currency">
           <div class="card-head">
             <div><span class="kicker">QUICK CONVERT</span><h2>價格換算</h2></div>
             <button class="tiny-btn" id="refresh-rate">更新</button>
@@ -77,31 +78,34 @@
               <a class="rate-credit" href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates by ExchangeRate-API</a>
             </div>
           </div>
-        </article>
+        </section>
 
-        <article class="card next-stop-card glass">
+        <section class="cockpit-section next-stop-card">
           <div class="card-head">
             <div><span class="kicker">NEXT STOP</span><h2>接下來的景點</h2></div>
             <span class="status-dot"></span>
           </div>
           <div id="next-attraction"></div>
+        </section>
         </article>
 
-        <article class="card flight-card glass">
+        <article class="cockpit-pair glass">
+        <section class="cockpit-section tomorrow-card">
+          <div class="card-head">
+            <div><span class="kicker">TOMORROW / FOCUS</span><h2>明天重點</h2></div>
+            <span class="day-badge" id="tomorrow-day-badge">DAY —</span>
+          </div>
+          <div id="tomorrow-focus"></div>
+        </section>
+
+        <section class="cockpit-section flight-card">
           <div class="card-head">
             <div><span class="kicker">NEXT FLIGHT</span><h2>下一段航班</h2></div>
             <span class="booked" id="next-flight-status">✓ BOOKED</span>
           </div>
           <div id="next-flight"></div>
           <button class="text-btn" data-target="more">全部航班 →</button>
-        </article>
-
-        <article class="card tomorrow-card glass">
-          <div class="card-head">
-            <div><span class="kicker">TOMORROW / FOCUS</span><h2>明天重點</h2></div>
-            <span class="day-badge" id="tomorrow-day-badge">DAY —</span>
-          </div>
-          <div id="tomorrow-focus"></div>
+        </section>
         </article>
 
         <article class="card weather-slim glass">
