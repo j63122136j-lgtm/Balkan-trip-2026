@@ -33,6 +33,32 @@
     activeDay=Math.min(Math.floor((now-start)/86400000)+1,D.days.length);
   }
 
+  function updateTripCountdown(){
+    const toLocalDate=iso=>{const [y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d)};
+    const today=new Date();today.setHours(0,0,0,0);
+    const start=toLocalDate(D.meta.startDate),end=toLocalDate(D.meta.endDate);
+    const daysToGo=Math.round((start-today)/86400000);
+    const number=$('#countdown-number'),label=$('#countdown-label'),orb=$('#trip-countdown');
+    if(daysToGo>0){
+      number.textContent=daysToGo;
+      label.textContent='DAYS TO GO';
+      orb.title=`距離出發還有 ${daysToGo} 天`;
+    }else if(daysToGo===0){
+      number.textContent='GO';
+      label.textContent='TODAY';
+      orb.title='今天出發';
+    }else if(today<=end){
+      const tripDay=Math.min(Math.round((today-start)/86400000)+1,D.days.length);
+      number.textContent=tripDay;
+      label.textContent='TRIP DAY';
+      orb.title=`旅程第 ${tripDay} 天`;
+    }else{
+      number.textContent='✓';
+      label.textContent='COMPLETE';
+      orb.title='旅程完成';
+    }
+  }
+
   function flightDateTime(f){
     const [m,d]=f.date.split('/').map(Number);
     const [h,min]=f.depart.split(':').map(Number);
@@ -232,5 +258,5 @@
     navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
   });
 
-  initTheme();resolveActiveDay();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderChecks();bindOpenDayButtons();network();updateWeather();observeReveals();
+  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderChecks();bindOpenDayButtons();network();updateWeather();observeReveals();
 })();
