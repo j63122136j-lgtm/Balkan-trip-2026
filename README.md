@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4
+# Balkan Trip Dashboard v4.1
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -30,3 +30,7 @@
 - `events[]`：時間、類型、標題、目的、怎麼去、耗時、Google Maps 查詢
 
 照片採 Wikimedia Commons 的授權圖片並顯示來源；餐廳營業、交通班次、邊境等待與票價仍應在出發前再次確認。
+
+## 本次同步
+
+2026-08-18 依 Google 試算表主行程同步 09/14–10/02 共 19 天。採用目前確認的大方向：Ljubljana 連住、Bled 當日來回、Zagreb 不租車、十六湖住一晚、巴士直達 Split，再由 Mostar、Sarajevo、Dubrovnik 前往 Geneva。

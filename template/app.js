@@ -4,7 +4,11 @@
   const $$ = s => [...document.querySelectorAll(s)];
   const fmt = n => new Intl.NumberFormat('zh-TW',{style:'currency',currency:'TWD',maximumFractionDigits:0}).format(Number(n)||0);
   const NS=(D.meta.title||'trip').toLowerCase().replace(/[^a-z0-9]+/g,'_');
-  const STORE = Object.fromEntries(['theme','budget','packing','checks','notes','weather','rates'].map(k=>[k,`${NS}_${k}`]));
+  const DATA_VERSION=(D.meta.version||'1').replace(/[^a-z0-9]+/gi,'_');
+  const STORE={
+    theme:`${NS}_theme`, notes:`${NS}_notes`, weather:`${NS}_weather`, rates:`${NS}_rates`,
+    budget:`${NS}_${DATA_VERSION}_budget`, packing:`${NS}_${DATA_VERSION}_packing`, checks:`${NS}_${DATA_VERSION}_checks`
+  };
   let activeDay = 1;
   let deferredPrompt = null;
 
@@ -263,7 +267,7 @@
     if(sources)sources.innerHTML=(D.sources||[]).map(x=>`<a class="source-link" href="${x.url}" target="_blank" rel="noopener"><span>${x.label}</span><b>↗</b></a>`).join('');
   }
 
-  const defaultChecks=['土耳其 e-Visa／入境資格確認','KKday 洞穴 voucher 與集合點','Zagreb → Split 單程租車與全險','十六湖時段票','Split 跳島 Tour voucher','09/27 Mostar → Sarajevo 紙票班次','09/28 Sarajevo → Dubrovnik 07:15 巴士','09/30 DBV 機場交通','Geneva Cornavin 住宿','eSIM / 漫遊方案','旅遊保險文件離線下載'];
+  const defaultChecks=['土耳其入境資格確認','KKday 洞穴 voucher 與集合點','Vintgar Gorge 入場／接駁確認','Ljubljana ↔ Bled 巴士票','十六湖時段票＋兩段巴士票','09/24 Split → Mostar 17:30 跨境巴士','09/26 Mostar → Sarajevo 火車班次','09/28 Sarajevo → Dubrovnik 07:15 巴士','09/30 DBV 機場交通','Geneva Cornavin 住宿','eSIM / 漫遊方案','旅遊保險文件離線下載'];
   function renderChecks(){
     let list=load(STORE.checks,defaultChecks.map((text,i)=>({id:i+1,text,done:false})));
     $('#checklist').innerHTML=list.map(x=>`<div class="custom-check"><input type="checkbox" data-check="${x.id}" ${x.done?'checked':''}><span class="${x.done?'done':''}">${x.text}</span><button data-delete="${x.id}">×</button></div>`).join('');
