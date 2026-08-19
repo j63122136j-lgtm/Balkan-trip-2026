@@ -70,6 +70,8 @@
 .info-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
 .stay-card h2,.food-card h2{font-size:20px;letter-spacing:-.025em;margin:6px 0 0}
 .stay-card>p{font-size:13px;color:var(--muted);line-height:1.65;margin:18px 0 12px}
+.stay-price{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px;padding:13px 15px;border-radius:17px;background:var(--surface-solid);border:1px solid var(--line)}
+.stay-price small{display:block;font-size:8px;letter-spacing:.08em;color:var(--muted);margin-bottom:3px}.stay-price strong{display:block;font-size:24px;letter-spacing:-.04em}.stay-price>span{font-size:9px;line-height:1.55;color:var(--muted);text-align:right}
 .parking-note{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:12px 14px;border-radius:15px;background:rgba(0,113,227,.055);border:1px solid rgba(0,113,227,.10);font-size:11px;line-height:1.55}
 .parking-note b{color:var(--blue)}
 .booking-links{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
@@ -89,6 +91,7 @@
   .stay-card,.food-card{padding:19px;border-radius:24px}
   .info-card-head{display:block}.info-card-head .map-link{display:inline-flex;margin-top:12px}
   .parking-note{grid-template-columns:1fr;gap:4px}
+  .stay-price strong{font-size:22px}
 }
 
 /* Compact Home hero · v3.2.1 */
@@ -201,4 +204,25 @@
   .brand-button b{font-size:12px}
   .brand-button small{font-size:8px}
   .header-countdown span{display:block;max-width:34px;font-size:6px}
+}
+
+/* Local coffee, snack and mug guide · v4.2 */
+.local-card{grid-column:1/-1;border-radius:28px;padding:24px}
+.local-card-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:16px}
+.local-card h2{font-size:20px;letter-spacing:-.025em;margin:6px 0 0}
+.local-card-head>small{max-width:310px;color:var(--muted);font-size:9px;line-height:1.55;text-align:right}
+.local-stop-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:9px}
+.local-stop-list a{position:relative;display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;gap:5px 9px;align-items:center;padding:14px;border-radius:17px;background:var(--surface-solid);border:1px solid var(--line);color:var(--text);text-decoration:none;transition:transform .2s ease,border-color .2s ease}
+.local-stop-list a:hover{transform:translateY(-2px);border-color:rgba(0,113,227,.35)}
+.stop-kind{padding:5px 7px;border-radius:999px;background:rgba(0,113,227,.09);color:var(--blue);font-size:8px;font-weight:900;letter-spacing:.06em;white-space:nowrap}
+.local-stop-list b{font-size:12px;line-height:1.35}
+.local-stop-list p{grid-column:1/3;margin:0;color:var(--muted);font-size:10px;line-height:1.55}
+.local-stop-list i{grid-column:3;grid-row:1/3;align-self:center;color:var(--blue);font-size:9px;font-style:normal;font-weight:800}
+
+@media(max-width:760px){
+  .local-card{padding:19px;border-radius:24px}
+  .local-card-head{display:block;margin-bottom:13px}
+  .local-card-head>small{display:block;text-align:left;margin-top:7px}
+  .local-stop-list{grid-template-columns:1fr}
+  .day-photo img{object-position:center 45%}
 }

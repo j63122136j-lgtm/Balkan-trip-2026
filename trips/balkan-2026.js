@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.1.1"
+    "version": "4.2.1"
   },
   "route": [
     "Taipei",
@@ -188,7 +188,7 @@ window.TRIP_DATA = {
       "id": "stays",
       "label": "住宿",
       "planned": 55000,
-      "spent": 0
+      "spent": 3300
     },
     {
       "id": "transport",
@@ -308,16 +308,20 @@ window.TRIP_DATA = {
         }
       ],
       "lodging": {
-        "area": "Bangkok · Asok／Sukhumvit／MRT 沿線",
-        "why": "住 MRT 沿線，連住兩晚並方便 09/16 前往 BKK。",
+        "area": "Metropolis Suites Bangkok, Tapestry Collection by Hilton",
+        "why": "Sukhumvit 39／Phrom Phong 區域；連住兩晚，不搬行李。地址：5/9 Soi Phrom Si 1, Khlong Tan Nuea, Watthana, Bangkok 10110。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Asok Bangkok hotels"
+        "map": "Metropolis Suites Bangkok Tapestry Collection by Hilton",
+        "url": "https://maps.app.goo.gl/Zg9Dws7agQMG5iWk8",
+        "nightlyPrice": 1650,
+        "totalPrice": 3300,
+        "priceNote": "第 1 晚／共 2 晚"
       },
       "food": [
         {
-          "name": "Asok 深夜補給",
+          "name": "Sukhumvit 39 深夜補給",
           "dish": "抵達後以便利商店或住宿附近簡餐為主",
-          "map": "Asok Bangkok"
+          "map": "convenience store near Metropolis Suites Bangkok"
         }
       ]
     },
@@ -338,7 +342,7 @@ window.TRIP_DATA = {
           "title": "慢早餐＋咖啡",
           "detail": "睡飽再出門。",
           "duration": "2h",
-          "map": "Asok Bangkok coffee",
+          "map": "coffee near Metropolis Suites Bangkok",
           "why": "睡飽再出門。",
           "how": "步行或 MRT，活動集中在住宿周邊。"
         },
@@ -364,10 +368,14 @@ window.TRIP_DATA = {
         }
       ],
       "lodging": {
-        "area": "Bangkok · 同一間第 2 晚",
-        "why": "不搬房，為隔天長程飛行保留體力。",
+        "area": "Metropolis Suites Bangkok, Tapestry Collection by Hilton",
+        "why": "Sukhumvit 39／Phrom Phong；同一間第 2 晚，為隔天長程飛行保留體力。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Asok Bangkok hotels"
+        "map": "Metropolis Suites Bangkok Tapestry Collection by Hilton",
+        "url": "https://maps.app.goo.gl/Zg9Dws7agQMG5iWk8",
+        "nightlyPrice": 1650,
+        "totalPrice": 3300,
+        "priceNote": "第 2 晚／共 2 晚"
       },
       "food": [
         {
@@ -394,7 +402,7 @@ window.TRIP_DATA = {
           "title": "Bangkok 最後散步＋咖啡",
           "detail": "行李寄放住宿，活動不離市中心太遠。",
           "duration": "3h",
-          "map": "Asok Bangkok",
+          "map": "Metropolis Suites Bangkok Tapestry Collection by Hilton",
           "why": "行李寄放住宿，活動不離市中心太遠。",
           "how": "步行或 MRT，午餐後回住宿休息。"
         },
@@ -404,7 +412,7 @@ window.TRIP_DATA = {
           "title": "午餐＋回住宿休息",
           "detail": "整理行李並補水。",
           "duration": "2h30",
-          "map": "Asok Bangkok",
+          "map": "Metropolis Suites Bangkok Tapestry Collection by Hilton",
           "why": "整理行李並補水。",
           "how": "留在住宿附近，避免午後交通延誤。"
         },
@@ -416,7 +424,7 @@ window.TRIP_DATA = {
           "duration": "約 1h",
           "map": "Suvarnabhumi Airport",
           "why": "市區前往 Suvarnabhumi Airport。",
-          "how": "MRT 到 Phetchaburi，步行轉 Makkasan Airport Rail Link；尖峰或體力不足改 Grab。"
+          "how": "從 Metropolis Suites 叫 Grab／計程車到 Makkasan Airport Rail Link，再搭機場線到 BKK；17:30 遇尖峰，不建議全程開車。"
         },
         {
           "time": "22:45",
@@ -1617,6 +1625,10 @@ window.TRIP_DATA = {
     {
       "title": "Sarajevo → Dubrovnik",
       "text": "09/28 07:15 跨境巴士是關鍵移動日；住宿選 Gruž／Lapad 東側，抵達、老城與 DBV 機場動線最順。"
+    },
+    {
+      "title": "城市杯收集",
+      "text": "官方 Starbucks 只排泰國、土耳其與瑞士，且全部利用原本動線購買。斯洛維尼亞、克羅埃西亞與波士尼亞沒有官方門市，改收當地烘豆店馬克杯或傳統波士尼亞咖啡組。"
     }
   ],
   "sources": [
@@ -1659,6 +1671,154 @@ window.TRIP_DATA = {
     {
       "label": "Geneva Airport train",
       "url": "https://www.gva.ch/en/passengers/access-and-transport/trains/train-access"
+    },
+    {
+      "label": "Starbucks Switzerland store locator",
+      "url": "https://www.starbucks.ch/en/store-locator"
+    },
+    {
+      "label": "Starbucks licensed market list",
+      "url": "https://weproudlyservestarbucks.com/"
+    },
+    {
+      "label": "Slovenia Starbucks status",
+      "url": "https://n1info.si/novice/slovenija/po-govoricah-da-prihaja-v-slovenijo-se-je-za-n1-oglasil-starbucks/"
+    },
+    {
+      "label": "Croatia Starbucks status",
+      "url": "https://www.croatiaweek.com/why-no-starbucks-coffee-croatia/"
+    },
+    {
+      "label": "Cogito Coffee locations",
+      "url": "https://www.cogitocoffee.com/visit"
+    },
+    {
+      "label": "Bled Café Park",
+      "url": "https://www.sava-hotels-resorts.com/en/sava-hotels-bled/services-and-experiences/gastronomy/cafe-park/"
     }
   ]
 };
+
+/* Optional content enrichment. Keeping it in the trip file makes the reusable
+   template independent from destination-specific photos and recommendations. */
+(() => {
+  const D = window.TRIP_DATA;
+  const commons = (file, alt, credit) => ({
+    src: `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=1400`,
+    alt,
+    credit,
+    source: `https://commons.wikimedia.org/wiki/File:${file.replaceAll(' ', '_')}`
+  });
+
+  const photos = [
+    commons('Bangkok skyscrapers at night.jpg', 'Bangkok 夜間天際線', 'Noobythailand · CC BY 4.0'),
+    commons('Bangkok Pak Khlong Talat P1100385.JPG', '曼谷夜市氣氛；本日安排 JODD FAIRS Ratchada', 'Deror Avi · Wikimedia Commons'),
+    commons('Suvarnabhumi International Airport, Interior, Bangkok, Thailand.jpg', 'Suvarnabhumi Airport 航廈', 'Vyacheslav Argenberg · CC BY 4.0'),
+    D.days[3].photo,
+    commons('Predjama castle, Slovenia.jpg', 'Predjama 洞穴城堡', 'Marco Almbauer · CC0'),
+    commons('Vintgar Gorge, Slovenia 01.jpg', 'Vintgar Gorge 木棧道與峽谷', 'Veronika.szappanos · CC BY-SA 4.0'),
+    commons('Ljubljana banner Triple Bridge at night.jpg', 'Ljubljana 三重橋夜景', 'Pedro Szekely / AlasdairW · CC BY-SA 2.0'),
+    D.days[7].photo,
+    commons('Lower lakes, Plitvice national park.jpg', 'Plitvice 下湖區木棧道', 'Twiggiez · CC BY-SA 4.0'),
+    D.days[9].photo,
+    commons('Split Waterfront, Looking Towards the Marjan Peninsula.jpg', 'Split Riva 與 Marjan 半島', 'Wikimedia Commons'),
+    commons('Blagaj Tekke, the spring of the Buna river, Bosnia and Herzegovina 01.jpg', 'Blagaj Tekke 與 Buna 河源', 'Bosancica by MK · CC0'),
+    commons('Mostar Old Bridge.jpg', 'Mostar 古橋暮色', 'Gugalcrom123 · Wikimedia Commons'),
+    commons('Baščaršija Sarajevo.jpg', 'Sarajevo Baščaršija 舊城', 'Stechshotme · CC BY-SA 4.0'),
+    commons('Aerial view of the Old Town of Dubrovnik - Croatia.jpg', 'Dubrovnik 老城空拍', 'Jacopo Werther · CC BY 2.0'),
+    commons('On the city wall of Old Town Dubrovnik, Croatia.jpg', 'Dubrovnik 城牆視角', 'Sokka-the-meat-and-sarcasm-guy · CC BY-SA 4.0'),
+    commons("Jet d'eau from Lake Geneva.jpg", "Geneva Jet d'Eau 與湖岸", 'Jurate Daugelaite · CC BY-SA 4.0'),
+    commons('Geneva Panorama from St. Pierre.jpg', 'Geneva 舊城與湖區全景', 'MarsPF2 · CC BY-SA 3.0'),
+    commons('Taipei Taiwan Taipei-101-Tower-01.jpg', 'Taipei 101 夕陽天際線', 'CEphoto, Uwe Aranas · CC BY-SA 3.0')
+  ];
+  D.days.forEach((day, i) => { day.photo = photos[i]; });
+
+  const stops = {
+    1: [
+      {kind:'補給', name:'Sukhumvit 39 深夜便利商店', note:'抵達 Metropolis Suites 後只補水與早餐，不額外繞路。', map:'convenience store near Metropolis Suites Bangkok'}
+    ],
+    2: [
+      {kind:'咖啡', name:'Factory Coffee — BKK', note:'Phaya Thai 旗艦店；安排在白天、關門前抵達。', map:'Factory Coffee BKK Phaya Thai'},
+      {kind:'夜市', name:'JODD FAIRS Ratchada', note:'17:00 後開逛；MRT Thailand Cultural Centre Exit 4，晚餐直接在市場解決。', map:'JODD FAIRS Ratchada'},
+      {kind:'城市杯', name:'Starbucks Times Square Sukhumvit', note:'泰國／Bangkok 杯；Asok 動線內，有喜歡再買，不為庫存跨區。', map:'Starbucks Times Square Sukhumvit Bangkok'}
+    ],
+    3: [
+      {kind:'小吃', name:'Pier 21 Food Terminal', note:'飛行日前的平價午餐，選清淡餐點並提早回住宿。', map:'Pier 21 Food Terminal Bangkok'}
+    ],
+    4: [
+      {kind:'咖啡', name:'Mandabatmaz', note:'土耳其咖啡老店；只有動線與時間充裕才去。', map:'Mandabatmaz Istanbul'},
+      {kind:'甜點', name:'Hafız Mustafa 1864 Sultanahmet', note:'土耳其軟糖、baklava，可外帶回機場。', map:'Hafiz Mustafa 1864 Sultanahmet'},
+      {kind:'城市杯', name:'Starbucks Istanbul Airport', note:'回到 IST 後再買 Turkey／Istanbul 杯，完全不增加市區移動。', map:'Starbucks Istanbul Airport international departures'}
+    ],
+    5: [
+      {kind:'咖啡', name:'Cafe Čokl', note:'回到 Ljubljana 後順路；自家烘焙、靠近 Central Market。', map:'Cafe Cokl Ljubljana'},
+      {kind:'小吃', name:'Moji Štruklji', note:'試斯洛維尼亞 štruklji，甜鹹口味都有。', map:'Moji Struklji Ljubljana'}
+    ],
+    6: [
+      {kind:'甜點', name:'Café Park Bled', note:'1953 年起的原版 Bled cream cake，湖畔休息站。', map:'Cafe Park Bled'},
+      {kind:'補給', name:'Bled Bus Station 周邊', note:'健行後先補水，再搭晚班巴士回 Ljubljana。', map:'Bled bus station supermarket'}
+    ],
+    7: [
+      {kind:'咖啡', name:'STOW Specialty Coffee', note:'City Museum 內；上午逛城最順路。', map:'STOW Specialty Coffee Ljubljana'},
+      {kind:'紀念杯', name:'STOW／Čokl 當地杯', note:'斯洛維尼亞沒有官方 Starbucks，改收當地烘豆店杯。', map:'STOW Specialty Coffee Ljubljana'}
+    ],
+    8: [
+      {kind:'咖啡', name:'Cogito Coffee', note:'Zagreb 本地烘豆品牌，選 Cafe u Dvorištu 或 Varšavska 分店。', map:'Cogito Coffee Zagreb'},
+      {kind:'小吃', name:'La Štruk', note:'專門吃 štrukli；老城動線內。', map:'La Struk Zagreb'},
+      {kind:'紀念杯', name:'Cogito／本地設計杯', note:'克羅埃西亞沒有官方 Starbucks；三城只挑一個最喜歡的杯即可。', map:'Cogito Coffee Zagreb'}
+    ],
+    9: [
+      {kind:'在地菜', name:'Lička Kuća', note:'Entrance 1 對面；烤肉、羊肉與 Lika 地方料理。', map:'Licka Kuca Plitvice'}
+    ],
+    10: [
+      {kind:'咖啡', name:'D16 Coffee', note:'Diocletian’s Palace 巷內的 Split 烘豆店。', map:'D16 Coffee Dominisova Split'},
+      {kind:'小吃', name:'Kantun Paulina', note:'外帶 ćevapi，適合 Riva 散步前後。', map:'Kantun Paulina Split'}
+    ],
+    11: [
+      {kind:'咖啡', name:'D16 Coffee', note:'若前一天沒喝到，上午補上；不要壓縮跨境巴士緩衝。', map:'D16 Coffee Dominisova Split'},
+      {kind:'甜點', name:'Luka Ice Cream & Cakes', note:'舊城最後散步的冰淇淋休息點。', map:'Luka Ice Cream Split'}
+    ],
+    12: [
+      {kind:'咖啡', name:'Café de Alma', note:'傳統 Bosnian coffee 體驗，離古橋很近。', map:'Cafe de Alma Mostar'},
+      {kind:'在地菜', name:'Tima-Irma', note:'ćevapi、烤肉拼盤；份量大，可兩人分食。', map:'Tima Irma Mostar'}
+    ],
+    13: [
+      {kind:'咖啡', name:'Café de Alma', note:'前一天錯過才補；週一常休，出發前再查。', map:'Cafe de Alma Mostar'},
+      {kind:'小吃', name:'Buregdžinica Visak', note:'上火車前可買 burek 外帶，但避免湯汁多的品項。', map:'Buregdzinica Visak Mostar'}
+    ],
+    14: [
+      {kind:'咖啡', name:'Ministry of Ćejf', note:'Kovači 26，適合 Baščaršija 後喝 Bosnian coffee。', map:'Ministry of Cejf Sarajevo'},
+      {kind:'小吃', name:'Ćevabdžinica Željo', note:'Sarajevo ćevapi 經典選擇。', map:'Cevabdzinica Zeljo Sarajevo'},
+      {kind:'紀念杯', name:'銅製 džezva 咖啡組', note:'波士尼亞沒有官方 Starbucks；在 Baščaršija 挑可實際使用的小組合。', map:'Bascarsija Sarajevo coppersmith'}
+    ],
+    15: [
+      {kind:'咖啡', name:'Cogito Coffee Dubrovnik', note:'Stajeva 5，進老城後順路；同品牌也有 Zagreb 店。', map:'Cogito Coffee Stajeva 5 Dubrovnik'},
+      {kind:'小吃', name:'Barba', note:'章魚漢堡或炸海鮮，適合抵達日晚餐。', map:'Barba Dubrovnik'}
+    ],
+    16: [
+      {kind:'咖啡', name:'Cogito Coffee Dubrovnik', note:'若前一天沒喝到，城牆後再去。', map:'Cogito Coffee Dubrovnik'},
+      {kind:'甜點', name:'Gianni', note:'老城冰淇淋／甜點休息點。', map:'Gianni Dubrovnik ice cream'}
+    ],
+    17: [
+      {kind:'咖啡', name:'Boréal Coffee Cornavin', note:'車站往湖邊路上，Geneva 本地烘豆品牌。', map:'Boreal Coffee Rue du Mont Blanc 17 Geneva'},
+      {kind:'城市杯', name:'Starbucks Geneva Cornavin', note:'瑞士／Geneva 杯首選購買點；沒貨再留到 GVA。', map:'Starbucks Geneva Cornavin station'}
+    ],
+    18: [
+      {kind:'城市杯', name:'Starbucks Geneva Airport T1', note:'安檢前 Food Court；只作 Cornavin 缺貨備案。', map:'Starbucks Geneva Airport Terminal 1'},
+      {kind:'補給', name:'GVA Airport', note:'長程飛行前補水與簡單早餐。', map:'Geneva Airport food court'}
+    ],
+    19: [
+      {kind:'補給', name:'PVG 轉機區', note:'只在航廈內活動；先找登機門再用餐，不特地找杯。', map:'Shanghai Pudong Airport Terminal 1'}
+    ]
+  };
+  D.days.forEach(day => { day.localStops = stops[day.day] || []; });
+
+  const bangkokDay = D.days.find(day => day.day === 2);
+  bangkokDay.events[2] = {
+    time:'18:00', type:'food', title:'JODD FAIRS Ratchada 夜市',
+    detail:'逛夜市、吃小吃；17:00–01:00，MRT Thailand Cultural Centre Exit 4。',
+    duration:'3h', map:'JODD FAIRS Ratchada',
+    why:'把晚餐、散步與泰國夜市一次完成。',
+    how:'從 Metropolis Suites 叫 Grab 到 Phrom Phong／Asok，轉 MRT Blue Line 到 Thailand Cultural Centre；Exit 4 步行約 3–5 分鐘，回程留意末班車。'
+  };
+})();

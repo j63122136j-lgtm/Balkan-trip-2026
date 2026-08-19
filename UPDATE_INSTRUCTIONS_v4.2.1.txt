@@ -1,0 +1,21 @@
+Balkan Trip Dashboard v4.2.1 更新方式
+
+1. 解壓縮本 ZIP。
+2. 將全部檔案與資料夾覆蓋到本機 Balkan-trip-2026 repository 根目錄。
+3. 確認以下檔案已更新：
+   - trips/balkan-2026.js
+   - template/app.js
+   - template/styles.css
+   - sw.js
+   - README.md
+4. icons 與 assets/icons 請保留並一起 commit。
+5. 建議 commit 訊息：Update Bangkok hotel and nightly price
+6. push 後等待 GitHub Pages deployment 綠色完成。
+7. 若手機仍顯示舊版，關閉 dashboard 分頁後重開；v4.2.1 已更新離線快取版本。
+
+本版更新：
+- Day 1、Day 2 住宿改為 Metropolis Suites Bangkok, Tapestry Collection by Hilton。
+- 地址：5/9 Soi Phrom Si 1, Khlong Tan Nuea, Watthana, Bangkok 10110。
+- 房價兩晚共 NT$3,300，拆分為每天 NT$1,650。
+- 預算住宿已花費同步為 NT$3,300。
+- Day 3 前往 BKK 改由飯店叫車到 Makkasan Airport Rail Link，再搭機場線。
