@@ -70,6 +70,18 @@
     return new Date(2026,m-1,d,h,min||0);
   }
 
+  function baggageMarkup(f,compact=false){
+    const b=f.baggage||{};
+    if(compact&&b.summary)return `<div class="baggage-brief"><span>行李</span><b>${b.summary}</b></div>`;
+    const items=[
+      ['🎒','個人物品',b.personal],
+      ['🧳','手提行李',b.cabin],
+      ['▣','託運行李',b.checked]
+    ].filter(x=>x[2]);
+    if(!items.length)return '';
+    return `<div class="flight-baggage">${items.map(([icon,label,value])=>`<div class="baggage-item"><span class="baggage-icon">${icon}</span><div><small>${label}</small><b>${value}</b></div></div>`).join('')}</div>`;
+  }
+
   function nextFlight(){
     const now=new Date();
     const list=D.flights.map(f=>({...f,dt:flightDateTime(f)}));
@@ -86,6 +98,7 @@
         <div><span>出發航廈</span><b>${f.from} · ${depTerminal}</b></div>
         <div><span>抵達航廈</span><b>${f.to} · ${arrTerminal}</b></div>
       </div>
+      ${baggageMarkup(f,true)}
       <div class="flight-state"><span class="status-dot"></span>${statusLabel}</div>`;
   }
 
@@ -259,7 +272,7 @@
   }
 
   function renderFlights(){
-    $('#flight-list').innerHTML=D.flights.map(f=>`<div class="flight-item"><div class="flight-item-top"><div><b>${f.from} → ${f.to}</b><small>${f.date} · ${f.depart} → ${f.arrive} · ${f.code}</small></div><span class="booked">✓ BOOKED</span></div><small>${f.airline}</small></div>`).join('')
+    $('#flight-list').innerHTML=D.flights.map(f=>`<div class="flight-item"><div class="flight-item-top"><div><b>${f.from} → ${f.to}</b><small>${f.date} · ${f.depart} → ${f.arrive} · ${f.code}</small></div><span class="booked">✓ BOOKED</span></div><small>${f.airline}</small>${baggageMarkup(f)}</div>`).join('')
   }
 
   function renderTripReferences(){

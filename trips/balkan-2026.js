@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.2.1"
+    "version": "4.3.0"
   },
   "route": [
     "Taipei",
@@ -114,19 +114,31 @@ window.TRIP_DATA = {
       "airline": "Thai Lion Air",
       "status": "booked",
       "fromTerminal": "待確認",
-      "toTerminal": "待確認"
+      "toTerminal": "待確認",
+      "baggage": {
+        "summary": "手提 7 kg（含個人物品）｜託運 10 kg",
+        "personal": "併入手提行李額度",
+        "cabin": "1 件，共 7 kg（含個人物品）｜56 × 36 × 23 cm",
+        "checked": "10 kg｜單件尺寸上限 81 × 119 × 119 cm"
+      }
     },
     {
       "date": "09/16",
-      "code": "TK069",
+      "code": "TG900",
       "from": "BKK",
       "to": "IST",
-      "depart": "22:45",
-      "arrive": "04:45+1",
-      "airline": "Turkish Airlines",
+      "depart": "23:50",
+      "arrive": "05:35+1",
+      "airline": "Thai Airways",
       "status": "booked",
       "fromTerminal": "待確認",
-      "toTerminal": "待確認"
+      "toTerminal": "待確認",
+      "baggage": {
+        "summary": "個人 1 kg｜手提 7 kg｜託運 23 kg",
+        "personal": "1 件，1 kg｜37 × 25 × 12 cm",
+        "cabin": "1 件，7 kg｜56 × 45 × 25 cm",
+        "checked": "1 件，23 kg｜三邊總和上限 158 cm"
+      }
     },
     {
       "date": "09/17",
@@ -138,7 +150,13 @@ window.TRIP_DATA = {
       "airline": "Turkish Airlines",
       "status": "booked",
       "fromTerminal": "待確認",
-      "toTerminal": "待確認"
+      "toTerminal": "待確認",
+      "baggage": {
+        "summary": "個人 4 kg｜手提 8 kg｜託運 23 kg",
+        "personal": "1 件，4 kg｜40 × 30 × 15 cm",
+        "cabin": "1 件，8 kg｜55 × 40 × 23 cm",
+        "checked": "23 kg｜三邊總和上限 158 cm"
+      }
     },
     {
       "date": "09/30",
@@ -150,7 +168,13 @@ window.TRIP_DATA = {
       "airline": "easyJet",
       "status": "booked",
       "fromTerminal": "待確認",
-      "toTerminal": "T1"
+      "toTerminal": "T1",
+      "baggage": {
+        "summary": "小型隨身 15 kg｜大件手提無｜託運 23 kg",
+        "personal": "1 件，15 kg｜45 × 36 × 20 cm",
+        "cabin": "無免費大件手提行李",
+        "checked": "1 件，23 kg｜三邊總和上限 275 cm"
+      }
     },
     {
       "date": "10/01",
@@ -162,7 +186,13 @@ window.TRIP_DATA = {
       "airline": "China Eastern",
       "status": "booked",
       "fromTerminal": "T1",
-      "toTerminal": "T1"
+      "toTerminal": "T1",
+      "baggage": {
+        "summary": "個人 1 件｜手提 8 kg｜託運 23 kg",
+        "personal": "1 件｜35 × 32 × 18 cm",
+        "cabin": "1 件，8 kg｜20 × 40 × 55 cm",
+        "checked": "1 件，23 kg｜三邊總和上限 158 cm"
+      }
     },
     {
       "date": "10/02",
@@ -174,7 +204,13 @@ window.TRIP_DATA = {
       "airline": "China Eastern",
       "status": "booked",
       "fromTerminal": "T1",
-      "toTerminal": "T2"
+      "toTerminal": "T2",
+      "baggage": {
+        "summary": "個人 1 件｜手提 8 kg｜託運 23 kg",
+        "personal": "1 件｜35 × 32 × 18 cm",
+        "cabin": "1 件，8 kg｜20 × 40 × 55 cm",
+        "checked": "1 件，23 kg｜三邊總和上限 158 cm"
+      }
     }
   ],
   "budgetDefaults": [
@@ -427,18 +463,18 @@ window.TRIP_DATA = {
           "how": "從 Metropolis Suites 叫 Grab／計程車到 Makkasan Airport Rail Link，再搭機場線到 BKK；17:30 遇尖峰，不建議全程開車。"
         },
         {
-          "time": "22:45",
+          "time": "23:50",
           "type": "flight",
           "title": "BKK → IST",
-          "detail": "TK069 · 04:45+1 抵達。",
+          "detail": "TG900 · 05:35+1 抵達。",
           "duration": "約 10h",
           "map": "Istanbul Airport",
-          "why": "TK069 · 04:45+1 抵達。",
+          "why": "TG900 · 05:35+1 抵達。",
           "how": "19:00 前抵達 BKK，確認行李是否直掛 LJU。"
         }
       ],
       "lodging": {
-        "area": "TK069 夜宿機上",
+        "area": "TG900 夜宿機上",
         "why": "長程航班；保暖層與頸枕放隨身包。",
         "parking": "不需車位；以大眾運輸與步行為主。",
         "map": "Suvarnabhumi Airport"
@@ -456,7 +492,7 @@ window.TRIP_DATA = {
       "summary": "Sultanahmet 精華半日，13:15 前離開市區返回 IST。",
       "events": [
         {
-          "time": "04:45",
+          "time": "05:35",
           "type": "flight",
           "title": "抵達 IST＋入境",
           "detail": "確認行李直掛後入境。",

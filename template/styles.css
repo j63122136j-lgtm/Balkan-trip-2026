@@ -32,6 +32,7 @@
 .flight-meta-grid span{display:block;font-size:8px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;color:var(--muted)}
 .flight-meta-grid b{display:block;color:var(--text);font-size:10px;white-space:normal}
 .flight-state{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:9px;font-weight:800;color:var(--muted)}
+.baggage-brief{display:flex;gap:8px;align-items:flex-start;margin-top:11px;padding:8px 9px;border:1px solid var(--line);border-radius:12px;background:var(--surface-solid)}.baggage-brief span{flex:0 0 auto;color:var(--muted);font-size:8px;font-weight:800;letter-spacing:.08em}.baggage-brief b{font-size:9px;line-height:1.4}.flight-baggage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:13px}.baggage-item{display:flex;align-items:flex-start;gap:7px;min-width:0;padding:10px;border:1px solid var(--line);border-radius:13px;background:var(--surface-solid)}.baggage-icon{font-size:14px;line-height:1.2}.baggage-item small{display:block!important;margin:0 0 3px!important;font-size:8px!important;letter-spacing:.06em;color:var(--muted)}.baggage-item b{display:block;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
 .day-badge{padding:7px 9px;border-radius:999px;background:var(--surface-solid);border:1px solid var(--line);font-size:9px;font-weight:800}
 .tomorrow-list{list-style:none;padding:0;margin:15px 0}
 .tomorrow-list li{display:grid;grid-template-columns:46px 1fr;gap:9px;padding:8px 0;border-bottom:1px solid var(--line);font-size:11px}
@@ -52,6 +53,7 @@
   .home-rate-result{grid-column:1/-1}
   .next-stop-title h3,.tomorrow-card h3{font-size:25px}
   .flight-meta-grid{grid-template-columns:1fr 1fr}
+  .flight-baggage{grid-template-columns:1fr}
 }
 @media(max-width:390px){
   .home-rate-grid{grid-template-columns:1fr}

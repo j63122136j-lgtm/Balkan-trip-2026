@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4.2.1
+# Balkan Trip Dashboard v4.3.0
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -18,6 +18,12 @@
 3. 在 `index.html` 把 `trips/balkan-2026.js` 改成新檔名。
 4. 修改首頁 slogan / subtitle（若需要）；`template/` 不必改。
 5. 每次發布更新 `sw.js` 的 `VERSION`，避免舊快取卡住。
+
+## v4.3.0 更新
+
+- 六段航班加入個人物品、手提行李與託運行李額度及尺寸。
+- 首頁下一段航班顯示精簡行李摘要；航班清單顯示完整額度。
+- 依最新訂單截圖，曼谷 → 伊斯坦堡同步為 TG900（23:50 → 05:35+1）。
 
 ## Day 可用欄位
 
