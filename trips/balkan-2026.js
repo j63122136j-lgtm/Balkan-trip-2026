@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.3.0"
+    "version": "4.4.0"
   },
   "route": [
     "Taipei",
@@ -213,36 +213,13 @@ window.TRIP_DATA = {
       }
     }
   ],
-  "budgetDefaults": [
+  "fixedExpenses": [
     {
       "id": "flights",
       "label": "雙人機票",
-      "planned": 79528,
-      "spent": 79528
-    },
-    {
-      "id": "stays",
-      "label": "住宿",
-      "planned": 55000,
-      "spent": 3300
-    },
-    {
-      "id": "transport",
-      "label": "門票／巴士／火車",
-      "planned": 13330,
-      "spent": 0
-    },
-    {
-      "id": "food",
-      "label": "餐飲",
-      "planned": 36000,
-      "spent": 0
-    },
-    {
-      "id": "misc",
-      "label": "其他",
-      "planned": 12000,
-      "spent": 0
+      "amount": 79528,
+      "status": "已付款",
+      "note": "6 段已確認航班"
     }
   ],
   "packing": [
@@ -351,7 +328,8 @@ window.TRIP_DATA = {
         "url": "https://maps.app.goo.gl/Zg9Dws7agQMG5iWk8",
         "nightlyPrice": 1650,
         "totalPrice": 3300,
-        "priceNote": "第 1 晚／共 2 晚"
+        "priceNote": "第 1 晚／共 2 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -411,7 +389,8 @@ window.TRIP_DATA = {
         "url": "https://maps.app.goo.gl/Zg9Dws7agQMG5iWk8",
         "nightlyPrice": 1650,
         "totalPrice": 3300,
-        "priceNote": "第 2 晚／共 2 晚"
+        "priceNote": "第 2 晚／共 2 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -560,9 +539,12 @@ window.TRIP_DATA = {
       },
       "lodging": {
         "area": "Ljubljana · Main Station／Miklošičeva",
-        "why": "靠車站，連住四晚；洞穴團、Bled 巴士及往 Zagreb 都方便。",
+        "why": "靠車站，連住三晚；洞穴團、Bled 巴士及往 Zagreb 都方便。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Miklosiceva Ljubljana hotels"
+        "map": "Miklosiceva Ljubljana hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -638,7 +620,10 @@ window.TRIP_DATA = {
         "area": "Ljubljana · 同一間第 2 晚",
         "why": "半日團後不搬行李，下午補市區。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Miklosiceva Ljubljana hotels"
+        "map": "Miklosiceva Ljubljana hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 2 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -730,7 +715,10 @@ window.TRIP_DATA = {
         "area": "Ljubljana · 同一間第 3 晚",
         "why": "Bled 住宿較貴，單程約一小時，當日來回更符合預算。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Miklosiceva Ljubljana hotels"
+        "map": "Miklosiceva Ljubljana hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 3 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -812,7 +800,10 @@ window.TRIP_DATA = {
         "area": "Zagreb · Zrinjevac／Main Station 附近",
         "why": "車站抵達方便，連住兩晚且步行可達市中心。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Zrinjevac Zagreb hotels"
+        "map": "Zrinjevac Zagreb hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -874,7 +865,10 @@ window.TRIP_DATA = {
         "area": "Zagreb · 同一間第 2 晚",
         "why": "不換住宿，隔天由巴士站前往十六湖。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Zrinjevac Zagreb hotels"
+        "map": "Zrinjevac Zagreb hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 2 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -946,7 +940,10 @@ window.TRIP_DATA = {
         "area": "Plitvice · Rastovača／Entrance 1 附近",
         "why": "巴士下車、入園與隔天離開最省轉乘；只住一晚。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Rastovaca Plitvice hotels"
+        "map": "Rastovaca Plitvice hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1016,9 +1013,12 @@ window.TRIP_DATA = {
       },
       "lodging": {
         "area": "Split · Lučac／Manuš／Bačvice 北側",
-        "why": "步行 10–18 分鐘到港口、古城與跨境巴士站，連住兩晚。",
+        "why": "只住一晚；步行 10–18 分鐘到港口、古城與跨境巴士站。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Lucac Split hotels"
+        "map": "Lucac Split hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1094,7 +1094,10 @@ window.TRIP_DATA = {
         "area": "Mostar · Luka／Old Town 北緣",
         "why": "到老城與車站都在短程步行／taxi 範圍，連住兩晚。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Luka Mostar hotels"
+        "map": "Luka Mostar hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1176,7 +1179,10 @@ window.TRIP_DATA = {
         "area": "Mostar · 同一間第 2 晚",
         "why": "不換住宿，隔天傍晚搭景觀火車。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Luka Mostar hotels"
+        "map": "Luka Mostar hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 2 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1258,7 +1264,10 @@ window.TRIP_DATA = {
         "area": "Sarajevo · Skenderija／Marijin Dvor",
         "why": "靠火車與巴士站，電車可到 Baščaršija，連住兩晚。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Marijin Dvor Sarajevo hotels"
+        "map": "Marijin Dvor Sarajevo hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1334,7 +1343,10 @@ window.TRIP_DATA = {
         "area": "Sarajevo · 同一間第 2 晚",
         "why": "不搬房，隔天 07:15 跨境巴士。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Marijin Dvor Sarajevo hotels"
+        "map": "Marijin Dvor Sarajevo hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 2 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1400,7 +1412,10 @@ window.TRIP_DATA = {
         "area": "Dubrovnik · Gruž／Lapad 東側",
         "why": "巴士抵達與去機場順，公車可在 30 分鐘內到老城，連住兩晚。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Gruz Dubrovnik hotels"
+        "map": "Gruz Dubrovnik hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1466,7 +1481,10 @@ window.TRIP_DATA = {
         "area": "Dubrovnik · 同一間第 2 晚",
         "why": "不換住宿，隔天中午前往 DBV。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Gruz Dubrovnik hotels"
+        "map": "Gruz Dubrovnik hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／第 2 晚",
+        "costStatus": "預估"
       },
       "food": [
         {
@@ -1542,7 +1560,10 @@ window.TRIP_DATA = {
         "area": "Geneva · Cornavin／Pâquis",
         "why": "只住一晚，機場火車、湖畔與隔天返機場都方便。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Geneva Cornavin hotels"
+        "map": "Geneva Cornavin hotels",
+        "nightlyPrice": 3500,
+        "priceNote": "預估／1 晚",
+        "costStatus": "預估"
       },
       "food": [
         {

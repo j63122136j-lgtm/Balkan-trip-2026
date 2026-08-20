@@ -4,17 +4,24 @@
   const $$ = s => [...document.querySelectorAll(s)];
   const fmt = n => new Intl.NumberFormat('zh-TW',{style:'currency',currency:'TWD',maximumFractionDigits:0}).format(Number(n)||0);
   const NS=(D.meta.title||'trip').toLowerCase().replace(/[^a-z0-9]+/g,'_');
-  const DATA_VERSION=(D.meta.version||'1').replace(/[^a-z0-9]+/gi,'_');
   const STORE={
     theme:`${NS}_theme`, notes:`${NS}_notes`, weather:`${NS}_weather`, rates:`${NS}_rates`,
-    budget:`${NS}_${DATA_VERSION}_budget`, packing:`${NS}_${DATA_VERSION}_packing`, checks:`${NS}_${DATA_VERSION}_checks`
+    expenses:`${NS}_expenses`, packing:`${NS}_packing`, checks:`${NS}_checks`
   };
   let activeDay = 1;
   let deferredPrompt = null;
 
   function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
   function load(k,fallback){try{const v=localStorage.getItem(k);return v?JSON.parse(v):fallback}catch{return fallback}}
+  function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
   function maps(q){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`}
+  function migrateVersionedStore(target,suffix){
+    if(localStorage.getItem(target)!==null)return;
+    const key=Object.keys(localStorage).filter(k=>k.startsWith(`${NS}_`)&&k.endsWith(`_${suffix}`)&&k!==target).sort().reverse()[0];
+    if(key)localStorage.setItem(target,localStorage.getItem(key));
+  }
+  migrateVersionedStore(STORE.packing,'packing');
+  migrateVersionedStore(STORE.checks,'checks');
 
   function setScreen(target){
     $$('.screen').forEach(x=>x.classList.toggle('active',x.dataset.screen===target));
@@ -197,14 +204,50 @@
     };
     return {why:e.why||guide.why||e.detail,how:e.how||guide.how||fallback[e.type]||'依 Google Maps 導航與現場指示前往。'};
   }
+
+  const expenseCategories=['餐飲','交通','住宿','門票','咖啡／小吃','購物','其他'];
+  function getExpenses(){
+    const stored=load(STORE.expenses,null);
+    if(Array.isArray(stored))return stored;
+    const legacy={transport:0,food:0,misc:0};
+    Object.keys(localStorage).filter(k=>k.startsWith(`${NS}_`)&&k.endsWith('_budget')).forEach(k=>{
+      const rows=load(k,[]);if(!Array.isArray(rows))return;
+      rows.forEach(x=>{if(x.id in legacy)legacy[x.id]=Math.max(legacy[x.id],Number(x.spent)||0)});
+    });
+    const labels={transport:['交通','舊版交通支出'],food:['餐飲','舊版餐飲支出'],misc:['其他','舊版其他支出']};
+    const migrated=Object.entries(legacy).filter(([,amount])=>amount>0).map(([key,amount],i)=>({id:`legacy-${key}-${i}`,day:0,date:'舊版',category:labels[key][0],item:labels[key][1],amount,createdAt:Date.now()}));
+    save(STORE.expenses,migrated);
+    return migrated;
+  }
+  function dayExpenseCard(d){
+    const rows=getExpenses().filter(x=>x.day===d.day);
+    const total=rows.reduce((sum,x)=>sum+(Number(x.amount)||0),0);
+    return `<article class="expense-card glass reveal"><div class="expense-card-head"><div><span class="kicker">DAILY SPEND</span><h2>Day ${d.day} 消費</h2></div><strong>${fmt(total)}</strong></div><div class="expense-form"><select id="expense-category" aria-label="消費分類">${expenseCategories.map(x=>`<option>${x}</option>`).join('')}</select><input id="expense-item" maxlength="40" placeholder="項目，例如：晚餐"><label><span>NT$</span><input id="expense-amount" inputmode="numeric" type="number" min="0" step="1" placeholder="金額"></label><button id="add-expense" type="button">＋ 記一筆</button></div>${rows.length?`<div class="day-expense-list">${rows.map(x=>`<div><span class="expense-category">${esc(x.category)}</span><b>${esc(x.item)}</b><strong>${fmt(x.amount)}</strong><button type="button" data-delete-expense="${esc(x.id)}" aria-label="刪除 ${esc(x.item)}">×</button></div>`).join('')}</div>`:'<p class="expense-empty">今天還沒有消費紀錄。</p>'}<small>以新台幣記錄；可先用首頁 Quick Convert 換算。資料只存在目前裝置。</small></article>`;
+  }
+  function bindExpenseCard(d){
+    const add=$('#add-expense'),amount=$('#expense-amount');if(!add||!amount)return;
+    const create=()=>{
+      const item=$('#expense-item').value.trim(),value=Math.round(Number(amount.value)||0);
+      if(!item||value<=0)return;
+      const rows=getExpenses();
+      rows.push({id:`${Date.now()}-${Math.random().toString(36).slice(2,7)}`,day:d.day,date:d.date,category:$('#expense-category').value,item,amount:value,createdAt:Date.now()});
+      save(STORE.expenses,rows);renderDay();renderBudget();
+    };
+    add.addEventListener('click',create);
+    amount.addEventListener('keydown',e=>{if(e.key==='Enter')create()});
+    $$('[data-delete-expense]').forEach(btn=>btn.addEventListener('click',()=>{
+      save(STORE.expenses,getExpenses().filter(x=>String(x.id)!==btn.dataset.deleteExpense));renderDay();renderBudget();
+    }));
+  }
   function renderDay(){
     const d=D.days[activeDay-1];
     const city=D.weatherCities[d.weatherKey]||D.weatherCities.Ljubljana;
     const heroPhoto=d.photo?`<figure class="day-photo"><img src="${d.photo.src}" alt="${d.photo.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption>${d.photo.alt} · <a href="${d.photo.source}" target="_blank" rel="noopener">${d.photo.credit}</a></figcaption></figure>`:'';
-    const lodging=d.lodging?`<article class="stay-card glass reveal"><div class="info-card-head"><div><span class="kicker">WHERE TO STAY</span><h2>${d.lodging.area}</h2></div><a class="map-link" href="${d.lodging.url||maps(d.lodging.map)}" target="_blank" rel="noopener">住宿地圖 ↗</a></div>${d.lodging.nightlyPrice?`<div class="stay-price"><div><small>本晚房價</small><strong>${fmt(d.lodging.nightlyPrice)}</strong></div><span>${d.lodging.priceNote||''}<br>兩晚合計 ${fmt(d.lodging.totalPrice||d.lodging.nightlyPrice)}</span></div>`:''}<p>${d.lodging.why}</p><div class="parking-note"><b>停車 / 動線</b><span>${d.lodging.parking}</span></div><div class="booking-links"><a href="https://www.airbnb.com/s/${encodeURIComponent(d.lodging.area)}/homes" target="_blank" rel="noopener">Airbnb ↗</a><a href="https://www.hotels.com/Hotel-Search?destination=${encodeURIComponent(d.lodging.area)}" target="_blank" rel="noopener">Hotels.com ↗</a></div></article>`:'';
+    const lodging=d.lodging?`<article class="stay-card glass reveal"><div class="info-card-head"><div><span class="kicker">WHERE TO STAY</span><h2>${d.lodging.area}</h2></div><a class="map-link" href="${d.lodging.url||maps(d.lodging.map)}" target="_blank" rel="noopener">住宿地圖 ↗</a></div>${d.lodging.nightlyPrice?`<div class="stay-price"><div><small>${d.lodging.costStatus||'預估'}房價</small><strong>${fmt(d.lodging.nightlyPrice)}</strong></div><span>${d.lodging.priceNote||''}${d.lodging.totalPrice?`<br>住宿合計 ${fmt(d.lodging.totalPrice)}`:''}</span></div>`:''}<p>${d.lodging.why}</p><div class="parking-note"><b>停車 / 動線</b><span>${d.lodging.parking}</span></div><div class="booking-links"><a href="https://www.airbnb.com/s/${encodeURIComponent(d.lodging.area)}/homes" target="_blank" rel="noopener">Airbnb ↗</a><a href="https://www.hotels.com/Hotel-Search?destination=${encodeURIComponent(d.lodging.area)}" target="_blank" rel="noopener">Hotels.com ↗</a></div></article>`:'';
     const food=d.food?.length?`<article class="food-card glass reveal"><span class="kicker">EAT HERE</span><h2>順路必吃</h2><div class="food-list">${d.food.map(x=>`${x.image?`<figure class="food-photo"><img src="${x.image.src}" alt="${x.image.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption><a href="${x.image.source}" target="_blank" rel="noopener">${x.image.credit}</a></figcaption></figure>`:''}<a href="${maps(x.map)}" target="_blank" rel="noopener"><b>${x.name}</b><span>${x.dish}</span><i>Maps ↗</i></a>`).join('')}</div><small>照片為真實地點／料理參考；餐廳營業、休假與訂位請在出發前再次確認。</small></article>`:'';
     const local=d.localStops?.length?`<article class="local-card glass reveal"><div class="local-card-head"><div><span class="kicker">LOCAL STOPS</span><h2>咖啡・小吃・城市杯</h2></div><small>都以順路為原則；營業時間與庫存請當天確認。</small></div><div class="local-stop-list">${d.localStops.map(x=>`<a href="${maps(x.map)}" target="_blank" rel="noopener"><span class="stop-kind">${x.kind}</span><b>${x.name}</b><p>${x.note}</p><i>Maps ↗</i></a>`).join('')}</div></article>`:'';
-    $('#day-detail').innerHTML=`<article class="day-hero reveal"><div class="day-hero-top"><div><span class="kicker">${d.country} · ${d.theme}</span><h2>${d.city}</h2><p>${d.summary}</p></div><span class="day-weather-pill" id="day-weather-pill"><b>◌</b><span>${city.label}</span><strong>--°</strong></span></div>${heroPhoto}</article><div class="day-info-grid">${lodging}${food}${local}</div><article class="timeline-card glass reveal"><div class="timeline">${d.events.map(e=>{const g=guideFor(e),kind=eventKinds[e.type]||['•','行程'];return `<div class="timeline-row"><div class="timeline-time">${e.time}</div><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-title-row"><h3>${e.title}</h3><span class="event-kind">${kind[0]} ${kind[1]}</span></div><p class="event-purpose">${g.why}</p><div class="event-how"><b>怎麼去</b><p>${g.how}</p></div><div class="timeline-bottom"><span class="duration">◷ ${e.duration}</span><a class="map-link" href="${maps(e.map)}" target="_blank" rel="noopener">Google Maps ↗</a></div></div></div>`}).join('')}</div></article>`;
+    $('#day-detail').innerHTML=`<article class="day-hero reveal"><div class="day-hero-top"><div><span class="kicker">${d.country} · ${d.theme}</span><h2>${d.city}</h2><p>${d.summary}</p></div><span class="day-weather-pill" id="day-weather-pill"><b>◌</b><span>${city.label}</span><strong>--°</strong></span></div>${heroPhoto}</article>${dayExpenseCard(d)}<div class="day-info-grid">${lodging}${food}${local}</div><article class="timeline-card glass reveal"><div class="timeline">${d.events.map(e=>{const g=guideFor(e),kind=eventKinds[e.type]||['•','行程'];return `<div class="timeline-row"><div class="timeline-time">${e.time}</div><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-title-row"><h3>${e.title}</h3><span class="event-kind">${kind[0]} ${kind[1]}</span></div><p class="event-purpose">${g.why}</p><div class="event-how"><b>怎麼去</b><p>${g.how}</p></div><div class="timeline-bottom"><span class="duration">◷ ${e.duration}</span><a class="map-link" href="${maps(e.map)}" target="_blank" rel="noopener">Google Maps ↗</a></div></div></div>`}).join('')}</div></article>`;
+    bindExpenseCard(d);
     setTimeout(observeReveals,20);
   }
 
@@ -259,10 +302,23 @@
   }
 
   function renderBudget(){
-    let b=load(STORE.budget,D.budgetDefaults);
-    const totalPlan=b.reduce((s,x)=>s+(+x.planned||0),0),totalSpent=b.reduce((s,x)=>s+(+x.spent||0),0),remaining=totalPlan-totalSpent;
-    $('#budget-dashboard').innerHTML=`<div class="budget-summary"><div class="budget-stat glass"><small>PLANNED</small><b>${fmt(totalPlan)}</b></div><div class="budget-stat glass"><small>SPENT</small><b>${fmt(totalSpent)}</b></div><div class="budget-stat glass"><small>REMAINING</small><b>${fmt(remaining)}</b></div></div><div class="budget-list glass">${b.map(x=>`<div class="budget-row"><label>${x.label}</label><div><span class="budget-label">計畫</span><input inputmode="numeric" data-budget="${x.id}" data-field="planned" value="${x.planned}"></div><div><span class="budget-label">實際</span><input inputmode="numeric" data-budget="${x.id}" data-field="spent" value="${x.spent}"></div></div>`).join('')}</div>`;
-    $$('[data-budget]').forEach(i=>i.addEventListener('change',()=>{b=b.map(x=>x.id===i.dataset.budget?{...x,[i.dataset.field]:Number(i.value)||0}:x);save(STORE.budget,b);renderBudget()}));
+    const lodgingDays=D.days.filter(d=>d.lodging?.nightlyPrice);
+    const lodgingTotal=lodgingDays.reduce((sum,d)=>sum+Number(d.lodging.nightlyPrice),0);
+    const confirmedNights=lodgingDays.filter(d=>d.lodging.costStatus==='已確認');
+    const estimatedNights=lodgingDays.filter(d=>d.lodging.costStatus!=='已確認');
+    const fixed=[...(D.fixedExpenses||[]),{
+      id:'stays',label:'住宿',amount:lodgingTotal,status:'部分確認',
+      note:`${lodgingDays.length} 晚：曼谷 ${confirmedNights.length} 晚共 ${fmt(confirmedNights.reduce((s,d)=>s+d.lodging.nightlyPrice,0))}；其餘 ${estimatedNights.length} 晚以每晚 ${fmt(3500)} 估列`
+    }];
+    const expenses=getExpenses();
+    const fixedTotal=fixed.reduce((sum,x)=>sum+(Number(x.amount)||0),0);
+    const spentTotal=expenses.reduce((sum,x)=>sum+(Number(x.amount)||0),0);
+    const categoryTotals=expenseCategories.map(category=>({category,amount:expenses.filter(x=>x.category===category).reduce((sum,x)=>sum+(Number(x.amount)||0),0)})).filter(x=>x.amount>0);
+    const grouped=[...new Set(expenses.map(x=>x.day))].sort((a,b)=>a-b).map(day=>{
+      const rows=expenses.filter(x=>x.day===day),tripDay=D.days.find(d=>d.day===day);
+      return {day,date:tripDay?.date||rows[0]?.date||'',city:tripDay?.city||'舊版匯入',rows,total:rows.reduce((sum,x)=>sum+(Number(x.amount)||0),0)};
+    });
+    $('#budget-dashboard').innerHTML=`<div class="cost-summary"><div class="cost-stat glass"><small>FIXED / ESTIMATED</small><b>${fmt(fixedTotal)}</b><span>機票＋16 晚住宿</span></div><div class="cost-stat glass"><small>DAILY SPEND</small><b>${fmt(spentTotal)}</b><span>${expenses.length} 筆旅途消費</span></div><div class="cost-stat total glass"><small>CURRENT TOTAL</small><b>${fmt(fixedTotal+spentTotal)}</b><span>目前預計旅行總花費</span></div></div><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">KNOWN COSTS</span><h2>已有／預計支出</h2></div><strong>${fmt(fixedTotal)}</strong></div><div class="fixed-cost-list">${fixed.map(x=>`<div class="fixed-cost-row"><div><b>${esc(x.label)}</b><span>${esc(x.note)}</span></div><em>${esc(x.status)}</em><strong>${fmt(x.amount)}</strong></div>`).join('')}</div></section><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">TRIP SPENDING</span><h2>每日消費總計</h2></div><strong>${fmt(spentTotal)}</strong></div>${categoryTotals.length?`<div class="category-totals">${categoryTotals.map(x=>`<span>${esc(x.category)} <b>${fmt(x.amount)}</b></span>`).join('')}</div>`:''}${grouped.length?`<div class="daily-cost-groups">${grouped.map(g=>`<article><div class="daily-cost-head"><div><b>${g.day?`Day ${g.day} · ${g.date}`:'舊版匯入'}</b><span>${esc(g.city)}</span></div><strong>${fmt(g.total)}</strong></div>${g.rows.map(x=>`<div class="daily-cost-row"><span>${esc(x.category)}</span><b>${esc(x.item)}</b><strong>${fmt(x.amount)}</strong></div>`).join('')}</article>`).join('')}</div>`:'<div class="budget-empty"><b>還沒有每日消費</b><span>進入任一天的行程分頁，就能新增當日支出。</span></div>'}</section><p class="cost-note">固定支出不必在每日消費重複輸入；每日紀錄儲存在目前瀏覽器，清除網站資料或更換裝置不會自動同步。</p>`;
   }
 
   function renderPacking(){

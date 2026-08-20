@@ -228,3 +228,26 @@
   .local-stop-list{grid-template-columns:1fr}
   .day-photo img{object-position:center 45%}
 }
+
+/* Daily expense logger and cost roll-up · v4.4 */
+.expense-card{border-radius:28px;padding:18px 20px;margin-bottom:16px}.expense-card-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}.expense-card-head h2{font-size:18px;margin:5px 0 0}.expense-card-head>strong{font-size:24px;letter-spacing:-.045em}.expense-form{display:grid;grid-template-columns:112px minmax(150px,1fr) 150px 104px;grid-template-areas:"category item amount add";gap:8px;margin-top:14px}.expense-form select,.expense-form input{width:100%;height:42px;border:1px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);outline:none;padding:0 11px;font-size:11px}.expense-form select{grid-area:category}.expense-form>input{grid-area:item}.expense-form label{grid-area:amount;display:flex;align-items:center;height:42px;border:1px solid var(--line);border-radius:12px;background:var(--surface-solid);overflow:hidden}.expense-form label span{padding-left:10px;color:var(--muted);font-size:9px}.expense-form label input{border:0;background:transparent;padding-left:5px}.expense-form button{grid-area:add;border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:10px;font-weight:800;cursor:pointer}.day-expense-list{margin-top:10px;border-top:1px solid var(--line)}.day-expense-list>div{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}.expense-category{padding:4px 6px;border-radius:999px;background:rgba(0,113,227,.09);color:var(--blue);font-size:8px;font-weight:800}.day-expense-list b{font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.day-expense-list strong{font-size:11px}.day-expense-list button{width:25px;height:25px;border:0;border-radius:50%;background:var(--surface-solid);color:var(--muted);cursor:pointer}.expense-card>small,.expense-empty{display:block;margin:9px 0 0;color:var(--muted);font-size:8px;line-height:1.5}.cost-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}.cost-stat{border-radius:24px;padding:20px}.cost-stat small{display:block;font-size:8px;letter-spacing:.1em;color:var(--muted)}.cost-stat b{display:block;font-size:27px;letter-spacing:-.05em;margin:7px 0 3px}.cost-stat span{font-size:9px;color:var(--muted)}.cost-stat.total{background:linear-gradient(135deg,rgba(0,113,227,.16),var(--surface));border-color:rgba(0,113,227,.22)}.cost-panel{border-radius:28px;padding:22px;margin-bottom:14px}.cost-panel-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:12px}.cost-panel-head h2{font-size:19px;margin:5px 0 0}.cost-panel-head>strong{font-size:21px}.fixed-cost-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}.fixed-cost-row>div b,.fixed-cost-row>div span{display:block}.fixed-cost-row>div b{font-size:12px}.fixed-cost-row>div span{margin-top:4px;color:var(--muted);font-size:9px;line-height:1.45}.fixed-cost-row em{padding:5px 7px;border-radius:999px;background:rgba(48,209,88,.1);color:#16863a;font-size:8px;font-style:normal;font-weight:800}.fixed-cost-row>strong{font-size:13px}.category-totals{display:flex;gap:7px;overflow:auto;padding:2px 0 12px}.category-totals span{flex:0 0 auto;padding:7px 9px;border-radius:999px;background:var(--surface-solid);border:1px solid var(--line);font-size:9px}.category-totals b{margin-left:4px}.daily-cost-groups article{padding:13px 0;border-top:1px solid var(--line)}.daily-cost-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.daily-cost-head div b,.daily-cost-head div span{display:block}.daily-cost-head div b{font-size:11px}.daily-cost-head div span{color:var(--muted);font-size:9px;margin-top:3px}.daily-cost-head>strong{font-size:13px}.daily-cost-row{display:grid;grid-template-columns:80px minmax(0,1fr) auto;gap:9px;padding:7px 0 0 12px}.daily-cost-row span{color:var(--muted);font-size:9px}.daily-cost-row b,.daily-cost-row strong{font-size:10px}.budget-empty{display:flex;flex-direction:column;gap:5px;padding:24px 0 8px;text-align:center;color:var(--muted)}.budget-empty b{color:var(--text);font-size:12px}.budget-empty span{font-size:9px}.cost-note{margin:0 4px;color:var(--muted);font-size:8px;line-height:1.5}
+
+@media(max-width:760px){
+  .expense-card{padding:17px;border-radius:24px;margin-bottom:12px}
+  .expense-form{grid-template-columns:1fr 1fr;grid-template-areas:"category amount" "item add"}
+  .expense-form button{min-height:42px}
+  .cost-summary{grid-template-columns:1fr 1fr;gap:9px}
+  .cost-stat{padding:16px}
+  .cost-stat.total{grid-column:1/-1}
+  .cost-panel{padding:18px;border-radius:24px}
+  .fixed-cost-row{grid-template-columns:minmax(0,1fr) auto}
+  .fixed-cost-row em{grid-column:1;grid-row:2;width:max-content}
+  .fixed-cost-row>strong{grid-column:2;grid-row:1/3}
+}
+
+@media(max-width:390px){
+  .expense-card-head>strong{font-size:20px}
+  .expense-form{grid-template-columns:96px minmax(0,1fr)}
+  .day-expense-list>div{grid-template-columns:auto minmax(0,1fr) auto auto;gap:6px}
+  .cost-stat b{font-size:23px}
+}
