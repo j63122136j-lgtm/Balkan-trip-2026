@@ -224,18 +224,14 @@
   async function updateWeather(){
     const day=D.days[activeDay-1]||D.days[0], city=D.weatherCities[day.weatherKey]||D.weatherCities.Ljubljana;
     $('#weather-city').textContent=city.label;
-    const dayPill=$('#day-weather-pill');
-    if(dayPill)dayPill.innerHTML=`<b>◌</b><span>${city.label}</span><strong>--°</strong>`;
     const url=`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=1`;
     try{
       const r=await fetch(url,{cache:'no-store'}); if(!r.ok) throw new Error('weather'); const j=await r.json();
       const [ic,txt]=weatherCode(j.current.weather_code); const item={city:city.label,temp:Math.round(j.current.temperature_2m),icon:ic,text:txt,max:Math.round(j.daily.temperature_2m_max[0]),min:Math.round(j.daily.temperature_2m_min[0]),at:Date.now()};save(STORE.weather,item);paintWeather(item);
-    }catch{const cached=load(STORE.weather,null);if(cached&&cached.city===city.label)paintWeather(cached,true);else{$('#weather-text').textContent='目前離線，尚無此城市的快取天氣';if(dayPill)dayPill.innerHTML=`<b>◌</b><span>${city.label}</span><strong>離線</strong>`}}
+    }catch{const cached=load(STORE.weather,null);if(cached&&cached.city===city.label)paintWeather(cached,true);else{$('#weather-text').textContent='目前離線，尚無此城市的快取天氣'}}
   }
   function paintWeather(w,cached=false){
     $('#weather-city').textContent=w.city;$('#weather-temp').textContent=`${w.temp}°`;$('#weather-icon').textContent=w.icon;$('#weather-text').textContent=`${w.text}${cached?' · cached':''}`;$('#weather-range').textContent=`H ${w.max}° · L ${w.min}°`;
-    const dayPill=$('#day-weather-pill');
-    if(dayPill)dayPill.innerHTML=`<b>${w.icon}</b><span>${w.city}</span><strong>${w.temp}°</strong>`;
   }
   $('#refresh-weather').addEventListener('click',updateWeather);
 
@@ -298,14 +294,13 @@
   function renderDay(){
     if(activeDay===0){renderDayZero();return}
     const d=D.days[activeDay-1];
-    const city=D.weatherCities[d.weatherKey]||D.weatherCities.Ljubljana;
     const heroPhoto=d.photo?`<figure class="day-photo"><img src="${d.photo.src}" alt="${d.photo.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption>${d.photo.alt} · <a href="${d.photo.source}" target="_blank" rel="noopener">${d.photo.credit}</a></figcaption></figure>`:'';
     const lodging=d.lodging?`<a class="day-stay-link" href="${d.lodging.url||maps(d.lodging.map||d.lodging.area)}" target="_blank" rel="noopener"><span>⌂ 今晚住宿</span><b>${esc(d.lodging.area)}</b><i>Google Maps 導航 ↗</i></a>`:'';
     const food=d.food?.length?`<section class="discovery-section discovery-food"><span class="kicker">EAT HERE</span><h2>順路必吃</h2><div class="food-list">${d.food.map(x=>`${x.image?`<figure class="food-photo"><img src="${x.image.src}" alt="${x.image.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption><a href="${x.image.source}" target="_blank" rel="noopener">${x.image.credit}</a></figcaption></figure>`:''}<a href="${maps(x.map)}" target="_blank" rel="noopener"><b>${x.name}</b><span>${x.dish}</span><i>Maps ↗</i></a>`).join('')}</div></section>`:'';
     const local=d.localStops?.length?`<section class="discovery-section discovery-local"><span class="kicker">LOCAL STOPS</span><h2>咖啡・小吃・城市杯</h2><div class="local-stop-list">${d.localStops.map(x=>`<a href="${maps(x.map)}" target="_blank" rel="noopener"><span class="stop-kind">${x.kind}</span><b>${x.name}</b><p>${x.note}</p><i>Maps ↗</i></a>`).join('')}</div></section>`:'';
     const discovery=(food||local)?`<article class="discovery-card ${food&&local?'':'single'} glass reveal"><div class="discovery-grid">${food}${local}</div><small>以順路為原則；營業時間、休假、訂位與城市杯庫存請當天確認。</small></article>`:'';
     const itinerary=`<article class="itinerary-card glass reveal"><div class="compact-itinerary">${d.events.map(e=>{const g=guideFor(e),kind=eventKinds[e.type]||['•','行程'];return `<div class="itinerary-row"><time>${esc(e.time)}</time><span class="itinerary-dot"></span><div class="itinerary-main"><div><h3>${esc(e.title)}</h3><span class="event-kind">${kind[0]} ${kind[1]}</span></div><p>${esc(g.why)}</p></div><div class="itinerary-how"><b>怎麼去</b><span>${esc(g.how)}</span></div><div class="itinerary-actions"><span class="duration">◷ ${esc(e.duration)}</span><a class="map-link" href="${maps(e.map)}" target="_blank" rel="noopener">Maps ↗</a></div></div>`}).join('')}</div></article>`;
-    $('#day-detail').innerHTML=`<article class="day-hero reveal"><div class="day-hero-top"><div><span class="kicker">${esc(d.country)} · ${esc(d.theme)}</span><h2>${esc(d.city)}</h2><p>${esc(d.summary)}</p></div><div class="day-hero-tools"><span class="day-weather-pill" id="day-weather-pill"><b>◌</b><span>${esc(city.label)}</span><strong>--°</strong></span>${lodging}</div></div>${heroPhoto}</article>${itinerary}${dayExpenseCard(d)}${discovery}`;
+    $('#day-detail').innerHTML=`<article class="day-hero reveal"><div class="day-hero-top"><div><span class="kicker">${esc(d.country)} · ${esc(d.theme)}</span><h2>${esc(d.city)}</h2><p>${esc(d.summary)}</p></div><div class="day-hero-tools">${lodging}</div></div>${heroPhoto}</article>${itinerary}${dayExpenseCard(d)}${discovery}`;
     bindExpenseCard(d);
     setTimeout(observeReveals,20);
   }

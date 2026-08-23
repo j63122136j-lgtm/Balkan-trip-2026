@@ -837,7 +837,7 @@ svg {
   #balkan-route-v46{--map-ink:light-dark(#102657,#edf4ff);--map-water:light-dark(#e9f5ff,#0d1d2a);--map-land:light-dark(#f7f5ef,#17191d);--map-svn:light-dark(#e7f1ff,#16283f);--map-hrv:light-dark(#fff2cf,#3a3018);--map-bih:light-dark(#edf6d9,#253119);--route-flight:light-dark(#7435d5,#a47aff);--route-bus:light-dark(#07883c,#4ad47b);--route-train:light-dark(#d5232d,#ff626a);--route-boat:light-dark(#087f9f,#45c3dd);width:100%;color:var(--foreground)}
   #balkan-route-v46 .route-context{justify-content:space-between;margin-bottom:4px;color:var(--muted-foreground)}
   #balkan-route-v46 .route-context span{display:inline-flex;align-items:center;gap:6px}
-  #balkan-route-v46 .route-map{display:block;width:100%;height:auto;aspect-ratio:1.68/1;overflow:visible}
+  #balkan-route-v46 .route-map{display:block;width:100%;height:auto;aspect-ratio:1.5/1;overflow:visible}
   #balkan-route-v46 .country{fill:var(--map-land);stroke:color-mix(in srgb,var(--map-ink) 20%,transparent);stroke-width:1}
   #balkan-route-v46 .country.focus{stroke:var(--map-ink);stroke-width:3.4}
   #balkan-route-v46 .country-SVN{fill:var(--map-svn)}#balkan-route-v46 .country-HRV{fill:var(--map-hrv)}#balkan-route-v46 .country-BIH{fill:var(--map-bih)}
@@ -867,9 +867,9 @@ svg {
   #balkan-route-v46 .route-detail{margin:0}
   html.embed>body{padding:0;overflow:hidden}
   html.embed #balkan-route-v46 .route-context,html.embed #balkan-route-v46 .route-footer{display:none}
-  html.embed #balkan-route-v46 .route-map{aspect-ratio:1.68/1}
+  html.embed #balkan-route-v46 .route-map{aspect-ratio:1.5/1}
   @media(max-width:520px){#balkan-route-v46 .route-map{aspect-ratio:1.1/1}#balkan-route-v46 .route-context{align-items:flex-start}#balkan-route-v46 .route-context span{max-width:48%}#balkan-route-v46 .place-label{font-size:14px}#balkan-route-v46 .country-label{font-size:15px}}
-  @media(max-width:520px){html.embed #balkan-route-v46 .route-map{aspect-ratio:1.68/1}}
+  @media(max-width:520px){html.embed #balkan-route-v46 .route-map{aspect-ratio:1.5/1}}
 </style>
 
 <script type="module">
@@ -881,7 +881,7 @@ svg {
   const svg = d3.select(root.querySelector(".route-map"));
   const detail = root.querySelector(".route-detail");
   const width = 1120;
-  const height = 667;
+  const height = 747;
   svg.attr("viewBox", `0 0 ${width} ${height}`);
   svg.append("title").attr("id","route-map-title").text("Balkan 2026 斯洛維尼亞、克羅埃西亞與波士尼亞路線圖");
   svg.append("desc").attr("id","route-map-desc").text("D4 從 Istanbul 飛 Ljubljana；D5 洞穴城堡、D6 Bled 與 Vintgar 當日往返；D7 火車到 Zagreb；D9 飛 Split；D10 跳島；D11 巴士到 Mostar，D13 火車到 Sarajevo，D15 巴士到 Dubrovnik；D17 飛 Geneva。");
@@ -890,12 +890,12 @@ svg {
   const focusIds = new Set(["SVN", "HRV", "BIH"]);
   const focus = allCountries.filter(d => focusIds.has(d.properties.id));
   const focusCollection = { type: "FeatureCollection", features: focus };
-  const projection = d3.geoMercator().fitExtent([[150, 72], [width - 125, height - 36]], focusCollection);
+  const projection = d3.geoMercator().fitExtent([[75, 62], [width - 75, height - 34]], focusCollection);
   const path = d3.geoPath(projection);
 
   svg.append("path").attr("class","water").attr("d",`M0,0H${width}V${height}H0Z`);
-  svg.append("g").selectAll("path").data(allCountries).join("path")
-    .attr("class", d => focusIds.has(d.properties.id) ? `country focus country-${d.properties.id}` : "country")
+  svg.append("g").selectAll("path").data(focus).join("path")
+    .attr("class", d => `country focus country-${d.properties.id}`)
     .attr("d", path);
 
   svg.append("text").attr("class","map-title").attr("x",width/2).attr("y",42).attr("text-anchor","middle").text("BALKAN 2026 · ROUTE OVERVIEW");
@@ -907,13 +907,13 @@ svg {
     Sarajevo:[18.4131,43.8563], Dubrovnik:[18.0944,42.6507], Vis:[16.1864,43.0619], Hvar:[16.4424,43.1729]
   };
   const routes = [
-    {mode:"bus", days:"D5", from:"Ljubljana", via:["Postojna","Predjama"], to:"Ljubljana", note:"D5 洞穴＋城堡，返回 Ljubljana"},
-    {mode:"bus", days:"D6", from:"Ljubljana", via:["Bled","Vintgar"], to:"Ljubljana", note:"D6 Bled＋Vintgar 當日來回"},
+    {mode:"bus", days:"", from:"Ljubljana", via:["Postojna","Predjama"], to:"Ljubljana", note:"D5 洞穴＋城堡，返回 Ljubljana"},
+    {mode:"bus", days:"", from:"Ljubljana", via:["Bled","Vintgar"], to:"Ljubljana", note:"D6 Bled＋Vintgar 當日來回"},
     {mode:"train", days:"D7", from:"Ljubljana", via:[], to:"Zagreb", note:"D7 Ljubljana → Zagreb 火車"},
     {mode:"flight", days:"D9", from:"Zagreb", via:[], to:"Split", note:"D9 Zagreb → Split 國內線（待訂）"},
-    {mode:"boat", days:"D10", from:"Split", via:["Vis","Hvar"], to:"Split", note:"D10 Split 跳島：Vis／Hvar，依海況調整"},
+    {mode:"boat", days:"", from:"Split", via:["Vis","Hvar"], to:"Split", note:"D10 Split 跳島：Vis／Hvar，依海況調整"},
     {mode:"bus", days:"D11", from:"Split", via:[], to:"Mostar", note:"D11 Split → Mostar 跨境巴士"},
-    {mode:"bus", days:"D12", from:"Mostar", via:["Blagaj"], to:"Mostar", note:"D12 Mostar ↔ Blagaj"},
+    {mode:"bus", days:"", from:"Mostar", via:["Blagaj"], to:"Mostar", note:"D12 Mostar ↔ Blagaj"},
     {mode:"train", days:"D13", from:"Mostar", via:[], to:"Sarajevo", note:"D13 Mostar → Sarajevo 景觀火車"},
     {mode:"bus", days:"D15", from:"Sarajevo", via:[], to:"Dubrovnik", note:"D15 Sarajevo → Dubrovnik 跨境巴士"}
   ];
@@ -939,9 +939,11 @@ svg {
       .on("pointerenter",() => { detail.textContent = r.note; })
       .on("pointerleave",() => { detail.textContent = "主線：Ljubljana → Zagreb → Split → Mostar → Sarajevo → Dubrovnik。"; });
     const labelPoint = pts[Math.floor(pts.length/2)];
-    const tag = routeGroup.append("g").attr("class",`day-tag ${r.mode}`).attr("transform",`translate(${labelPoint[0]+5},${labelPoint[1]-7})`);
-    tag.append("rect").attr("x",-3).attr("y",-11).attr("width",r.days.length*7+8).attr("height",16).attr("rx",4);
-    tag.append("text").text(r.days);
+    if (r.days) {
+      const tag = routeGroup.append("g").attr("class",`day-tag ${r.mode}`).attr("transform",`translate(${labelPoint[0]+5},${labelPoint[1]-7})`);
+      tag.append("rect").attr("x",-3).attr("y",-11).attr("width",r.days.length*7+8).attr("height",16).attr("rx",4);
+      tag.append("text").text(r.days);
+    }
   });
 
   const labelOffsets = {

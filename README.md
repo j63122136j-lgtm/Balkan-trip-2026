@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4.8.2
+# Balkan Trip Dashboard v4.8.3
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -18,6 +18,13 @@
 3. 在 `index.html` 把 `trips/balkan-2026.js` 改成新檔名。
 4. 修改首頁 slogan / subtitle（若需要）；`template/` 不必改。
 5. 每次發布更新 `sw.js` 的 `VERSION`，避免舊快取卡住。
+
+## v4.8.3 更新
+
+- 頂欄移除與「查看行程」功能重複的 Day 0 按鈕。
+- 路線圖放大並聚焦斯洛維尼亞、克羅埃西亞與波士尼亞；連住兩晚的城市只標示抵達第一天。
+- Day 10 的 Hvar 實景照片改為網站內建圖片，避免外部轉址失效，並加入離線快取。
+- 每日頂部移除重複天氣，只保留會跟著 Day 選擇切換城市的置頂天氣。
 
 ## v4.8.2 更新
 

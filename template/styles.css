@@ -264,7 +264,7 @@
 .route-cover{margin-top:16px;border-radius:var(--radius);padding:22px;overflow:hidden}
 .route-cover-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:10px}
 .route-cover-head h2{font-size:24px;letter-spacing:-.035em;margin:5px 0 0}
-.route-map-frame{display:block;width:100%;aspect-ratio:1.68/1;border:0;border-radius:20px;background:var(--surface-solid)}
+.route-map-frame{display:block;width:100%;aspect-ratio:1.5/1;border:0;border-radius:20px;background:var(--surface-solid)}
 .route-cover-expand{display:inline-flex;margin-top:10px;color:var(--blue);font-size:10px;font-weight:800;text-decoration:none}
 .day-zero-tab{border:1px solid rgba(255,106,0,.22);color:var(--blue)}
 .day-zero-tab.active{border-color:transparent}
@@ -288,7 +288,7 @@
 @media(max-width:760px){
   .route-cover{margin-top:10px;padding:14px;border-radius:26px}
   .route-cover-head{align-items:flex-start}.route-cover-head h2{font-size:20px}.route-cover-head .secondary-btn{padding:9px 12px;font-size:10px}
-  .route-map-frame{aspect-ratio:1.68/1;border-radius:17px}
+  .route-map-frame{aspect-ratio:1.5/1;border-radius:17px}
   .day-zero-progress{margin-top:14px;text-align:left;display:inline-grid;min-width:0}
   .preflight-timeline .timeline-time{font-size:9px;line-height:1.15}
   .day-zero-section-head{display:block}.day-zero-section-head p{margin-top:6px}
@@ -297,7 +297,7 @@
 
 @media(max-width:390px){
   .route-cover-head{display:block}.route-cover-head .secondary-btn{margin-top:10px}
-  .route-map-frame{aspect-ratio:1.68/1}
+  .route-map-frame{aspect-ratio:1.5/1}
 }
 
 /* Compact campaign identity inside the top bar · v4.6.1 */
