@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.10.0"
+    "version": "4.10.1"
   },
   "route": [
     "Taipei",
@@ -1944,7 +1944,7 @@ window.TRIP_DATA = {
     commons('Ljubljana banner Triple Bridge at night.jpg', 'Ljubljana 三重橋夜景', 'Pedro Szekely / AlasdairW · CC BY-SA 2.0'),
     D.days[7].photo,
     commons('View of Diocletian\'s Palace, Split 02.jpg', 'Split 戴克里先宮與舊城', 'Bernard Gagnon · Wikimedia Commons'),
-    commons('Hvar from the sea.jpg', '跳島途中看到的 Hvar 海岸', 'Wikimedia Commons'),
+    D.days[9].photo,
     commons('Split Waterfront, Looking Towards the Marjan Peninsula.jpg', 'Split Riva 與 Marjan 半島', 'Wikimedia Commons'),
     commons('Blagaj Tekke, the spring of the Buna river, Bosnia and Herzegovina 01.jpg', 'Blagaj Tekke 與 Buna 河源', 'Bosancica by MK · CC0'),
     commons('Mostar Old Bridge.jpg', 'Mostar 古橋暮色', 'Gugalcrom123 · Wikimedia Commons'),

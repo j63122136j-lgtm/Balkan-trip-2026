@@ -1,4 +1,8 @@
-# Balkan Trip Dashboard v4.10.0
+# Balkan Trip Dashboard v4.10.1
+
+## v4.10.1 更新
+
+- 修正每日圖片清單覆蓋 Day 10 本機照片的問題，Split／Islands 現在會穩定顯示 Hvar 海岸實景。
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
