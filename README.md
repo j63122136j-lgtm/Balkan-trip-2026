@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4.7.0
+# Balkan Trip Dashboard v4.8.0
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -18,6 +18,13 @@
 3. 在 `index.html` 把 `trips/balkan-2026.js` 改成新檔名。
 4. 修改首頁 slogan / subtitle（若需要）；`template/` 不必改。
 5. 每次發布更新 `sw.js` 的 `VERSION`，避免舊快取卡住。
+
+## v4.8.0 更新
+
+- 將 Dashboard 的主要操作色改為 Pantone 1505 C 橘色，保留淺色／深色切換與交通狀態的語意色。
+- 每日城市、照片、即時天氣與當晚住宿整合在同一個頂部 block；住宿僅保留 Google Maps 導航，價格仍留在資料層供 Budget 統計。
+- 每日行程移至第二個 block，放大主要文字並改成桌機單列、手機緊湊堆疊，減少大片留白。
+- Daily Spend 接在行程後方，餐飲與在地推薦移到頁面下段。
 
 ## v4.7.0 更新
 
