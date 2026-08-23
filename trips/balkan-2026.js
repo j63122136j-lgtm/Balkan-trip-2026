@@ -1,5 +1,5 @@
 /* Balkan 2026 — trip content only. Duplicate this file to reuse the template.
-   Synced from the Google Sheet on 2026-08-18. */
+   Synced from the reviewed itinerary on 2026-08-23. */
 window.TRIP_DATA = {
   "meta": {
     "title": "Balkan 2026",
@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.4.0"
+    "version": "4.5.0"
   },
   "route": [
     "Taipei",
@@ -21,7 +21,6 @@ window.TRIP_DATA = {
     "Postojna",
     "Bled",
     "Zagreb",
-    "Plitvice",
     "Split",
     "Mostar",
     "Blagaj",
@@ -56,11 +55,6 @@ window.TRIP_DATA = {
       "lat": 45.815,
       "lon": 15.9819,
       "label": "Zagreb"
-    },
-    "Plitvice": {
-      "lat": 44.8808,
-      "lon": 15.6163,
-      "label": "Plitvice"
     },
     "Split": {
       "lat": 43.5081,
@@ -159,6 +153,24 @@ window.TRIP_DATA = {
       }
     },
     {
+      "date": "09/22",
+      "code": "OU652 · 待訂",
+      "from": "ZAG",
+      "to": "SPU",
+      "depart": "12:00",
+      "arrive": "12:45",
+      "airline": "Croatia Airlines（班次與票價付款前確認）",
+      "status": "待訂",
+      "fromTerminal": "待確認",
+      "toTerminal": "待確認",
+      "baggage": {
+        "summary": "依最後購買票種；FlyEasy 通常不含託運",
+        "personal": "依票價規則",
+        "cabin": "依票價規則",
+        "checked": "建議選含 1 件 23 kg 的票種，或訂票時加購"
+      }
+    },
+    {
       "date": "09/30",
       "code": "U21506",
       "from": "DBV",
@@ -222,13 +234,64 @@ window.TRIP_DATA = {
       "note": "6 段已確認航班"
     }
   ],
+  "preTrip": [
+    {
+      "level": "必辦",
+      "title": "土耳其 e-Visa",
+      "text": "09/17 要入境 Istanbul，請先用官方網站申請；資料需與護照完全相同，核發後列印並離線存檔。",
+      "url": "https://www.evisa.gov.tr/en/"
+    },
+    {
+      "level": "必帶",
+      "title": "護照＋備份",
+      "text": "使用載有身分證字號的中華民國護照；以回程日計仍留 6 個月以上效期與空白頁，另存紙本／雲端影本。",
+      "url": "https://www.boca.gov.tw/"
+    },
+    {
+      "level": "確認",
+      "title": "ETIAS／EES",
+      "text": "目前 ETIAS 尚未啟用，出發前 30 天再查歐盟官方網站；不要先在非官方網站付費。申根入境另預留 EES 登錄時間。",
+      "url": "https://travel-europe.europa.eu/en/etias"
+    },
+    {
+      "level": "必帶",
+      "title": "台胞證",
+      "text": "確認效期並隨身攜帶；另向中國東方航空確認 PVG 行李直掛、同航廈轉機與是否需要入境。",
+      "url": "https://www.ceair.com/"
+    },
+    {
+      "level": "預約",
+      "title": "Vintgar Gorge",
+      "text": "預先購買 09/19 指定入場時段，並核對 Bled Bus Station 的官方接駁；截圖票券與集合資訊。",
+      "url": "https://www.vintgar.si/en/my-visit/pricelist/"
+    },
+    {
+      "level": "預約",
+      "title": "洞穴與跳島",
+      "text": "確認 09/18 Postojna／Predjama voucher；09/23 跳島選有海況取消／改期條款的產品。",
+      "url": "https://www.postojnska-jama.eu/en/tickets/"
+    },
+    {
+      "level": "待訂",
+      "title": "關鍵交通",
+      "text": "09/22 ZAG→SPU 國內線、09/24 Split→Mostar、09/26 Mostar→Sarajevo、09/28 Sarajevo→Dubrovnik。",
+      "url": "https://www.croatiaairlines.com/"
+    },
+    {
+      "level": "必備",
+      "title": "保險／網路／離線資料",
+      "text": "旅遊與醫療保險、eSIM、緊急聯絡、住宿地址、票券、航班行李額與行程表均下載離線版本。",
+      "url": "https://www.boca.gov.tw/sp-abre-main-1.html"
+    }
+  ],
   "packing": [
     {
       "group": "證件",
       "items": [
-        "護照",
-        "台胞證",
-        "土耳其 e-Visa／入境資格確認",
+        "護照（身分證字號、效期 6 個月以上、留空白頁）",
+        "台胞證（確認效期；PVG 轉機備用）",
+        "土耳其 e-Visa（事先申請並列印）",
+        "ETIAS 是否啟用：出發前只查歐盟官方網站",
         "旅遊保險電子保單",
         "信用卡 × 2",
         "少量 EUR 現金"
@@ -277,9 +340,10 @@ window.TRIP_DATA = {
       "group": "巴爾幹重點",
       "items": [
         "Postojna／Predjama KKday 憑證",
-        "Vintgar Gorge 入場／接駁確認",
+        "Vintgar Gorge 指定時段票／接駁確認",
         "Bled 來回巴士票",
-        "十六湖門票＋兩段巴士票",
+        "09/22 Zagreb → Split 國內線",
+        "09/23 Split 跳島團（含天候取消條款）",
         "Split → Mostar 跨境巴士票",
         "Mostar → Sarajevo 火車",
         "Sarajevo → Dubrovnik 跨境巴士票",
@@ -863,7 +927,7 @@ window.TRIP_DATA = {
       },
       "lodging": {
         "area": "Zagreb · 同一間第 2 晚",
-        "why": "不換住宿，隔天由巴士站前往十六湖。",
+        "why": "不換住宿；隔天睡飽後前往 ZAG，搭國內線到 Split。",
         "parking": "不需車位；以大眾運輸與步行為主。",
         "map": "Zrinjevac Zagreb hotels",
         "nightlyPrice": 3500,
@@ -883,73 +947,93 @@ window.TRIP_DATA = {
       "date": "09/22",
       "weekday": "週二",
       "country": "克羅埃西亞",
-      "city": "Zagreb → Plitvice",
-      "weatherKey": "Plitvice",
-      "stay": "Plitvice",
-      "theme": "National park",
-      "summary": "早班巴士到十六湖，寄放行李後走 Route C，湖區住一晚。",
+      "city": "Zagreb → Split",
+      "weatherKey": "Split",
+      "stay": "Split",
+      "theme": "Capital to coast",
+      "summary": "睡飽退房後飛往 Split；午後安頓，再用慢步調認識舊城與海港。",
       "events": [
         {
-          "time": "07:30",
-          "type": "move",
-          "title": "Zagreb → Plitvice",
-          "detail": "約 09:45 抵達。",
-          "duration": "約 2h15",
-          "map": "Plitvice Lakes Entrance 1",
-          "why": "約 09:45 抵達。",
-          "how": "由 Zagreb Bus Station 搭巴士；訂票時核對下車入口與行李規定。"
+          "time": "08:30",
+          "type": "food",
+          "title": "Zagreb 早餐＋退房",
+          "detail": "不排新景點，留時間整理行李。",
+          "duration": "1h30",
+          "map": "Zrinjevac Zagreb",
+          "why": "維持兩晚住宿後的從容節奏，不用清晨拉車。",
+          "how": "在住宿周邊早餐，09:45 前取行李出發。"
         },
         {
           "time": "09:45",
-          "type": "stay",
-          "title": "寄放行李／確認住宿接送",
-          "detail": "先處理 Allpa 再入園。",
-          "duration": "15m",
-          "map": "Rastovaca Plitvice",
-          "why": "先處理 Allpa 再入園。",
-          "how": "優先訂 Entrance 1／Rastovača 可寄放或接送的住宿。"
+          "type": "move",
+          "title": "Zagreb 市區 → ZAG",
+          "detail": "搭機場巴士前往 Zagreb Airport。",
+          "duration": "約 40m＋候車",
+          "map": "Zagreb Airport",
+          "why": "國內線仍預留行李托運與安檢時間。",
+          "how": "由 Zagreb Bus Station 搭 Pleso prijevoz 機場巴士；最晚 10:30 抵達航廈。"
         },
         {
-          "time": "10:00",
+          "time": "12:00",
+          "type": "flight",
+          "title": "ZAG → SPU",
+          "detail": "暫排 OU652 12:00 → 12:45；付款前核對 09/22 實際班次。",
+          "duration": "45m",
+          "map": "Split Airport",
+          "why": "直接跳過十六湖，換得 Split 兩晚與完整跳島日。",
+          "how": "優先購買含託運行李的票種；若航班異動，備案改搭直達巴士。"
+        },
+        {
+          "time": "13:10",
+          "type": "move",
+          "title": "SPU → Split 市區",
+          "detail": "機場巴士到港口／巴士站，再步行入住。",
+          "duration": "約 45–60m",
+          "map": "Split Bus Station",
+          "why": "住宿放在 Lučac／Manuš，後兩天都不用搬行李。",
+          "how": "搭機場 shuttle 到 Split Bus Station；再步行 10–18 分鐘或短程 taxi。"
+        },
+        {
+          "time": "15:00",
           "type": "walk",
-          "title": "Plitvice Route C",
-          "detail": "上下湖、遊船與接駁車。",
-          "duration": "5h30",
-          "map": "Plitvice Lakes National Park Entrance 1",
-          "why": "上下湖、遊船與接駁車。",
-          "how": "依官方當日開放調整；自帶水與簡餐。"
+          "title": "Diocletian’s Palace 慢走",
+          "detail": "Peristyle、舊城巷弄、Matejuška，不趕博物館清單。",
+          "duration": "3h",
+          "map": "Diocletian's Palace Split",
+          "why": "第一天先建立方向感，保留咖啡與坐在港邊的時間。",
+          "how": "全程步行；石板路穿抓地鞋，沿路依體力停留。"
         },
         {
-          "time": "16:00",
-          "type": "stay",
-          "title": "入住十六湖住宿",
-          "detail": "附近晚餐、提早休息。",
-          "duration": "—",
-          "map": "Rastovaca Croatia",
-          "why": "附近晚餐、提早休息。",
-          "how": "步行或請住宿接駁；山區天黑後不拖行李遠走。"
+          "time": "18:30",
+          "type": "food",
+          "title": "Riva 日落＋Konoba 晚餐",
+          "detail": "海港散步，吃達爾馬提亞海鮮或每日黑板菜。",
+          "duration": "2h30",
+          "map": "Riva Split",
+          "why": "把抵達日留給 Split 的生活感，而不是再塞交通。",
+          "how": "由舊城步行到 Riva／Matejuška；晚餐後步行回住宿。"
         }
       ],
       "photo": {
-        "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Plitvice%20Lakes%20(225492887).jpeg?width=1400",
-        "alt": "Plitvice Lakes",
-        "credit": "Wikimedia Commons",
-        "source": "https://commons.wikimedia.org/wiki/File:Plitvice_Lakes_(225492887).jpeg"
+        "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/View%20of%20Diocletian's%20Palace%2C%20Split%2002.jpg?width=1400",
+        "alt": "Diocletian's Palace, Split",
+        "credit": "Bernard Gagnon · Wikimedia Commons",
+        "source": "https://commons.wikimedia.org/wiki/File:View_of_Diocletian%27s_Palace,_Split_02.jpg"
       },
       "lodging": {
-        "area": "Plitvice · Rastovača／Entrance 1 附近",
-        "why": "巴士下車、入園與隔天離開最省轉乘；只住一晚。",
+        "area": "Split · Lučac／Manuš／Bačvice 北側",
+        "why": "連住兩晚；步行可到港口、古城與 09/24 跨境巴士站。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Rastovaca Plitvice hotels",
+        "map": "Lucac Split hotels",
         "nightlyPrice": 3500,
-        "priceNote": "預估／1 晚",
+        "priceNote": "預估／第 1 晚",
         "costStatus": "預估"
       },
       "food": [
         {
-          "name": "Lička Kuća",
-          "dish": "Lika 地區烤肉與家常菜",
-          "map": "Licka Kuca Plitvice"
+          "name": "Villa Spiza",
+          "dish": "每日黑板菜與達爾馬提亞家常料理",
+          "map": "Villa Spiza Split"
         }
       ]
     },
@@ -958,73 +1042,63 @@ window.TRIP_DATA = {
       "date": "09/23",
       "weekday": "週三",
       "country": "克羅埃西亞",
-      "city": "Plitvice → Split",
+      "city": "Split / Islands",
       "weatherKey": "Split",
       "stay": "Split",
-      "theme": "Adriatic coast",
-      "summary": "早班巴士直達 Split，中午後走戴克里先宮與港灣。",
+      "theme": "Island day",
+      "summary": "完整保留給跳島；不用擔心當天再趕 17:30 跨境巴士。",
       "events": [
         {
-          "time": "07:45",
+          "time": "07:15",
           "type": "move",
-          "title": "Plitvice → Split",
-          "detail": "約 11:15 抵達。",
-          "duration": "約 3h30",
-          "map": "Split Bus Station",
-          "why": "約 11:15 抵達。",
-          "how": "前一晚確認上車站牌；提早到站並準備行李艙費用。"
+          "title": "步行到 Split Port 集合",
+          "detail": "時間、碼頭與行程以 tour voucher 為準。",
+          "duration": "20–30m",
+          "map": "Split Port",
+          "why": "住 Lučac／Manuš 可步行到碼頭，不必清晨叫車。",
+          "how": "前晚截圖 voucher；帶護照影本、防曬、防風層、暈船藥與水。"
         },
         {
-          "time": "11:30",
-          "type": "stay",
-          "title": "入住或寄放行李",
-          "detail": "先放下 Allpa 再進舊城。",
-          "duration": "30m",
-          "map": "Lucac Split",
-          "why": "先放下 Allpa 再進舊城。",
-          "how": "由巴士站步行 10–20 分鐘或短程 taxi。"
+          "time": "08:00",
+          "type": "boat",
+          "title": "Blue Cave／Vis／Hvar 跳島",
+          "detail": "實際停靠與順序依海況、船長及所選產品。",
+          "duration": "約 10h",
+          "map": "Blue Cave Croatia",
+          "why": "把海島體驗放在無跨境壓力的一整天。",
+          "how": "選可因天候取消／改期的產品；海況不佳就改 Marjan＋Split local day。"
         },
         {
-          "time": "13:00",
-          "type": "walk",
-          "title": "Diocletian’s Palace＋Old Town",
-          "detail": "地窖、Peristyle、舊城巷弄。",
-          "duration": "4h",
-          "map": "Diocletian's Palace Split",
-          "why": "地窖、Peristyle、舊城巷弄。",
-          "how": "全程步行，石板路穿抓地鞋。"
-        },
-        {
-          "time": "18:00",
-          "type": "walk",
-          "title": "Riva 港灣散步＋晚餐",
-          "detail": "海鮮或 konoba。",
-          "duration": "3h",
-          "map": "Riva Split",
-          "why": "海鮮或 konoba。",
-          "how": "由舊城步行至港灣，晚餐後回住宿。"
+          "time": "18:30",
+          "type": "food",
+          "title": "回 Split 晚餐＋早點休息",
+          "detail": "依回港時間彈性安排，不再塞景點。",
+          "duration": "2h",
+          "map": "Matejuska Split",
+          "why": "隔天還有完整上午與午後，再搭 17:30 跨境巴士。",
+          "how": "回港後步行吃簡單晚餐；若晚歸直接外帶回住宿。"
         }
       ],
       "photo": {
-        "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/View%20of%20Diocletian's%20Palace%2C%20Split%2002.jpg?width=1400",
-        "alt": "Diocletian's Palace",
-        "credit": "Bernard Gagnon · Wikimedia Commons",
-        "source": "https://commons.wikimedia.org/wiki/File:View_of_Diocletian%27s_Palace,_Split_02.jpg"
+        "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hvar%20from%20the%20sea.jpg?width=1400",
+        "alt": "Hvar seen from the Adriatic",
+        "credit": "Wikimedia Commons",
+        "source": "https://commons.wikimedia.org/wiki/File:Hvar_from_the_sea.jpg"
       },
       "lodging": {
-        "area": "Split · Lučac／Manuš／Bačvice 北側",
-        "why": "只住一晚；步行 10–18 分鐘到港口、古城與跨境巴士站。",
+        "area": "Split · 同一間第 2 晚",
+        "why": "不搬行李；步行往返跳島集合碼頭，隔天也方便取行李搭跨境巴士。",
         "parking": "不需車位；以大眾運輸與步行為主。",
         "map": "Lucac Split hotels",
         "nightlyPrice": 3500,
-        "priceNote": "預估／1 晚",
+        "priceNote": "預估／第 2 晚",
         "costStatus": "預估"
       },
       "food": [
         {
-          "name": "Konoba Marjan",
-          "dish": "達爾馬提亞海鮮，建議訂位",
-          "map": "Konoba Marjan Split"
+          "name": "Kantun Paulina",
+          "dish": "ćevapi，跳島後的快速晚餐",
+          "map": "Kantun Paulina Split"
         }
       ]
     },
@@ -1037,34 +1111,44 @@ window.TRIP_DATA = {
       "weatherKey": "Split",
       "stay": "Mostar",
       "theme": "Coast & border",
-      "summary": "上午 Marjan 或半日船遊，17:30 搭跨境巴士前往 Mostar。",
+      "summary": "用市場、咖啡與 Marjan 收尾 Split；16:30 到站，17:30 跨境前往 Mostar。",
       "events": [
         {
-          "time": "08:00",
+          "time": "08:30",
           "type": "walk",
-          "title": "Marjan Hill 或半日遊船",
-          "detail": "依天氣與海況二選一。",
-          "duration": "4h",
-          "map": "Marjan Hill Split",
-          "why": "依天氣與海況二選一。",
-          "how": "Marjan 可步行／公車；船遊以 voucher 集合點為準。"
+          "title": "Pazar＋Peškarija 市場日常",
+          "detail": "看當地人採買，再到 D16 Coffee 慢慢喝咖啡。",
+          "duration": "2h30",
+          "map": "Fish Market Split",
+          "why": "不再排船程，把最後一天留給 Split 的生活感。",
+          "how": "由住宿步行串 Pazar、魚市場與舊城巷弄；09:00 左右魚市較有活力。"
         },
         {
-          "time": "12:30",
+          "time": "11:30",
+          "type": "walk",
+          "title": "Matejuška＋Marjan 第一觀景台",
+          "detail": "只走 Prva Vidilica，保留跨境體力。",
+          "duration": "2h",
+          "map": "Prva Vidilica Na Marjanu",
+          "why": "看海與城市全景，但不做高強度登山。",
+          "how": "由 Matejuška 步行上第一觀景台；炎熱或前日疲累就只走海港。"
+        },
+        {
+          "time": "14:00",
           "type": "food",
-          "title": "Split 午餐＋舊城最後散步",
-          "detail": "回住宿取行李。",
-          "duration": "3h",
+          "title": "Split 午餐＋取行李",
+          "detail": "15:45 前回住宿取 Allpa。",
+          "duration": "1h45",
           "map": "Split Old Town",
-          "why": "回住宿取行李。",
-          "how": "活動保持在舊城與住宿周邊。"
+          "why": "用足 Split 第二天，又不壓縮跨境緩衝。",
+          "how": "餐廳只選舊城／住宿周邊，避免排隊名店。"
         },
         {
-          "time": "16:50",
+          "time": "16:20",
           "type": "move",
           "title": "前往 Split Bus Station",
           "detail": "跨境班次至少提前 30–40 分鐘。",
-          "duration": "30m",
+          "duration": "約 20–30m",
           "map": "Split Bus Station",
           "why": "跨境班次至少提前 30–40 分鐘。",
           "how": "由 Lučac／Manuš 步行；護照與票券放隨身包。"
@@ -1669,11 +1753,15 @@ window.TRIP_DATA = {
     },
     {
       "title": "Zagreb → Split",
-      "text": "不租車。09/22 巴士到十六湖、Rastovača／Entrance 1 住一晚；09/23 早班巴士直達 Split。"
+      "text": "取消十六湖與租車。Zagreb 連住兩晚後，09/22 暫排 OU652 12:00→12:45 飛 Split；班次、票價與行李額付款前再次確認。"
+    },
+    {
+      "title": "Split 兩晚",
+      "text": "09/22 抵達後慢走舊城，09/23 完整跳島，09/24 市場、咖啡與 Marjan 第一觀景台；不再用跳島日硬接跨境巴士。"
     },
     {
       "title": "Split → Mostar",
-      "text": "09/24 選 17:30 跨境巴士，表定約 20:50；邊境延誤需保留 60–90 分鐘，Mostar 住宿選 Luka／Old Town 北緣。"
+      "text": "09/24 選 17:30 跨境巴士，16:20–16:30 抵達車站；邊境延誤需保留 60–90 分鐘，Mostar 住宿選 Luka／Old Town 北緣。"
     },
     {
       "title": "Bosnia 火車",
@@ -1710,8 +1798,20 @@ window.TRIP_DATA = {
       "url": "https://potniski.sz.si/en/"
     },
     {
-      "label": "Plitvice Lakes official",
-      "url": "https://np-plitvicka-jezera.hr/en/"
+      "label": "Turkey e-Visa official",
+      "url": "https://www.evisa.gov.tr/en/"
+    },
+    {
+      "label": "EU ETIAS official",
+      "url": "https://travel-europe.europa.eu/en/etias"
+    },
+    {
+      "label": "Croatia Airlines",
+      "url": "https://www.croatiaairlines.com/"
+    },
+    {
+      "label": "Croatia Airlines baggage",
+      "url": "https://www.croatiaairlines.com/Travel-info/Baggage/Checked-baggage"
     },
     {
       "label": "Split → Mostar",
@@ -1776,8 +1876,8 @@ window.TRIP_DATA = {
     commons('Vintgar Gorge, Slovenia 01.jpg', 'Vintgar Gorge 木棧道與峽谷', 'Veronika.szappanos · CC BY-SA 4.0'),
     commons('Ljubljana banner Triple Bridge at night.jpg', 'Ljubljana 三重橋夜景', 'Pedro Szekely / AlasdairW · CC BY-SA 2.0'),
     D.days[7].photo,
-    commons('Lower lakes, Plitvice national park.jpg', 'Plitvice 下湖區木棧道', 'Twiggiez · CC BY-SA 4.0'),
-    D.days[9].photo,
+    commons('View of Diocletian\'s Palace, Split 02.jpg', 'Split 戴克里先宮與舊城', 'Bernard Gagnon · Wikimedia Commons'),
+    commons('Hvar from the sea.jpg', '跳島途中看到的 Hvar 海岸', 'Wikimedia Commons'),
     commons('Split Waterfront, Looking Towards the Marjan Peninsula.jpg', 'Split Riva 與 Marjan 半島', 'Wikimedia Commons'),
     commons('Blagaj Tekke, the spring of the Buna river, Bosnia and Herzegovina 01.jpg', 'Blagaj Tekke 與 Buna 河源', 'Bosancica by MK · CC0'),
     commons('Mostar Old Bridge.jpg', 'Mostar 古橋暮色', 'Gugalcrom123 · Wikimedia Commons'),
@@ -1825,11 +1925,12 @@ window.TRIP_DATA = {
       {kind:'紀念杯', name:'Cogito／本地設計杯', note:'克羅埃西亞沒有官方 Starbucks；三城只挑一個最喜歡的杯即可。', map:'Cogito Coffee Zagreb'}
     ],
     9: [
-      {kind:'在地菜', name:'Lička Kuća', note:'Entrance 1 對面；烤肉、羊肉與 Lika 地方料理。', map:'Licka Kuca Plitvice'}
+      {kind:'咖啡', name:'D16 Coffee', note:'放完行李後順路進舊城；不用為名店跨區。', map:'D16 Coffee Dominisova Split'},
+      {kind:'在地菜', name:'Villa Spiza', note:'每日黑板菜與達爾馬提亞家常料理；候位太長就換鄰近 konoba。', map:'Villa Spiza Split'}
     ],
     10: [
-      {kind:'咖啡', name:'D16 Coffee', note:'Diocletian’s Palace 巷內的 Split 烘豆店。', map:'D16 Coffee Dominisova Split'},
-      {kind:'小吃', name:'Kantun Paulina', note:'外帶 ćevapi，適合 Riva 散步前後。', map:'Kantun Paulina Split'}
+      {kind:'早餐', name:'Split Port 周邊', note:'依集合時間外帶麵包與咖啡，不冒險排隊。', map:'bakery near Split Port'},
+      {kind:'小吃', name:'Kantun Paulina', note:'跳島回港後外帶 ćevapi，快、份量足。', map:'Kantun Paulina Split'}
     ],
     11: [
       {kind:'咖啡', name:'D16 Coffee', note:'若前一天沒喝到，上午補上；不要壓縮跨境巴士緩衝。', map:'D16 Coffee Dominisova Split'},

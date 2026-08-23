@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4.4.0
+# Balkan Trip Dashboard v4.5.0
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -18,6 +18,14 @@
 3. 在 `index.html` 把 `trips/balkan-2026.js` 改成新檔名。
 4. 修改首頁 slogan / subtitle（若需要）；`template/` 不必改。
 5. 每次發布更新 `sw.js` 的 `VERSION`，避免舊快取卡住。
+
+## v4.5.0 更新
+
+- 路線改為 Zagreb 連住 2 晚 → 09/22 飛 Split → Split 連住 2 晚，取消十六湖住宿與移動。
+- 09/23 保留完整跳島日，09/24 用市場、咖啡與 Marjan 第一觀景台收尾，再搭 17:30 跨境巴士。
+- 首頁新增行前注意事項：土耳其 e-Visa、護照、ETIAS／EES、台胞證、Vintgar 指定時段與關鍵票券。
+- 新增待訂 ZAG → SPU 航班提示，並區分已訂與待訂航班。
+- 新增 `route-map.html`，以交通方式分色顯示新版路線。
 
 ## v4.4.0 更新
 
@@ -42,4 +50,4 @@
 
 ## 本次同步
 
-2026-08-20 更新 Bangkok 住宿為 Metropolis Suites Bangkok（Sukhumvit 39），兩晚 NT$3,300、每日拆分 NT$1,650，並同步調整往 BKK 的出發動線。其餘主行程維持 Ljubljana 連住、Bled 當日來回、Zagreb 不租車、十六湖住一晚、巴士直達 Split，再由 Mostar、Sarajevo、Dubrovnik 前往 Geneva。
+2026-08-23 更新 Bangkok 住宿為 Metropolis Suites Bangkok（Sukhumvit 39），兩晚 NT$3,300、每日拆分 NT$1,650。主行程維持 Ljubljana 連住、Bled 當日來回、Zagreb 不租車，取消十六湖，改由 Zagreb 飛 Split 並在 Split 連住兩晚，再由 Mostar、Sarajevo、Dubrovnik 前往 Geneva。

@@ -328,7 +328,12 @@
   }
 
   function renderFlights(){
-    $('#flight-list').innerHTML=D.flights.map(f=>`<div class="flight-item"><div class="flight-item-top"><div><b>${f.from} → ${f.to}</b><small>${f.date} · ${f.depart} → ${f.arrive} · ${f.code}</small></div><span class="booked">✓ BOOKED</span></div><small>${f.airline}</small>${baggageMarkup(f)}</div>`).join('')
+    $('#flight-list').innerHTML=D.flights.map(f=>{const booked=f.status==='booked';return `<div class="flight-item"><div class="flight-item-top"><div><b>${f.from} → ${f.to}</b><small>${f.date} · ${f.depart} → ${f.arrive} · ${f.code}</small></div><span class="booked ${booked?'':'planned'}">${booked?'✓ BOOKED':'○ 待訂'}</span></div><small>${f.airline}</small>${baggageMarkup(f)}</div>`}).join('')
+  }
+
+  function renderPreTrip(){
+    const root=$('#pretrip-list');if(!root)return;
+    root.innerHTML=(D.preTrip||[]).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener"><span>${esc(x.level)}</span><div><b>${esc(x.title)}</b><p>${esc(x.text)}</p></div><i>↗</i></a>`).join('');
   }
 
   function renderTripReferences(){
@@ -337,7 +342,7 @@
     if(sources)sources.innerHTML=(D.sources||[]).map(x=>`<a class="source-link" href="${x.url}" target="_blank" rel="noopener"><span>${x.label}</span><b>↗</b></a>`).join('');
   }
 
-  const defaultChecks=['土耳其入境資格確認','KKday 洞穴 voucher 與集合點','Vintgar Gorge 入場／接駁確認','Ljubljana ↔ Bled 巴士票','十六湖時段票＋兩段巴士票','09/24 Split → Mostar 17:30 跨境巴士','09/26 Mostar → Sarajevo 火車班次','09/28 Sarajevo → Dubrovnik 07:15 巴士','09/30 DBV 機場交通','Geneva Cornavin 住宿','eSIM / 漫遊方案','旅遊保險文件離線下載'];
+  const defaultChecks=['土耳其 e-Visa 申請、列印與離線備份','護照效期／空白頁／影本','台胞證效期＋PVG 轉機規則確認','ETIAS 是否啟用：出發前查歐盟官方','KKday 洞穴 voucher 與集合點','Vintgar Gorge 指定時段票／接駁','Ljubljana ↔ Bled 巴士票','09/22 ZAG → SPU 國內線與行李額','09/23 Split 跳島 tour／海況取消條款','09/24 Split → Mostar 17:30 跨境巴士','09/26 Mostar → Sarajevo 火車班次','09/28 Sarajevo → Dubrovnik 07:15 巴士','09/30 DBV 機場交通','Geneva Cornavin 住宿','eSIM / 漫遊方案','旅遊保險文件離線下載'];
   function renderChecks(){
     let list=load(STORE.checks,defaultChecks.map((text,i)=>({id:i+1,text,done:false})));
     $('#checklist').innerHTML=list.map(x=>`<div class="custom-check"><input type="checkbox" data-check="${x.id}" ${x.done?'checked':''}><span class="${x.done?'done':''}">${x.text}</span><button data-delete="${x.id}">×</button></div>`).join('');
@@ -368,5 +373,5 @@
   document.title=`${D.meta.title} · Travel Dashboard`;
   const brand=$('.brand-button b');if(brand)brand.textContent=D.meta.title;
   $('#top-date').textContent=D.meta.dateRange.replace('2026.','').replace(' — ',' — ');
-  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderTripReferences();renderChecks();bindOpenDayButtons();network();updateWeather();observeReveals();
+  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderPreTrip();renderTripReferences();renderChecks();bindOpenDayButtons();network();updateWeather();observeReveals();
 })();

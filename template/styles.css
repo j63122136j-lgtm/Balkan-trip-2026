@@ -251,3 +251,17 @@
   .day-expense-list>div{grid-template-columns:auto minmax(0,1fr) auto auto;gap:6px}
   .cost-stat b{font-size:23px}
 }
+
+/* Home pre-trip essentials · v4.5 */
+.pretrip-card{grid-column:1/-1;border-radius:var(--radius);padding:24px}
+.pretrip-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:16px}
+.pretrip-head h2{font-size:20px;margin:5px 0 0;letter-spacing:-.025em}
+.pretrip-head>span{font-size:9px;color:var(--muted)}
+.pretrip-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pretrip-list a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;padding:13px;border-radius:16px;background:var(--surface-solid);border:1px solid var(--line);color:var(--text);text-decoration:none}
+.pretrip-list a>span{padding:5px 7px;border-radius:999px;background:rgba(0,113,227,.09);color:var(--blue);font-size:8px;font-weight:900;white-space:nowrap}
+.pretrip-list b{font-size:12px}.pretrip-list p{margin:5px 0 0;color:var(--muted);font-size:10px;line-height:1.55}.pretrip-list i{color:var(--blue);font-size:10px;font-style:normal;font-weight:800}
+.pretrip-note{margin:13px 2px 0;color:var(--muted);font-size:8px;line-height:1.5}
+.booked.planned{color:#b56b00}
+.route-map-link{display:inline-block;margin-top:10px;color:var(--text);text-decoration:none}
+@media(max-width:760px){.pretrip-card{padding:18px;border-radius:26px}.pretrip-head{align-items:flex-start}.pretrip-head>span{max-width:105px;text-align:right}.pretrip-list{grid-template-columns:1fr}}
