@@ -6,7 +6,8 @@
   const NS=(D.meta.title||'trip').toLowerCase().replace(/[^a-z0-9]+/g,'_');
   const STORE={
     theme:`${NS}_theme`, notes:`${NS}_notes`, weather:`${NS}_weather`, rates:`${NS}_rates`,
-    expenses:`${NS}_expenses`, packing:`${NS}_packing`, checks:`${NS}_checks`
+    expenses:`${NS}_expenses`, packing:`${NS}_packing`, checks:`${NS}_checks`,
+    preflight:`${NS}_preflight`, customChecks:`${NS}_custom_checks`
   };
   let activeDay = 1;
   let deferredPrompt = null;
@@ -40,7 +41,7 @@
 
   function resolveActiveDay(){
     const start=new Date(`${D.meta.startDate}T00:00:00`), end=new Date(`${D.meta.endDate}T23:59:59`), now=new Date();
-    if(now<start){activeDay=1;return}
+    if(now<start){activeDay=0;return}
     if(now>end){activeDay=D.days.length;return}
     activeDay=Math.min(Math.floor((now-start)/86400000)+1,D.days.length);
   }
@@ -185,7 +186,8 @@
   $('#refresh-weather').addEventListener('click',updateWeather);
 
   function renderTabs(){
-    $('#day-tabs').innerHTML=D.days.map(d=>`<button class="day-tab ${d.day===activeDay?'active':''}" data-day="${d.day}"><b>Day ${d.day}</b><small>${d.date}</small></button>`).join('');
+    const dayZero=`<button class="day-tab day-zero-tab ${activeDay===0?'active':''}" data-day="0"><b>Day 0</b><small>行前</small></button>`;
+    $('#day-tabs').innerHTML=dayZero+D.days.map(d=>`<button class="day-tab ${d.day===activeDay?'active':''}" data-day="${d.day}"><b>Day ${d.day}</b><small>${d.date}</small></button>`).join('');
     $$('.day-tab').forEach(b=>b.addEventListener('click',()=>{activeDay=+b.dataset.day;renderTabs();renderDay();updateWeather();}));
   }
 
@@ -240,6 +242,7 @@
     }));
   }
   function renderDay(){
+    if(activeDay===0){renderDayZero();return}
     const d=D.days[activeDay-1];
     const city=D.weatherCities[d.weatherKey]||D.weatherCities.Ljubljana;
     const heroPhoto=d.photo?`<figure class="day-photo"><img src="${d.photo.src}" alt="${d.photo.alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption>${d.photo.alt} · <a href="${d.photo.source}" target="_blank" rel="noopener">${d.photo.credit}</a></figcaption></figure>`:'';
@@ -321,19 +324,32 @@
     $('#budget-dashboard').innerHTML=`<div class="cost-summary"><div class="cost-stat glass"><small>FIXED / ESTIMATED</small><b>${fmt(fixedTotal)}</b><span>機票＋16 晚住宿</span></div><div class="cost-stat glass"><small>DAILY SPEND</small><b>${fmt(spentTotal)}</b><span>${expenses.length} 筆旅途消費</span></div><div class="cost-stat total glass"><small>CURRENT TOTAL</small><b>${fmt(fixedTotal+spentTotal)}</b><span>目前預計旅行總花費</span></div></div><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">KNOWN COSTS</span><h2>已有／預計支出</h2></div><strong>${fmt(fixedTotal)}</strong></div><div class="fixed-cost-list">${fixed.map(x=>`<div class="fixed-cost-row"><div><b>${esc(x.label)}</b><span>${esc(x.note)}</span></div><em>${esc(x.status)}</em><strong>${fmt(x.amount)}</strong></div>`).join('')}</div></section><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">TRIP SPENDING</span><h2>每日消費總計</h2></div><strong>${fmt(spentTotal)}</strong></div>${categoryTotals.length?`<div class="category-totals">${categoryTotals.map(x=>`<span>${esc(x.category)} <b>${fmt(x.amount)}</b></span>`).join('')}</div>`:''}${grouped.length?`<div class="daily-cost-groups">${grouped.map(g=>`<article><div class="daily-cost-head"><div><b>${g.day?`Day ${g.day} · ${g.date}`:'舊版匯入'}</b><span>${esc(g.city)}</span></div><strong>${fmt(g.total)}</strong></div>${g.rows.map(x=>`<div class="daily-cost-row"><span>${esc(x.category)}</span><b>${esc(x.item)}</b><strong>${fmt(x.amount)}</strong></div>`).join('')}</article>`).join('')}</div>`:'<div class="budget-empty"><b>還沒有每日消費</b><span>進入任一天的行程分頁，就能新增當日支出。</span></div>'}</section><p class="cost-note">固定支出不必在每日消費重複輸入；每日紀錄儲存在目前瀏覽器，清除網站資料或更換裝置不會自動同步。</p>`;
   }
 
-  function renderPacking(){
+  function packingMarkup(){
     let state=load(STORE.packing,{});
-    $('#packing-dashboard').innerHTML=D.packing.map((g,gi)=>`<section class="packing-group glass reveal"><h2>${g.group}</h2>${g.items.map((item,ii)=>{const k=`${gi}-${ii}`,checked=!!state[k];return `<label class="check-item ${checked?'done':''}"><input type="checkbox" data-pack="${k}" ${checked?'checked':''}><span>${item}</span></label>`}).join('')}</section>`).join('');
-    $$('[data-pack]').forEach(x=>x.addEventListener('change',()=>{state[x.dataset.pack]=x.checked;save(STORE.packing,state);renderPacking()}));setTimeout(observeReveals,20);
+    return D.packing.map((g,gi)=>`<section class="packing-group glass reveal"><h2>${g.group}</h2>${g.items.map((item,ii)=>{const k=`${gi}-${ii}`,checked=!!state[k];return `<label class="check-item ${checked?'done':''}"><input type="checkbox" data-pack="${k}" ${checked?'checked':''}><span>${item}</span></label>`}).join('')}</section>`).join('');
+  }
+
+  function renderDayZero(){
+    const steps=D.dayZero?.steps||[];
+    const state=load(STORE.preflight,{});
+    const done=steps.filter(x=>state[x.id]).length;
+    const percent=steps.length?Math.round(done/steps.length*100):0;
+    $('#day-detail').innerHTML=`
+      <article class="day-hero day-zero-hero reveal">
+        <div class="day-hero-top"><div><span class="kicker">BEFORE DEPARTURE · PRIORITY ROUTE</span><h2>${esc(D.dayZero?.title||'Day 0 · 行前準備')}</h2><p>${esc(D.dayZero?.summary||'')}</p></div><span class="day-zero-progress"><b>${done}/${steps.length}</b><small>完成 ${percent}%</small></span></div>
+      </article>
+      <article class="timeline-card preflight-timeline glass reveal"><div class="timeline">${steps.map((x,i)=>`<div class="timeline-row ${state[x.id]?'is-done':''}"><div class="timeline-time">STEP ${String(i+1).padStart(2,'0')}</div><label class="preflight-check" aria-label="完成 ${esc(x.title)}"><input type="checkbox" data-preflight="${esc(x.id)}" ${state[x.id]?'checked':''}><span></span></label><div class="timeline-content"><div class="timeline-title-row"><h3>${esc(x.title)}</h3><span class="event-kind">${esc(x.priority)}</span></div><p class="event-purpose">${esc(x.why)}</p><div class="event-how"><b>完成這一站</b><p>${esc(x.action)}</p></div><div class="timeline-bottom"><a class="map-link" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.linkLabel||'官方連結')} ↗</a></div></div></div>`).join('')}</div></article>
+      <section class="day-zero-section-head"><div><span class="kicker">PACK LAST</span><h2>Allpa 35L × 2</h2></div><p>證件與訂票完成後，再依分類收尾。</p></section>
+      <div class="packing-dashboard day-zero-packing">${packingMarkup()}</div>
+      <article class="card glass day-zero-custom"><div class="card-head"><div><span class="kicker">EXTRA TASKS</span><h2>臨時待辦</h2></div><button class="tiny-btn" id="reset-checklist">清空</button></div><div class="add-row"><input id="check-input" placeholder="新增這趟旅行的臨時待辦…"><button id="add-check">＋</button></div><div id="checklist"></div></article>`;
+    $$('[data-preflight]').forEach(x=>x.addEventListener('change',()=>{state[x.dataset.preflight]=x.checked;save(STORE.preflight,state);renderDayZero()}));
+    $$('[data-pack]').forEach(x=>x.addEventListener('change',()=>{const packing=load(STORE.packing,{});packing[x.dataset.pack]=x.checked;save(STORE.packing,packing);renderDayZero()}));
+    renderChecks();
+    setTimeout(observeReveals,20);
   }
 
   function renderFlights(){
     $('#flight-list').innerHTML=D.flights.map(f=>{const booked=f.status==='booked';return `<div class="flight-item"><div class="flight-item-top"><div><b>${f.from} → ${f.to}</b><small>${f.date} · ${f.depart} → ${f.arrive} · ${f.code}</small></div><span class="booked ${booked?'':'planned'}">${booked?'✓ BOOKED':'○ 待訂'}</span></div><small>${f.airline}</small>${baggageMarkup(f)}</div>`}).join('')
-  }
-
-  function renderPreTrip(){
-    const root=$('#pretrip-list');if(!root)return;
-    root.innerHTML=(D.preTrip||[]).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener"><span>${esc(x.level)}</span><div><b>${esc(x.title)}</b><p>${esc(x.text)}</p></div><i>↗</i></a>`).join('');
   }
 
   function renderTripReferences(){
@@ -342,15 +358,16 @@
     if(sources)sources.innerHTML=(D.sources||[]).map(x=>`<a class="source-link" href="${x.url}" target="_blank" rel="noopener"><span>${x.label}</span><b>↗</b></a>`).join('');
   }
 
-  const defaultChecks=['土耳其 e-Visa 申請、列印與離線備份','護照效期／空白頁／影本','台胞證效期＋PVG 轉機規則確認','ETIAS 是否啟用：出發前查歐盟官方','KKday 洞穴 voucher 與集合點','Vintgar Gorge 指定時段票／接駁','Ljubljana ↔ Bled 巴士票','09/22 ZAG → SPU 國內線與行李額','09/23 Split 跳島 tour／海況取消條款','09/24 Split → Mostar 17:30 跨境巴士','09/26 Mostar → Sarajevo 火車班次','09/28 Sarajevo → Dubrovnik 07:15 巴士','09/30 DBV 機場交通','Geneva Cornavin 住宿','eSIM / 漫遊方案','旅遊保險文件離線下載'];
   function renderChecks(){
-    let list=load(STORE.checks,defaultChecks.map((text,i)=>({id:i+1,text,done:false})));
-    $('#checklist').innerHTML=list.map(x=>`<div class="custom-check"><input type="checkbox" data-check="${x.id}" ${x.done?'checked':''}><span class="${x.done?'done':''}">${x.text}</span><button data-delete="${x.id}">×</button></div>`).join('');
-    $$('[data-check]').forEach(c=>c.addEventListener('change',()=>{list=list.map(x=>x.id===+c.dataset.check?{...x,done:c.checked}:x);save(STORE.checks,list);renderChecks()}));
-    $$('[data-delete]').forEach(c=>c.addEventListener('click',()=>{list=list.filter(x=>x.id!==+c.dataset.delete);save(STORE.checks,list);renderChecks()}));
+    const root=$('#checklist'),input=$('#check-input'),add=$('#add-check'),reset=$('#reset-checklist');if(!root)return;
+    let list=load(STORE.customChecks,[]);
+    root.innerHTML=list.length?list.map(x=>`<div class="custom-check"><input type="checkbox" data-check="${esc(x.id)}" ${x.done?'checked':''}><span class="${x.done?'done':''}">${esc(x.text)}</span><button data-delete="${esc(x.id)}">×</button></div>`).join(''):'<p class="expense-empty">沒有額外待辦；上方 Day 0 已包含必要項目。</p>';
+    $$('[data-check]').forEach(c=>c.addEventListener('change',()=>{list=list.map(x=>String(x.id)===c.dataset.check?{...x,done:c.checked}:x);save(STORE.customChecks,list);renderChecks()}));
+    $$('[data-delete]').forEach(c=>c.addEventListener('click',()=>{list=list.filter(x=>String(x.id)!==c.dataset.delete);save(STORE.customChecks,list);renderChecks()}));
+    add.onclick=()=>{const text=input.value.trim();if(!text)return;list.push({id:Date.now(),text,done:false});save(STORE.customChecks,list);input.value='';renderChecks()};
+    input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();add.click()}};
+    reset.onclick=()=>{localStorage.removeItem(STORE.customChecks);renderChecks()};
   }
-  $('#add-check').addEventListener('click',()=>{const i=$('#check-input'),t=i.value.trim();if(!t)return;const list=load(STORE.checks,[]);list.push({id:Date.now(),text:t,done:false});save(STORE.checks,list);i.value='';renderChecks()});
-  $('#reset-checklist').addEventListener('click',()=>{localStorage.removeItem(STORE.checks);renderChecks()});
   const notes=$('#notes');notes.value=localStorage.getItem(STORE.notes)||'';notes.addEventListener('input',()=>localStorage.setItem(STORE.notes,notes.value));
 
   function network(){const el=$('#network-state');el.textContent=navigator.onLine?'ONLINE':'OFFLINE';el.classList.toggle('offline',!navigator.onLine)}window.addEventListener('online',network);window.addEventListener('offline',network);
@@ -373,5 +390,5 @@
   document.title=`${D.meta.title} · Travel Dashboard`;
   const brand=$('.brand-button b');if(brand)brand.textContent=D.meta.title;
   $('#top-date').textContent=D.meta.dateRange.replace('2026.','').replace(' — ',' — ');
-  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderPacking();renderFlights();renderPreTrip();renderTripReferences();renderChecks();bindOpenDayButtons();network();updateWeather();observeReveals();
+  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderFlights();renderTripReferences();bindOpenDayButtons();network();updateWeather();observeReveals();
 })();

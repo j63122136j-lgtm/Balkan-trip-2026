@@ -48,6 +48,15 @@
         </div>
       </section>
 
+      <section class="route-cover glass reveal" aria-labelledby="route-cover-title">
+        <div class="route-cover-head">
+          <div><span class="kicker">ROUTE OVERVIEW</span><h2 id="route-cover-title">最新路線規劃</h2></div>
+          <button class="secondary-btn" data-open-day="0">Day 0 行前準備 →</button>
+        </div>
+        <iframe class="route-map-frame" src="route-map.html?embed=1" title="Balkan 2026 最新國家與城市路線圖"></iframe>
+        <a class="route-cover-expand" href="route-map.html">開啟完整地圖 ↗</a>
+      </section>
+
       <section class="home-cockpit reveal">
         <article class="cockpit-pair glass">
         <section class="cockpit-section home-currency">
@@ -123,19 +132,11 @@
           <small id="weather-note">離線時使用最近一次快取。</small>
         </article>
 
-        <article class="pretrip-card glass reveal">
-          <div class="pretrip-head">
-            <div><span class="kicker">BEFORE YOU GO</span><h2>行前注意事項</h2></div>
-            <span>簽證・證件・預約</span>
-          </div>
-          <div class="pretrip-list" id="pretrip-list"></div>
-          <p class="pretrip-note">入境與交通規定可能變動；只用卡片連結的官方來源做最後確認。</p>
-        </article>
       </section>
     </section>
 
     <section class="screen" id="screen-trip" data-screen="trip">
-      <div class="page-head"><div><span class="kicker">ITINERARY</span><h1>行程</h1></div><p>Day 1–19 · Timeline</p></div>
+      <div class="page-head"><div><span class="kicker">ITINERARY</span><h1>行程</h1></div><p>Day 0–19 · Timeline</p></div>
       <div class="day-tabs-wrap glass"><div class="day-tabs" id="day-tabs"></div></div>
       <div class="day-detail" id="day-detail"></div>
     </section>
@@ -145,21 +146,14 @@
       <div id="budget-dashboard"></div>
     </section>
 
-    <section class="screen" id="screen-pack" data-screen="pack">
-      <div class="page-head"><div><span class="kicker">PACK</span><h1>裝備</h1></div><p>Allpa 35L × 2</p></div>
-      <div id="packing-dashboard"></div>
-    </section>
-
     <section class="screen" id="screen-more" data-screen="more">
-      <div class="page-head"><div><span class="kicker">TOOLS</span><h1>航班與工具</h1></div><p>Checklist · Notes · Offline</p></div>
+      <div class="page-head"><div><span class="kicker">TOOLS</span><h1>航班與工具</h1></div><p>Flights · Notes · Offline</p></div>
       <div class="more-grid">
         <article class="card glass"><div class="card-head"><div><span class="kicker">FLIGHTS</span><h2>航班總覽</h2></div></div><div id="flight-list"></div></article>
-        <article class="card glass"><div class="card-head"><div><span class="kicker">CHECKLIST</span><h2>行前待辦</h2></div><button class="tiny-btn" id="reset-checklist">重設</button></div><div class="add-row"><input id="check-input" placeholder="新增待辦…"><button id="add-check">＋</button></div><div id="checklist"></div></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">NOTES</span><h2>旅行備忘</h2></div></div><textarea id="notes" placeholder="住宿門禁、訂位代碼、臨時交通…"></textarea></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">ROUTE AUDIT</span><h2>健檢結論</h2></div></div><div id="trip-audit"></div></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">OFFICIAL LINKS</span><h2>交通與核對來源</h2></div></div><div id="trip-sources"></div></article>
-        <article class="card glass pwa-card"><span class="kicker">ROUTE MAP</span><h2>新版路線地圖</h2><p>聚焦 Slovenia、Croatia、Bosnia & Herzegovina；交通方式分色，並已改成 Zagreb 飛 Split。</p><a class="secondary-btn route-map-link" href="route-map.html">開啟地圖 →</a></article>
-        <article class="card glass pwa-card"><span class="kicker">PWA / OFFLINE</span><h2>可離線使用</h2><p>行程、預算、Checklist、最近一次天氣與最近一次匯率會留在裝置；Google Maps 導航與即時更新仍需要網路。</p><button class="secondary-btn" id="install-btn-more">加入主畫面</button></article>
+        <article class="card glass pwa-card"><span class="kicker">PWA / OFFLINE</span><h2>可離線使用</h2><p>Day 0、行程、預算、勾選進度、最近一次天氣與最近一次匯率會留在裝置；Google Maps 導航與即時更新仍需要網路。</p><button class="secondary-btn" id="install-btn-more">加入主畫面</button></article>
       </div>
     </section>
   </main>
@@ -168,7 +162,6 @@
     <button class="nav-item active" data-target="home"><span>⌂</span><b>Home</b></button>
     <button class="nav-item" data-target="trip"><span>◷</span><b>Trip</b></button>
     <button class="nav-item" data-target="budget"><span>¥</span><b>Budget</b></button>
-    <button class="nav-item" data-target="pack"><span>◇</span><b>Pack</b></button>
     <button class="nav-item" data-target="more"><span>•••</span><b>More</b></button>
   </nav>
 

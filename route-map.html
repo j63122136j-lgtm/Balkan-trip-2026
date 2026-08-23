@@ -820,7 +820,8 @@ svg {
 </style>
 </head>
 <body>
-<div id="balkan-route-v45">
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embed');</script>
+<div id="balkan-route-v46">
   <div class="route-context viz-row" aria-label="長程飛行銜接">
     <span><i data-lucide="plane" aria-hidden="true"></i> D4 Istanbul → Ljubljana</span>
     <span><i data-lucide="plane" aria-hidden="true"></i> D17 Dubrovnik → Geneva</span>
@@ -828,39 +829,43 @@ svg {
   <svg class="route-map" role="img" aria-labelledby="route-map-title route-map-desc"></svg>
   <div class="route-footer">
     <div class="route-legend text-small" aria-label="交通方式圖例"></div>
-    <p class="route-detail text-small text-muted" aria-live="polite">路線重點：取消十六湖，D9 直接由 Zagreb 飛往 Split。</p>
+    <p class="route-detail text-small text-muted" aria-live="polite">主線：Ljubljana → Zagreb → Split → Mostar → Sarajevo → Dubrovnik。</p>
   </div>
 </div>
 
 <style>
-  #balkan-route-v45{width:100%;color:var(--foreground)}
-  #balkan-route-v45 .route-context{justify-content:space-between;margin-bottom:4px;color:var(--muted-foreground)}
-  #balkan-route-v45 .route-context span{display:inline-flex;align-items:center;gap:6px}
-  #balkan-route-v45 .route-map{display:block;width:100%;height:auto;aspect-ratio:1.68/1;overflow:visible}
-  #balkan-route-v45 .country{fill:color-mix(in srgb,var(--muted) 58%,transparent);stroke:var(--border);stroke-width:1}
-  #balkan-route-v45 .country.focus{fill:color-mix(in srgb,var(--accent) 32%,transparent);stroke:var(--foreground);stroke-width:2.8}
-  #balkan-route-v45 .water{fill:color-mix(in srgb,var(--viz-series-1) 8%,transparent)}
-  #balkan-route-v45 .route-halo{fill:none;stroke:var(--background);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
-  #balkan-route-v45 .route{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
-  #balkan-route-v45 .route.flight{stroke:var(--viz-series-1);stroke-dasharray:7 5}
-  #balkan-route-v45 .route.bus{stroke:var(--viz-series-2)}
-  #balkan-route-v45 .route.train{stroke:var(--viz-series-3)}
-  #balkan-route-v45 .route.daytrip{stroke:var(--viz-series-4);stroke-dasharray:3 4}
-  #balkan-route-v45 .point{stroke:var(--background);stroke-width:2}
-  #balkan-route-v45 .place-label{fill:var(--foreground);font:500 12px system-ui,sans-serif;paint-order:stroke;stroke:var(--background);stroke-width:3;stroke-linejoin:round}
-  #balkan-route-v45 .country-label{fill:var(--foreground);font:500 14px system-ui,sans-serif;letter-spacing:.06em;paint-order:stroke;stroke:var(--background);stroke-width:4}
-  #balkan-route-v45 .day-tag text{fill:var(--primary-foreground);font:500 10px system-ui,sans-serif}
-  #balkan-route-v45 .day-tag rect{fill:var(--primary)}
-  #balkan-route-v45 .route-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:4px}
-  #balkan-route-v45 .route-legend{display:flex;gap:12px;flex-wrap:wrap}
-  #balkan-route-v45 .legend-item{display:inline-flex;align-items:center;gap:5px}
-  #balkan-route-v45 .legend-line{width:24px;border-top:3px solid var(--viz-series-1)}
-  #balkan-route-v45 .legend-line.flight{border-top-style:dashed}
-  #balkan-route-v45 .legend-line.bus{border-color:var(--viz-series-2)}
-  #balkan-route-v45 .legend-line.train{border-color:var(--viz-series-3)}
-  #balkan-route-v45 .legend-line.daytrip{border-color:var(--viz-series-4);border-top-style:dotted}
-  #balkan-route-v45 .route-detail{margin:0}
-  @media(max-width:520px){#balkan-route-v45 .route-map{aspect-ratio:1.1/1}#balkan-route-v45 .route-context{align-items:flex-start}#balkan-route-v45 .route-context span{max-width:48%}#balkan-route-v45 .place-label{font-size:14px}#balkan-route-v45 .country-label{font-size:15px}}
+  #balkan-route-v46{width:100%;color:var(--foreground)}
+  #balkan-route-v46 .route-context{justify-content:space-between;margin-bottom:4px;color:var(--muted-foreground)}
+  #balkan-route-v46 .route-context span{display:inline-flex;align-items:center;gap:6px}
+  #balkan-route-v46 .route-map{display:block;width:100%;height:auto;aspect-ratio:1.68/1;overflow:visible}
+  #balkan-route-v46 .country{fill:color-mix(in srgb,var(--muted) 58%,transparent);stroke:var(--border);stroke-width:1}
+  #balkan-route-v46 .country.focus{fill:color-mix(in srgb,var(--accent) 32%,transparent);stroke:var(--foreground);stroke-width:2.8}
+  #balkan-route-v46 .water{fill:color-mix(in srgb,var(--viz-series-1) 8%,transparent)}
+  #balkan-route-v46 .route-halo{fill:none;stroke:var(--background);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+  #balkan-route-v46 .route{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+  #balkan-route-v46 .route.flight{stroke:var(--viz-series-1);stroke-dasharray:7 5}
+  #balkan-route-v46 .route.bus{stroke:var(--viz-series-2)}
+  #balkan-route-v46 .route.train{stroke:var(--viz-series-3)}
+  #balkan-route-v46 .route.daytrip{stroke:var(--viz-series-4);stroke-dasharray:3 4}
+  #balkan-route-v46 .point{stroke:var(--background);stroke-width:2}
+  #balkan-route-v46 .place-label{fill:var(--foreground);font:500 12px system-ui,sans-serif;paint-order:stroke;stroke:var(--background);stroke-width:3;stroke-linejoin:round}
+  #balkan-route-v46 .country-label{fill:var(--foreground);font:500 14px system-ui,sans-serif;letter-spacing:.06em;paint-order:stroke;stroke:var(--background);stroke-width:4}
+  #balkan-route-v46 .day-tag text{fill:var(--primary-foreground);font:500 10px system-ui,sans-serif}
+  #balkan-route-v46 .day-tag rect{fill:var(--primary)}
+  #balkan-route-v46 .route-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:4px}
+  #balkan-route-v46 .route-legend{display:flex;gap:12px;flex-wrap:wrap}
+  #balkan-route-v46 .legend-item{display:inline-flex;align-items:center;gap:5px}
+  #balkan-route-v46 .legend-line{width:24px;border-top:3px solid var(--viz-series-1)}
+  #balkan-route-v46 .legend-line.flight{border-top-style:dashed}
+  #balkan-route-v46 .legend-line.bus{border-color:var(--viz-series-2)}
+  #balkan-route-v46 .legend-line.train{border-color:var(--viz-series-3)}
+  #balkan-route-v46 .legend-line.daytrip{border-color:var(--viz-series-4);border-top-style:dotted}
+  #balkan-route-v46 .route-detail{margin:0}
+  html.embed>body{padding:0}
+  html.embed #balkan-route-v46 .route-context,html.embed #balkan-route-v46 .route-footer{display:none}
+  html.embed #balkan-route-v46 .route-map{aspect-ratio:1.68/1}
+  @media(max-width:520px){#balkan-route-v46 .route-map{aspect-ratio:1.1/1}#balkan-route-v46 .route-context{align-items:flex-start}#balkan-route-v46 .route-context span{max-width:48%}#balkan-route-v46 .place-label{font-size:14px}#balkan-route-v46 .country-label{font-size:15px}}
+  @media(max-width:520px){html.embed #balkan-route-v46 .route-map{aspect-ratio:1.68/1}}
 </style>
 
 <script type="module">
@@ -868,7 +873,7 @@ svg {
   import { feature } from "https://esm.sh/topojson-client@3.1.0";
   import world from "https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m";
 
-  const root = document.getElementById("balkan-route-v45");
+  const root = document.getElementById("balkan-route-v46");
   const svg = d3.select(root.querySelector(".route-map"));
   const detail = root.querySelector(".route-detail");
   const width = 920;
@@ -919,7 +924,7 @@ svg {
     routeGroup.append("path").attr("class","route-halo").attr("d",d);
     routeGroup.append("path").attr("class",`route ${r.mode}`).attr("d",d)
       .on("pointerenter",() => { detail.textContent = r.note; })
-      .on("pointerleave",() => { detail.textContent = "路線重點：取消十六湖，D9 直接由 Zagreb 飛往 Split。"; });
+      .on("pointerleave",() => { detail.textContent = "主線：Ljubljana → Zagreb → Split → Mostar → Sarajevo → Dubrovnik。"; });
     const labelPoint = pts[Math.floor(pts.length/2)];
     const tag = routeGroup.append("g").attr("class","day-tag").attr("transform",`translate(${labelPoint[0]+5},${labelPoint[1]-7})`);
     tag.append("rect").attr("x",-3).attr("y",-11).attr("width",r.days.length*7+8).attr("height",16).attr("rx",4);

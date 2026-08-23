@@ -265,3 +265,44 @@
 .booked.planned{color:#b56b00}
 .route-map-link{display:inline-block;margin-top:10px;color:var(--text);text-decoration:none}
 @media(max-width:760px){.pretrip-card{padding:18px;border-radius:26px}.pretrip-head{align-items:flex-start}.pretrip-head>span{max-width:105px;text-align:right}.pretrip-list{grid-template-columns:1fr}}
+
+/* Route cover + unified Day 0 · v4.6 */
+.bottom-nav{grid-template-columns:repeat(4,1fr)}
+.route-cover{margin-top:16px;border-radius:var(--radius);padding:22px;overflow:hidden}
+.route-cover-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:10px}
+.route-cover-head h2{font-size:24px;letter-spacing:-.035em;margin:5px 0 0}
+.route-map-frame{display:block;width:100%;aspect-ratio:1.68/1;border:0;border-radius:20px;background:var(--surface-solid)}
+.route-cover-expand{display:inline-flex;margin-top:10px;color:var(--blue);font-size:10px;font-weight:800;text-decoration:none}
+.day-zero-tab{border:1px solid rgba(0,113,227,.22);color:var(--blue)}
+.day-zero-tab.active{border-color:transparent}
+.day-zero-hero{background:radial-gradient(circle at 88% 20%,rgba(41,151,255,.20),transparent 28%),linear-gradient(135deg,var(--surface-solid),var(--surface))}
+.day-zero-progress{height:max-content;display:grid;gap:2px;min-width:92px;padding:12px 14px;border-radius:18px;background:var(--surface-solid);border:1px solid var(--line);text-align:right}
+.day-zero-progress b{font-size:22px;letter-spacing:-.04em}.day-zero-progress small{font-size:8px;color:var(--muted)}
+.preflight-timeline .timeline-row{transition:opacity .2s ease}
+.preflight-timeline .timeline-row.is-done{opacity:.56}
+.preflight-timeline .timeline-row.is-done h3{text-decoration:line-through}
+.preflight-check{position:relative;z-index:2;width:20px;height:20px;margin:0 auto;cursor:pointer}
+.preflight-check input{position:absolute;opacity:0;pointer-events:none}
+.preflight-check span{display:block;width:20px;height:20px;border-radius:50%;background:var(--surface-solid);border:3px solid var(--blue)}
+.preflight-check input:checked+span{background:var(--green);border-color:var(--green);box-shadow:inset 0 0 0 3px var(--surface-solid)}
+.preflight-check input:focus-visible+span{outline:3px solid rgba(0,113,227,.25);outline-offset:2px}
+.day-zero-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:18px 4px 12px}
+.day-zero-section-head h2{font-size:24px;letter-spacing:-.035em;margin:5px 0 0}.day-zero-section-head p{margin:0;color:var(--muted);font-size:10px}
+.day-zero-packing{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.day-zero-packing .packing-group{margin-bottom:0}
+.day-zero-custom{margin-top:16px}
+
+@media(max-width:760px){
+  .route-cover{margin-top:10px;padding:14px;border-radius:26px}
+  .route-cover-head{align-items:flex-start}.route-cover-head h2{font-size:20px}.route-cover-head .secondary-btn{padding:9px 12px;font-size:10px}
+  .route-map-frame{aspect-ratio:1.68/1;border-radius:17px}
+  .day-zero-progress{margin-top:14px;text-align:left;display:inline-grid;min-width:0}
+  .preflight-timeline .timeline-time{font-size:9px;line-height:1.15}
+  .day-zero-section-head{display:block}.day-zero-section-head p{margin-top:6px}
+  .day-zero-packing{grid-template-columns:1fr}
+}
+
+@media(max-width:390px){
+  .route-cover-head{display:block}.route-cover-head .secondary-btn{margin-top:10px}
+  .route-map-frame{aspect-ratio:1.68/1}
+}

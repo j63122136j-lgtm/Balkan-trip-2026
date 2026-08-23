@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4.5.0
+# Balkan Trip Dashboard v4.6.0
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -19,11 +19,17 @@
 4. 修改首頁 slogan / subtitle（若需要）；`template/` 不必改。
 5. 每次發布更新 `sw.js` 的 `VERSION`，避免舊快取卡住。
 
+## v4.6.0 更新
+
+- 將首頁行前注意、Pack 與 More Checklist 合併成單一 Day 0，依優先級排成可勾選的行前 Timeline。
+- Day 0 依序處理護照、台胞證、土耳其 e-Visa、保險、入境規定、景點票券、關鍵交通、住宿離線資料、付款網路與最終打包。
+- 最新路線圖直接放在首頁封面；Day 0 成為 Trip 的第一個分頁，Day 1–19 接續在後。
+- 底部導覽精簡為 Home、Trip、Budget、More，行前資訊不再散落於三個頁面。
+
 ## v4.5.0 更新
 
 - 路線改為 Zagreb 連住 2 晚 → 09/22 飛 Split → Split 連住 2 晚，取消十六湖住宿與移動。
 - 09/23 保留完整跳島日，09/24 用市場、咖啡與 Marjan 第一觀景台收尾，再搭 17:30 跨境巴士。
-- 首頁新增行前注意事項：土耳其 e-Visa、護照、ETIAS／EES、台胞證、Vintgar 指定時段與關鍵票券。
 - 新增待訂 ZAG → SPU 航班提示，並區分已訂與待訂航班。
 - 新增 `route-map.html`，以交通方式分色顯示新版路線。
 
@@ -32,7 +38,7 @@
 - Budget 改為固定／預計支出、每日消費與目前旅行總花費，不再顯示預算上限與剩餘額。
 - 每個 Day 分頁新增精簡消費記錄，可輸入分類、項目與新台幣金額並逐筆刪除。
 - 住宿共 16 晚：曼谷兩晚共 NT$3,300；其餘 14 晚先以每晚 NT$3,500 估列。
-- 每日消費、Checklist 與 Pack 使用不含版本號的 localStorage key，後續更新 dashboard 不會因版本變更而消失；舊版 Checklist／Pack 會自動沿用。
+- 每日消費與打包勾選使用不含版本號的 localStorage key，後續更新 dashboard 不會因版本變更而消失；舊版 Pack 會自動沿用。
 - 舊版 Budget 若已有交通、餐飲或其他實際支出，第一次開啟時會自動轉入每日消費總計。
 
 ## Day 可用欄位

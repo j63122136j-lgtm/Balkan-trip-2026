@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.5.0"
+    "version": "4.6.0"
   },
   "route": [
     "Taipei",
@@ -234,56 +234,102 @@ window.TRIP_DATA = {
       "note": "6 段已確認航班"
     }
   ],
-  "preTrip": [
-    {
-      "level": "必辦",
-      "title": "土耳其 e-Visa",
-      "text": "09/17 要入境 Istanbul，請先用官方網站申請；資料需與護照完全相同，核發後列印並離線存檔。",
-      "url": "https://www.evisa.gov.tr/en/"
-    },
-    {
-      "level": "必帶",
-      "title": "護照＋備份",
-      "text": "使用載有身分證字號的中華民國護照；以回程日計仍留 6 個月以上效期與空白頁，另存紙本／雲端影本。",
-      "url": "https://www.boca.gov.tw/"
-    },
-    {
-      "level": "確認",
-      "title": "ETIAS／EES",
-      "text": "目前 ETIAS 尚未啟用，出發前 30 天再查歐盟官方網站；不要先在非官方網站付費。申根入境另預留 EES 登錄時間。",
-      "url": "https://travel-europe.europa.eu/en/etias"
-    },
-    {
-      "level": "必帶",
-      "title": "台胞證",
-      "text": "確認效期並隨身攜帶；另向中國東方航空確認 PVG 行李直掛、同航廈轉機與是否需要入境。",
-      "url": "https://www.ceair.com/"
-    },
-    {
-      "level": "預約",
-      "title": "Vintgar Gorge",
-      "text": "預先購買 09/19 指定入場時段，並核對 Bled Bus Station 的官方接駁；截圖票券與集合資訊。",
-      "url": "https://www.vintgar.si/en/my-visit/pricelist/"
-    },
-    {
-      "level": "預約",
-      "title": "洞穴與跳島",
-      "text": "確認 09/18 Postojna／Predjama voucher；09/23 跳島選有海況取消／改期條款的產品。",
-      "url": "https://www.postojnska-jama.eu/en/tickets/"
-    },
-    {
-      "level": "待訂",
-      "title": "關鍵交通",
-      "text": "09/22 ZAG→SPU 國內線、09/24 Split→Mostar、09/26 Mostar→Sarajevo、09/28 Sarajevo→Dubrovnik。",
-      "url": "https://www.croatiaairlines.com/"
-    },
-    {
-      "level": "必備",
-      "title": "保險／網路／離線資料",
-      "text": "旅遊與醫療保險、eSIM、緊急聯絡、住宿地址、票券、航班行李額與行程表均下載離線版本。",
-      "url": "https://www.boca.gov.tw/sp-abre-main-1.html"
-    }
-  ],
+  "dayZero": {
+    "title": "Day 0 · 行前準備",
+    "summary": "先解決會讓旅程無法出發或無法入境的事項，再處理門票、交通、住宿與行李。照順序一路勾完即可。",
+    "steps": [
+      {
+        "id": "passport",
+        "priority": "最高",
+        "title": "護照＋備份",
+        "why": "沒有有效護照，後續簽證、機票與跨境交通都無法正確核對。",
+        "action": "確認兩人護照皆載有身分證字號、以 10/02 回程日計仍有 6 個月以上效期與空白頁；紙本影本、手機與雲端各留一份。",
+        "url": "https://www.boca.gov.tw/",
+        "linkLabel": "外交部領事事務局"
+      },
+      {
+        "id": "taiwan-permit",
+        "priority": "最高",
+        "title": "台胞證＋上海轉機規則",
+        "why": "10/02 在上海浦東轉機，遇到行李未直掛、航班變動或需要入境時必須有可用證件。",
+        "action": "確認台胞證效期並隨身攜帶；向中國東方航空確認 GVA→PVG→TPE 是否行李直掛、是否同航廈及是否需要入境。",
+        "url": "https://www.ceair.com/",
+        "linkLabel": "中國東方航空"
+      },
+      {
+        "id": "turkey-evisa",
+        "priority": "必辦",
+        "title": "土耳其 e-Visa",
+        "why": "09/17 要入境 Istanbul 市區，不是只在機場轉機。",
+        "action": "使用官方網站申請，資料與護照完全相同；核發後列印，並將 PDF 存入兩人的手機離線資料夾。",
+        "url": "https://www.evisa.gov.tr/en/",
+        "linkLabel": "Turkey e-Visa 官方網站"
+      },
+      {
+        "id": "insurance",
+        "priority": "必辦",
+        "title": "旅遊保險＋緊急資料",
+        "why": "行程包含跨境巴士、健行、跳島與多段航班，延誤與醫療保障要先完成。",
+        "action": "投保旅遊／醫療／不便險；整理保單、緊急聯絡人、信用卡掛失電話與各國駐外館處資料，全部下載離線。",
+        "url": "https://www.boca.gov.tw/sp-abre-main-1.html",
+        "linkLabel": "旅外安全資訊"
+      },
+      {
+        "id": "entry-rules",
+        "priority": "出發前複查",
+        "title": "ETIAS／EES 與各國入境規定",
+        "why": "歐洲入境制度可能在出發前更新，不能只依現在的規則。",
+        "action": "出發前 30 天與 72 小時各查一次歐盟官方頁面；目前 ETIAS 尚未啟用，不在非官方網站預付費。申根首次入境預留 EES 登錄時間。",
+        "url": "https://travel-europe.europa.eu/en/etias",
+        "linkLabel": "歐盟 ETIAS 官方頁"
+      },
+      {
+        "id": "attraction-tickets",
+        "priority": "需預約",
+        "title": "Vintgar／鐘乳石洞／Split 跳島",
+        "why": "這三段受指定時段、集合時間或海況影響，現場再決定容易破壞後續動線。",
+        "action": "購買 09/19 Vintgar 指定時段並核對官方接駁；確認 09/18 Postojna／Predjama voucher；09/23 跳島只選有海況取消或改期條款的產品。",
+        "url": "https://www.vintgar.si/en/my-visit/pricelist/",
+        "linkLabel": "Vintgar 官方票價與時段"
+      },
+      {
+        "id": "key-transport",
+        "priority": "待訂",
+        "title": "四段關鍵交通",
+        "why": "Zagreb 直飛 Split 與三段跨城／跨境交通決定住宿銜接，是整段巴爾幹路線的骨架。",
+        "action": "完成 09/22 ZAG→SPU、09/24 Split→Mostar、09/26 Mostar→Sarajevo、09/28 Sarajevo→Dubrovnik；逐段保存行李規則、上車點與退改條款。",
+        "url": "https://www.croatiaairlines.com/",
+        "linkLabel": "Croatia Airlines"
+      },
+      {
+        "id": "stays-offline",
+        "priority": "完成確認",
+        "title": "住宿地址＋離線票券",
+        "why": "晚間抵達與跨境日不能臨時找門牌、門禁或車站。",
+        "action": "逐晚確認 Airbnb／Hotels.com 地址、入住方式、寄放行李與聯絡電話；將確認信、地圖、航班行李額和票券整理成同一個離線資料夾。",
+        "url": "https://www.google.com/maps",
+        "linkLabel": "Google Maps"
+      },
+      {
+        "id": "money-connectivity",
+        "priority": "出發前一週",
+        "title": "付款、現金、eSIM 與離線地圖",
+        "why": "波士尼亞小店、車站行李費與跨境途中不一定能刷卡或穩定連線。",
+        "action": "準備兩張分開保管的信用卡、少量 EUR 與抵達後可領 BAM 的提款方案；完成 eSIM、漫遊備援及 Google Maps 離線區域。",
+        "url": "https://support.google.com/maps/answer/6291838",
+        "linkLabel": "Google Maps 離線地圖"
+      },
+      {
+        "id": "final-pack",
+        "priority": "出發前 24h",
+        "title": "Allpa 35L 最終打包＋航班複核",
+        "why": "最後一次以最嚴格的行李額為準，避免第一段報到才重新分裝。",
+        "action": "依下方清單打包並秤重；再次確認所有航班時間、航廈、報到截止、行李額與機場交通，兩人的證件與藥品都放隨身包。",
+        "url": "https://j63122136j-lgtm.github.io/Balkan-trip-2026/",
+        "linkLabel": "Dashboard 航班總覽"
+      }
+    ]
+  },
   "packing": [
     {
       "group": "證件",
