@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4.6.0
+# Balkan Trip Dashboard v4.7.0
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -18,6 +18,23 @@
 3. 在 `index.html` 把 `trips/balkan-2026.js` 改成新檔名。
 4. 修改首頁 slogan / subtitle（若需要）；`template/` 不必改。
 5. 每次發布更新 `sw.js` 的 `VERSION`，避免舊快取卡住。
+
+## v4.7.0 更新
+
+- Route Overview 移除 Day 0 按鈕，地圖改回舊版的米白底、三國分色、粗國界與交通分色風格；路線則使用現行版本，沒有十六湖與租車段。
+- Quick Convert 放大幣別、金額輸入與台幣結果，改善手機點選與快速判讀。
+- 出發前的 Next Stop 與 Tomorrow / Focus 改為連動 Day 0，顯示下一個尚未完成的行前任務。
+- Next Flight 新增 AirLabs 即時狀態：起飛前約 10 小時內可更新預估時間、航廈、登機門、延誤與航班狀態；API key 只保存在目前瀏覽器。
+
+## v4.6.2 更新
+
+- 將當下城市天氣整合進最上方導覽列，移除首頁獨立 Weather block。
+- 桌機顯示城市、圖示、溫度、天況與高低溫；窄螢幕自動精簡，避免增加頂欄高度。
+
+## v4.6.1 更新
+
+- 移除獨立的大型 Hero block，將旅程標題與行程入口整合進最上方導覽列，桌機首頁直接進入路線圖與 Dashboard 內容。
+- 手機仍使用精簡頂欄，不增加額外高度。
 
 ## v4.6.0 更新
 

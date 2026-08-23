@@ -38,17 +38,10 @@
 .tomorrow-list li{display:grid;grid-template-columns:46px 1fr;gap:9px;padding:8px 0;border-bottom:1px solid var(--line);font-size:11px}
 .tomorrow-list li:last-child{border-bottom:0}
 .tomorrow-list b{color:var(--muted);font-size:9px;padding-top:2px}
-.weather-slim{grid-area:weather;display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center;padding-top:17px!important;padding-bottom:17px!important}
-.weather-slim-main{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
-.weather-slim-main b{font-size:14px}
-.weather-slim-main strong{font-size:24px;letter-spacing:-.04em}
-.weather-slim-main span{font-size:10px;color:var(--muted)}
-.weather-slim-main #weather-icon{font-size:22px;color:var(--text)}
-.weather-slim small{grid-column:1/-1;color:var(--muted);font-size:8px}
 .dashboard-grid{display:none!important}
 
 @media(max-width:760px){
-  .home-cockpit{grid-template-columns:1fr;grid-template-areas:"currency" "next" "tomorrow" "flight" "weather";gap:12px;margin-top:12px}
+  .home-cockpit{grid-template-columns:1fr;gap:12px;margin-top:12px}
   .home-rate-grid{grid-template-columns:1fr 1fr}
   .home-rate-result{grid-column:1/-1}
   .next-stop-title h3,.tomorrow-card h3{font-size:25px}
@@ -179,7 +172,7 @@
 .cockpit-section{min-width:0;padding:24px}
 .cockpit-section+.cockpit-section{border-left:1px solid var(--line)}
 .cockpit-section h2{font-size:20px;margin:5px 0 0;letter-spacing:-.025em}
-.home-currency,.next-stop-card,.tomorrow-card,.flight-card,.weather-slim{grid-area:auto}
+.home-currency,.next-stop-card,.tomorrow-card,.flight-card{grid-area:auto}
 
 @media(max-width:760px){
   .topbar-inner{min-height:58px;padding-top:calc(var(--safe-top) + 5px);padding-bottom:5px}
@@ -305,4 +298,59 @@
 @media(max-width:390px){
   .route-cover-head{display:block}.route-cover-head .secondary-btn{margin-top:10px}
   .route-map-frame{aspect-ratio:1.68/1}
+}
+
+/* Compact campaign identity inside the top bar · v4.6.1 */
+.topbar-trip{display:flex;align-items:center;justify-content:center;gap:9px;min-width:0;margin:0 18px}
+.topbar-trip-copy{display:grid;min-width:0;line-height:1.1}
+.topbar-trip-copy small{color:var(--blue);font-size:7px;font-weight:900;letter-spacing:.13em}
+.topbar-trip-copy strong{margin-top:3px;font-size:15px;letter-spacing:-.025em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-trip-link{flex:none;border:1px solid var(--line);border-radius:999px;background:var(--surface-solid);color:var(--text);padding:7px 10px;font-size:9px;font-weight:800;cursor:pointer}
+.route-cover{margin-top:10px}
+
+@media(max-width:900px){
+  .topbar-trip{margin:0 8px}.topbar-trip-copy small{display:none}.topbar-trip-copy strong{font-size:13px}
+  .topbar-trip-link{padding:6px 8px;font-size:8px}
+}
+
+@media(max-width:760px){
+  .topbar-trip{display:none}
+}
+
+/* Live weather inside the top bar · v4.6.2 */
+.header-weather{position:relative;display:flex;align-items:center;gap:6px;padding:6px 7px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface-solid);white-space:nowrap}
+.header-weather-city{font-size:9px;font-weight:800}.header-weather-icon{font-size:15px;line-height:1}.header-weather strong{font-size:16px;letter-spacing:-.04em}
+.header-weather-text,.header-weather-range{font-size:7px;color:var(--muted)}
+.header-weather button{width:24px;height:24px;border:0;border-radius:50%;background:var(--bg);color:var(--text);font-size:12px;font-weight:800;cursor:pointer}
+.header-weather-note{display:none}
+
+@media(max-width:1050px){
+  .header-weather-text,.header-weather-range{display:none}
+}
+
+@media(max-width:760px){
+  .header-weather{gap:4px;padding:5px 5px 5px 8px}
+  .header-weather strong{font-size:15px}.header-weather button{width:22px;height:22px}
+}
+
+@media(max-width:430px){
+  .header-weather-city{display:none}
+}
+
+/* Large touch targets for Quick Convert + live flight status · v4.7 */
+.home-currency .currency-field>span{font-size:11px;margin-bottom:8px}
+.home-currency .currency-field select,.home-currency .currency-field input{height:58px;border-radius:16px;padding:0 16px;font-size:16px;font-weight:700}
+.home-currency .home-rate-grid{gap:12px;margin-top:20px}
+.home-currency .home-rate-result{min-height:112px;padding:17px 19px;border-radius:20px;display:flex;flex-direction:column;justify-content:center}
+.home-currency .home-rate-result>span{font-size:11px}.home-currency .home-rate-result strong{font-size:42px;line-height:1;margin-top:3px}
+.home-currency .home-rate-result small{font-size:11px;line-height:1.5;margin-top:9px}.home-currency .rate-credit{font-size:8px;margin-top:7px}
+.flight-live-actions{display:flex;align-items:center;gap:8px}.booked.live{color:#087f3e}.booked.alert{color:var(--red)}
+.flight-live-note{margin:8px 0 0;color:var(--muted);font-size:8px;line-height:1.45}
+.flight-api-copy{margin:16px 0 12px;color:var(--muted);font-size:11px;line-height:1.65}
+.flight-api-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}.flight-api-form input{height:44px;border:1px solid var(--line);border-radius:13px;background:var(--surface-solid);color:var(--text);padding:0 12px;outline:none}.flight-api-form button{border:0;border-radius:13px;background:var(--blue);color:#fff;padding:0 14px;font-size:10px;font-weight:800;cursor:pointer}
+.flight-api-links{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:11px}.flight-api-links a,.flight-api-links button{font-size:9px;font-weight:800}.flight-api-links a{color:var(--blue);text-decoration:none}.flight-api-links button{border:0;background:none;color:var(--muted);cursor:pointer}
+
+@media(max-width:760px){
+  .home-currency .currency-field select,.home-currency .currency-field input{height:56px;font-size:16px}
+  .home-currency .home-rate-result{min-height:104px;padding:16px}.home-currency .home-rate-result strong{font-size:38px}
 }

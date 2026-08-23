@@ -23,8 +23,26 @@
         <span class="brand-mark">B</span>
         <span><b>Balkan 2026</b><small id="top-date">09.14 — 10.02</small></span>
       </button>
+      <div class="topbar-trip">
+        <div class="topbar-trip-copy">
+          <small>BACKPACKING · 2026</small>
+          <strong>From the Alps to the Adriatic.</strong>
+        </div>
+        <button class="topbar-trip-link" data-target="trip">查看行程</button>
+        <button class="topbar-trip-link" data-open-day="0">Day 0</button>
+        <button class="topbar-trip-link" id="install-btn" hidden>加入主畫面</button>
+      </div>
       <div class="top-actions">
         <span class="offline-pill" id="network-state">ONLINE</span>
+        <div class="header-weather" aria-live="polite">
+          <span class="header-weather-city" id="weather-city">Bangkok</span>
+          <span class="header-weather-icon" id="weather-icon">◌</span>
+          <strong id="weather-temp">--°</strong>
+          <span class="header-weather-text" id="weather-text">等待更新</span>
+          <span class="header-weather-range" id="weather-range">-- / --</span>
+          <button id="refresh-weather" type="button" aria-label="更新天氣">↻</button>
+          <small class="header-weather-note" id="weather-note">離線時使用最近一次快取。</small>
+        </div>
         <div class="header-countdown" id="trip-countdown" aria-live="polite">
           <strong id="countdown-number">—</strong><span id="countdown-label">DAYS TO GO</span>
         </div>
@@ -34,26 +52,12 @@
   </header>
 
   <main>
-    <!-- Only the home screen carries the large Apple-style campaign headline. -->
     <section class="screen active" id="screen-home" data-screen="home">
-      <section class="hero reveal" id="hero">
-        <div class="hero-copy parallax" data-parallax="0.10">
-          <p class="eyebrow">BACKPACKING · 2026</p>
-          <h1>From the Alps<br>to the Adriatic.</h1>
-          <p class="hero-sub">兩個 Allpa 35L，19 天，從斯洛維尼亞一路南下到 Dubrovnik，最後繞進 Geneva 回台。</p>
-          <div class="hero-actions">
-            <button class="primary-btn" data-target="trip">查看行程</button>
-            <button class="secondary-btn" id="install-btn" hidden>加入主畫面</button>
-          </div>
-        </div>
-      </section>
-
       <section class="route-cover glass reveal" aria-labelledby="route-cover-title">
         <div class="route-cover-head">
           <div><span class="kicker">ROUTE OVERVIEW</span><h2 id="route-cover-title">最新路線規劃</h2></div>
-          <button class="secondary-btn" data-open-day="0">Day 0 行前準備 →</button>
         </div>
-        <iframe class="route-map-frame" src="route-map.html?embed=1" title="Balkan 2026 最新國家與城市路線圖"></iframe>
+        <iframe class="route-map-frame" src="route-map.html?embed=1" title="Balkan 2026 最新國家與城市路線圖" scrolling="no" sandbox="allow-scripts"></iframe>
         <a class="route-cover-expand" href="route-map.html">開啟完整地圖 ↗</a>
       </section>
 
@@ -91,7 +95,7 @@
 
         <section class="cockpit-section next-stop-card">
           <div class="card-head">
-            <div><span class="kicker">NEXT STOP</span><h2>接下來的景點</h2></div>
+            <div><span class="kicker">NEXT STOP</span><h2 id="next-stop-heading">接下來的景點</h2></div>
             <span class="status-dot"></span>
           </div>
           <div id="next-attraction"></div>
@@ -110,26 +114,11 @@
         <section class="cockpit-section flight-card">
           <div class="card-head">
             <div><span class="kicker">NEXT FLIGHT</span><h2>下一段航班</h2></div>
-            <span class="booked" id="next-flight-status">✓ BOOKED</span>
+            <div class="flight-live-actions"><span class="booked" id="next-flight-status">✓ BOOKED</span><button class="tiny-btn" id="refresh-flight" type="button">更新</button></div>
           </div>
           <div id="next-flight"></div>
           <button class="text-btn" data-target="more">全部航班 →</button>
         </section>
-        </article>
-
-        <article class="card weather-slim glass">
-          <div>
-            <span class="kicker">WEATHER</span>
-            <div class="weather-slim-main">
-              <b id="weather-city">Ljubljana</b>
-              <span id="weather-icon">☀︎</span>
-              <strong id="weather-temp">--°</strong>
-              <span id="weather-text">等待更新</span>
-              <span id="weather-range">-- / --</span>
-            </div>
-          </div>
-          <button class="tiny-btn" id="refresh-weather">更新</button>
-          <small id="weather-note">離線時使用最近一次快取。</small>
         </article>
 
       </section>
@@ -150,6 +139,7 @@
       <div class="page-head"><div><span class="kicker">TOOLS</span><h1>航班與工具</h1></div><p>Flights · Notes · Offline</p></div>
       <div class="more-grid">
         <article class="card glass"><div class="card-head"><div><span class="kicker">FLIGHTS</span><h2>航班總覽</h2></div></div><div id="flight-list"></div></article>
+        <article class="card glass"><div class="card-head"><div><span class="kicker">LIVE FLIGHT DATA</span><h2>即時航班設定</h2></div><span class="booked" id="flight-api-state">未設定</span></div><p class="flight-api-copy">AirLabs 金鑰只儲存在目前裝置，不會寫進 GitHub。即時航廈、登機門、預估時間與延誤通常在起飛前約 10 小時內才會出現。</p><div class="flight-api-form"><input id="flight-api-key" type="password" autocomplete="off" placeholder="貼上 AirLabs API key"><button id="save-flight-api" type="button">儲存</button></div><div class="flight-api-links"><a href="https://airlabs.co/signup" target="_blank" rel="noopener">申請 AirLabs key ↗</a><button id="clear-flight-api" type="button">清除金鑰</button></div></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">NOTES</span><h2>旅行備忘</h2></div></div><textarea id="notes" placeholder="住宿門禁、訂位代碼、臨時交通…"></textarea></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">ROUTE AUDIT</span><h2>健檢結論</h2></div></div><div id="trip-audit"></div></article>
         <article class="card glass"><div class="card-head"><div><span class="kicker">OFFICIAL LINKS</span><h2>交通與核對來源</h2></div></div><div id="trip-sources"></div></article>

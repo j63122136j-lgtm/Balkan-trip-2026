@@ -834,34 +834,38 @@ svg {
 </div>
 
 <style>
-  #balkan-route-v46{width:100%;color:var(--foreground)}
+  #balkan-route-v46{--map-ink:light-dark(#102657,#edf4ff);--map-water:light-dark(#e9f5ff,#0d1d2a);--map-land:light-dark(#f7f5ef,#17191d);--map-svn:light-dark(#e7f1ff,#16283f);--map-hrv:light-dark(#fff2cf,#3a3018);--map-bih:light-dark(#edf6d9,#253119);--route-flight:light-dark(#7435d5,#a47aff);--route-bus:light-dark(#07883c,#4ad47b);--route-train:light-dark(#d5232d,#ff626a);--route-boat:light-dark(#087f9f,#45c3dd);width:100%;color:var(--foreground)}
   #balkan-route-v46 .route-context{justify-content:space-between;margin-bottom:4px;color:var(--muted-foreground)}
   #balkan-route-v46 .route-context span{display:inline-flex;align-items:center;gap:6px}
   #balkan-route-v46 .route-map{display:block;width:100%;height:auto;aspect-ratio:1.68/1;overflow:visible}
-  #balkan-route-v46 .country{fill:color-mix(in srgb,var(--muted) 58%,transparent);stroke:var(--border);stroke-width:1}
-  #balkan-route-v46 .country.focus{fill:color-mix(in srgb,var(--accent) 32%,transparent);stroke:var(--foreground);stroke-width:2.8}
-  #balkan-route-v46 .water{fill:color-mix(in srgb,var(--viz-series-1) 8%,transparent)}
+  #balkan-route-v46 .country{fill:var(--map-land);stroke:color-mix(in srgb,var(--map-ink) 20%,transparent);stroke-width:1}
+  #balkan-route-v46 .country.focus{stroke:var(--map-ink);stroke-width:3.4}
+  #balkan-route-v46 .country-SVN{fill:var(--map-svn)}#balkan-route-v46 .country-HRV{fill:var(--map-hrv)}#balkan-route-v46 .country-BIH{fill:var(--map-bih)}
+  #balkan-route-v46 .water{fill:var(--map-water)}
   #balkan-route-v46 .route-halo{fill:none;stroke:var(--background);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
   #balkan-route-v46 .route{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
-  #balkan-route-v46 .route.flight{stroke:var(--viz-series-1);stroke-dasharray:7 5}
-  #balkan-route-v46 .route.bus{stroke:var(--viz-series-2)}
-  #balkan-route-v46 .route.train{stroke:var(--viz-series-3)}
-  #balkan-route-v46 .route.daytrip{stroke:var(--viz-series-4);stroke-dasharray:3 4}
-  #balkan-route-v46 .point{stroke:var(--background);stroke-width:2}
-  #balkan-route-v46 .place-label{fill:var(--foreground);font:500 12px system-ui,sans-serif;paint-order:stroke;stroke:var(--background);stroke-width:3;stroke-linejoin:round}
-  #balkan-route-v46 .country-label{fill:var(--foreground);font:500 14px system-ui,sans-serif;letter-spacing:.06em;paint-order:stroke;stroke:var(--background);stroke-width:4}
+  #balkan-route-v46 .route.flight{stroke:var(--route-flight);stroke-dasharray:8 6}
+  #balkan-route-v46 .route.bus{stroke:var(--route-bus)}
+  #balkan-route-v46 .route.train{stroke:var(--route-train)}
+  #balkan-route-v46 .route.boat{stroke:var(--route-boat);stroke-dasharray:6 5}
+  #balkan-route-v46 .point{stroke:var(--background);stroke-width:2.5}
+  #balkan-route-v46 .place-label{fill:var(--foreground);font:500 14px system-ui,sans-serif;paint-order:stroke;stroke:var(--background);stroke-width:4;stroke-linejoin:round}
+  #balkan-route-v46 .country-label{fill:var(--map-ink);font:500 23px system-ui,sans-serif;letter-spacing:.04em;paint-order:stroke;stroke:var(--background);stroke-width:5}
+  #balkan-route-v46 .map-title{fill:var(--map-ink);font:500 31px system-ui,sans-serif;letter-spacing:.045em}
+  #balkan-route-v46 .edge-label{fill:var(--map-ink);font:500 13px system-ui,sans-serif;paint-order:stroke;stroke:var(--background);stroke-width:4}
+  #balkan-route-v46 .svg-legend text{fill:var(--foreground);font:500 12px system-ui,sans-serif}
   #balkan-route-v46 .day-tag text{fill:var(--primary-foreground);font:500 10px system-ui,sans-serif}
-  #balkan-route-v46 .day-tag rect{fill:var(--primary)}
+  #balkan-route-v46 .day-tag rect{fill:var(--primary)}#balkan-route-v46 .day-tag.flight rect{fill:var(--route-flight)}#balkan-route-v46 .day-tag.bus rect{fill:var(--route-bus)}#balkan-route-v46 .day-tag.train rect{fill:var(--route-train)}#balkan-route-v46 .day-tag.boat rect{fill:var(--route-boat)}
   #balkan-route-v46 .route-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:4px}
   #balkan-route-v46 .route-legend{display:flex;gap:12px;flex-wrap:wrap}
   #balkan-route-v46 .legend-item{display:inline-flex;align-items:center;gap:5px}
-  #balkan-route-v46 .legend-line{width:24px;border-top:3px solid var(--viz-series-1)}
+  #balkan-route-v46 .legend-line{width:24px;border-top:3px solid var(--route-flight)}
   #balkan-route-v46 .legend-line.flight{border-top-style:dashed}
-  #balkan-route-v46 .legend-line.bus{border-color:var(--viz-series-2)}
-  #balkan-route-v46 .legend-line.train{border-color:var(--viz-series-3)}
-  #balkan-route-v46 .legend-line.daytrip{border-color:var(--viz-series-4);border-top-style:dotted}
+  #balkan-route-v46 .legend-line.bus{border-color:var(--route-bus)}
+  #balkan-route-v46 .legend-line.train{border-color:var(--route-train)}
+  #balkan-route-v46 .legend-line.boat{border-color:var(--route-boat);border-top-style:dashed}
   #balkan-route-v46 .route-detail{margin:0}
-  html.embed>body{padding:0}
+  html.embed>body{padding:0;overflow:hidden}
   html.embed #balkan-route-v46 .route-context,html.embed #balkan-route-v46 .route-footer{display:none}
   html.embed #balkan-route-v46 .route-map{aspect-ratio:1.68/1}
   @media(max-width:520px){#balkan-route-v46 .route-map{aspect-ratio:1.1/1}#balkan-route-v46 .route-context{align-items:flex-start}#balkan-route-v46 .route-context span{max-width:48%}#balkan-route-v46 .place-label{font-size:14px}#balkan-route-v46 .country-label{font-size:15px}}
@@ -876,87 +880,111 @@ svg {
   const root = document.getElementById("balkan-route-v46");
   const svg = d3.select(root.querySelector(".route-map"));
   const detail = root.querySelector(".route-detail");
-  const width = 920;
-  const height = 550;
+  const width = 1120;
+  const height = 667;
   svg.attr("viewBox", `0 0 ${width} ${height}`);
   svg.append("title").attr("id","route-map-title").text("Balkan 2026 斯洛維尼亞、克羅埃西亞與波士尼亞路線圖");
-  svg.append("desc").attr("id","route-map-desc").text("D4 從 Istanbul 飛 Ljubljana；Ljubljana 往返 Postojna、Predjama、Bled 與 Vintgar；火車到 Zagreb；D9 飛 Split；巴士到 Mostar，火車到 Sarajevo，巴士到 Dubrovnik；D17 飛 Geneva。");
+  svg.append("desc").attr("id","route-map-desc").text("D4 從 Istanbul 飛 Ljubljana；D5 洞穴城堡、D6 Bled 與 Vintgar 當日往返；D7 火車到 Zagreb；D9 飛 Split；D10 跳島；D11 巴士到 Mostar，D13 火車到 Sarajevo，D15 巴士到 Dubrovnik；D17 飛 Geneva。");
 
   const allCountries = feature(world, world.objects.features).features;
   const focusIds = new Set(["SVN", "HRV", "BIH"]);
   const focus = allCountries.filter(d => focusIds.has(d.properties.id));
   const focusCollection = { type: "FeatureCollection", features: focus };
-  const projection = d3.geoMercator().fitExtent([[50, 30], [width - 50, height - 38]], focusCollection);
+  const projection = d3.geoMercator().fitExtent([[150, 72], [width - 125, height - 36]], focusCollection);
   const path = d3.geoPath(projection);
 
   svg.append("path").attr("class","water").attr("d",`M0,0H${width}V${height}H0Z`);
   svg.append("g").selectAll("path").data(allCountries).join("path")
-    .attr("class", d => focusIds.has(d.properties.id) ? "country focus" : "country")
+    .attr("class", d => focusIds.has(d.properties.id) ? `country focus country-${d.properties.id}` : "country")
     .attr("d", path);
+
+  svg.append("text").attr("class","map-title").attr("x",width/2).attr("y",42).attr("text-anchor","middle").text("BALKAN 2026 · ROUTE OVERVIEW");
 
   const places = {
     Ljubljana: [14.5058,46.0569], Bled:[14.1136,46.3692], Vintgar:[14.0837,46.3924],
     Postojna:[14.2037,45.7749], Predjama:[14.1272,45.8159], Zagreb:[15.9819,45.8150],
     Split:[16.4402,43.5081], Mostar:[17.8078,43.3438], Blagaj:[17.8886,43.2565],
-    Sarajevo:[18.4131,43.8563], Dubrovnik:[18.0944,42.6507]
+    Sarajevo:[18.4131,43.8563], Dubrovnik:[18.0944,42.6507], Vis:[16.1864,43.0619], Hvar:[16.4424,43.1729]
   };
   const routes = [
-    {mode:"daytrip", days:"D5", from:"Ljubljana", via:["Postojna","Predjama"], to:"Ljubljana", note:"D5 洞穴＋城堡，返回 Ljubljana"},
-    {mode:"daytrip", days:"D6", from:"Ljubljana", via:["Bled","Vintgar"], to:"Ljubljana", note:"D6 Bled＋Vintgar 當日來回"},
+    {mode:"bus", days:"D5", from:"Ljubljana", via:["Postojna","Predjama"], to:"Ljubljana", note:"D5 洞穴＋城堡，返回 Ljubljana"},
+    {mode:"bus", days:"D6", from:"Ljubljana", via:["Bled","Vintgar"], to:"Ljubljana", note:"D6 Bled＋Vintgar 當日來回"},
     {mode:"train", days:"D7", from:"Ljubljana", via:[], to:"Zagreb", note:"D7 Ljubljana → Zagreb 火車"},
     {mode:"flight", days:"D9", from:"Zagreb", via:[], to:"Split", note:"D9 Zagreb → Split 國內線（待訂）"},
+    {mode:"boat", days:"D10", from:"Split", via:["Vis","Hvar"], to:"Split", note:"D10 Split 跳島：Vis／Hvar，依海況調整"},
     {mode:"bus", days:"D11", from:"Split", via:[], to:"Mostar", note:"D11 Split → Mostar 跨境巴士"},
-    {mode:"daytrip", days:"D12", from:"Mostar", via:["Blagaj"], to:"Mostar", note:"D12 Mostar ↔ Blagaj"},
+    {mode:"bus", days:"D12", from:"Mostar", via:["Blagaj"], to:"Mostar", note:"D12 Mostar ↔ Blagaj"},
     {mode:"train", days:"D13", from:"Mostar", via:[], to:"Sarajevo", note:"D13 Mostar → Sarajevo 景觀火車"},
     {mode:"bus", days:"D15", from:"Sarajevo", via:[], to:"Dubrovnik", note:"D15 Sarajevo → Dubrovnik 跨境巴士"}
   ];
   const line = d3.line().curve(d3.curveCatmullRom.alpha(.45));
+  const defs=svg.append("defs");
+  const markerColors={flight:"var(--route-flight)",bus:"var(--route-bus)",train:"var(--route-train)",boat:"var(--route-boat)"};
+  Object.entries(markerColors).forEach(([mode,color])=>{
+    const marker=defs.append("marker").attr("id",`arrow-${mode}`).attr("viewBox","0 0 10 10").attr("refX",8).attr("refY",5).attr("markerWidth",7).attr("markerHeight",7).attr("orient","auto-start-reverse");
+    marker.append("path").attr("d","M 0 0 L 10 5 L 0 10 z").attr("fill",color);
+  });
   const routeGroup = svg.append("g");
   routes.forEach((r, index) => {
     const names = [r.from, ...r.via, r.to];
     let pts = names.map(n => projection(places[n]));
     if (!r.via.length) {
       const a = pts[0], b = pts[1], dx = b[0]-a[0], dy = b[1]-a[1];
-      const bend = r.mode === "flight" ? 34 : 14;
+      const bend = r.mode === "flight" ? 48 : 18;
       pts = [a, [(a[0]+b[0])/2-dy/Math.hypot(dx,dy)*bend, (a[1]+b[1])/2+dx/Math.hypot(dx,dy)*bend], b];
     }
     const d = line(pts);
     routeGroup.append("path").attr("class","route-halo").attr("d",d);
-    routeGroup.append("path").attr("class",`route ${r.mode}`).attr("d",d)
+    routeGroup.append("path").attr("class",`route ${r.mode}`).attr("d",d).attr("marker-end",`url(#arrow-${r.mode})`)
       .on("pointerenter",() => { detail.textContent = r.note; })
       .on("pointerleave",() => { detail.textContent = "主線：Ljubljana → Zagreb → Split → Mostar → Sarajevo → Dubrovnik。"; });
     const labelPoint = pts[Math.floor(pts.length/2)];
-    const tag = routeGroup.append("g").attr("class","day-tag").attr("transform",`translate(${labelPoint[0]+5},${labelPoint[1]-7})`);
+    const tag = routeGroup.append("g").attr("class",`day-tag ${r.mode}`).attr("transform",`translate(${labelPoint[0]+5},${labelPoint[1]-7})`);
     tag.append("rect").attr("x",-3).attr("y",-11).attr("width",r.days.length*7+8).attr("height",16).attr("rx",4);
     tag.append("text").text(r.days);
   });
 
   const labelOffsets = {
     Ljubljana:[10,-10], Bled:[-48,-8], Vintgar:[-58,-16], Postojna:[10,16], Predjama:[-64,18],
-    Zagreb:[10,-10], Split:[10,18], Mostar:[10,-10], Blagaj:[10,18], Sarajevo:[10,-10], Dubrovnik:[10,18]
+    Zagreb:[10,-10], Split:[10,18], Mostar:[10,-10], Blagaj:[10,18], Sarajevo:[10,-10], Dubrovnik:[10,18], Vis:[-34,18], Hvar:[10,18]
   };
   const pointData = Object.entries(places).map(([name,coords]) => ({name,coords,p:projection(coords)}));
   const points = svg.append("g").selectAll("g").data(pointData).join("g");
-  points.append("circle").attr("class","point").attr("cx",d=>d.p[0]).attr("cy",d=>d.p[1]).attr("r",5).attr("fill","var(--viz-series-1)");
+  points.append("circle").attr("class","point").attr("cx",d=>d.p[0]).attr("cy",d=>d.p[1]).attr("r",5.5).attr("fill","var(--route-bus)");
   points.append("text").attr("class","place-label").attr("x",d=>d.p[0]+labelOffsets[d.name][0]).attr("y",d=>d.p[1]+labelOffsets[d.name][1]).text(d=>d.name);
 
-  const countryLabels = [{name:"SLOVENIA",coords:[14.73,46.33]},{name:"CROATIA",coords:[15.8,44.75]},{name:"BOSNIA & HERZEGOVINA",coords:[17.7,44.5]}];
+  const countryLabels = [{name:"SLOVENIA",coords:[14.73,46.29]},{name:"CROATIA",coords:[15.45,44.72]},{name:"BOSNIA & HERZEGOVINA",coords:[17.72,44.48]}];
   svg.append("g").selectAll("text").data(countryLabels).join("text").attr("class","country-label").attr("x",d=>projection(d.coords)[0]).attr("y",d=>projection(d.coords)[1]).attr("text-anchor","middle").text(d=>d.name);
 
-  const inbound = projection(places.Ljubljana);
-  const outbound = projection(places.Dubrovnik);
-  svg.append("text").attr("class","place-label").attr("x",inbound[0]+18).attr("y",inbound[1]+35).text("✈ D4 from Istanbul");
-  svg.append("text").attr("class","place-label").attr("x",outbound[0]-18).attr("y",outbound[1]+38).attr("text-anchor","end").text("✈ D17 to Geneva");
+  const inbound = projection(places.Ljubljana),outbound = projection(places.Dubrovnik),fromIstanbul=[width-58,84],toGeneva=[62,92];
+  const edgeLine=d3.line().curve(d3.curveBasis);
+  const edgeRoutes=[
+    {pts:[fromIstanbul,[width*.78,72],inbound],label:"FROM ISTANBUL · D4",x:width-42,y:63,anchor:"end"},
+    {pts:[outbound,[width*.34,height-35],toGeneva],label:"TO GENEVA · D17",x:38,y:70,anchor:"start"}
+  ];
+  edgeRoutes.forEach(x=>{
+    svg.append("path").attr("class","route-halo").attr("d",edgeLine(x.pts));
+    svg.append("path").attr("class","route flight").attr("d",edgeLine(x.pts)).attr("marker-end","url(#arrow-flight)");
+    svg.append("text").attr("class","edge-label").attr("x",x.x).attr("y",x.y).attr("text-anchor",x.anchor).text(x.label);
+  });
+
+  const legendData=[{mode:"flight",label:"Flight"},{mode:"bus",label:"Bus"},{mode:"train",label:"Train"},{mode:"boat",label:"Boat"}];
+  const svgLegend=svg.append("g").attr("class","svg-legend").attr("transform",`translate(32,${height-142})`);
+  legendData.forEach((x,i)=>{
+    const row=svgLegend.append("g").attr("transform",`translate(0,${i*28})`);
+    row.append("line").attr("class",`route ${x.mode}`).attr("x1",0).attr("x2",34).attr("y1",0).attr("y2",0);
+    row.append("text").attr("x",44).attr("y",4).text(x.label);
+  });
 
   const legend = [
-    ["flight","飛機"],["bus","巴士"],["train","火車"],["daytrip","當日往返"]
+    ["flight","飛機"],["bus","巴士"],["train","火車"],["boat","船程"]
   ];
   root.querySelector(".route-legend").innerHTML = legend.map(([cls,label]) => `<span class="legend-item"><i class="legend-line ${cls}"></i>${label}</span>`).join("");
   const keepLabelsReadable = () => {
     const shown = Math.max(svg.node().getBoundingClientRect().width, 320);
     const scale = width / shown;
-    svg.selectAll(".place-label").style("font-size", `${Math.max(12, 11 * scale)}px`);
-    svg.selectAll(".country-label").style("font-size", `${Math.max(14, 12 * scale)}px`);
+    svg.selectAll(".place-label,.edge-label").style("font-size", `${Math.max(14, 12 * scale)}px`);
+    svg.selectAll(".country-label").style("font-size", `${Math.max(22, 16 * scale)}px`);
     svg.selectAll(".day-tag text").style("font-size", `${Math.max(10, 10 * scale)}px`);
   };
   keepLabelsReadable();

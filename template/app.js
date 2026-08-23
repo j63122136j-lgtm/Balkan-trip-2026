@@ -7,7 +7,8 @@
   const STORE={
     theme:`${NS}_theme`, notes:`${NS}_notes`, weather:`${NS}_weather`, rates:`${NS}_rates`,
     expenses:`${NS}_expenses`, packing:`${NS}_packing`, checks:`${NS}_checks`,
-    preflight:`${NS}_preflight`, customChecks:`${NS}_custom_checks`
+    preflight:`${NS}_preflight`, customChecks:`${NS}_custom_checks`,
+    flightApiKey:`${NS}_flight_api_key`, flightLive:`${NS}_flight_live`
   };
   let activeDay = 1;
   let deferredPrompt = null;
@@ -90,24 +91,61 @@
     return `<div class="flight-baggage">${items.map(([icon,label,value])=>`<div class="baggage-item"><span class="baggage-icon">${icon}</span><div><small>${label}</small><b>${value}</b></div></div>`).join('')}</div>`;
   }
 
-  function nextFlight(){
+  function flightCode(f){return String(f.code||'').toUpperCase().match(/[A-Z0-9]{2,3}\s?\d{1,4}/)?.[0]?.replace(/\s/g,'')||''}
+  function nextFlightRecord(){
     const now=new Date();
     const list=D.flights.map(f=>({...f,dt:flightDateTime(f)}));
-    const f=list.find(x=>x.dt>=now)||list[list.length-1];
-    const depTerminal=f.fromTerminal||'待確認';
-    const arrTerminal=f.toTerminal||'待確認';
-    const statusLabel=f.status==='booked'?'已訂 / 已出票':(f.status||'待確認');
-    $('#next-flight-status').textContent=f.status==='booked'?'✓ BOOKED':'CHECK';
+    return list.find(x=>x.dt>=new Date(now.getTime()-16*3600000))||list[list.length-1];
+  }
+  function liveClock(value){return value&&String(value).includes(' ')?String(value).split(' ')[1].slice(0,5):''}
+  function nextFlight(live=null,message=''){
+    const f=nextFlightRecord();
+    const depTerminal=live?.dep_terminal||f.fromTerminal||'待確認';
+    const arrTerminal=live?.arr_terminal||f.toTerminal||'待確認';
+    const depGate=live?.dep_gate?` · Gate ${live.dep_gate}`:'';
+    const arrGate=live?.arr_gate?` · Gate ${live.arr_gate}`:'';
+    const depTime=liveClock(live?.dep_estimated)||liveClock(live?.dep_actual)||f.depart;
+    const arrTime=liveClock(live?.arr_estimated)||liveClock(live?.arr_actual)||f.arrive;
+    const statusMap={scheduled:'準時／已排定',active:'飛行中','en-route':'飛行中',landed:'已抵達',cancelled:'已取消',diverted:'轉降'};
+    const liveLabel=live?.status?statusMap[live.status]||live.status:'';
+    const delay=Number(live?.dep_delayed||live?.arr_delayed||0);
+    const statusLabel=liveLabel?`${liveLabel}${delay>0?` · 延誤 ${delay} 分`:''}`:(f.status==='booked'?'已訂 / 已出票':(f.status||'待確認'));
+    $('#next-flight-status').textContent=liveLabel?(live.status==='cancelled'?'⚠ CANCELLED':'● LIVE'):(f.status==='booked'?'✓ BOOKED':'CHECK');
+    $('#next-flight-status').classList.toggle('live',!!liveLabel&&live.status!=='cancelled');
+    $('#next-flight-status').classList.toggle('alert',live?.status==='cancelled');
     $('#next-flight').innerHTML=`
       <div class="flight-route"><b class="airport-code">${f.from}</b><span class="flight-line"></span><b class="airport-code">${f.to}</b></div>
       <div class="flight-meta flight-meta-grid">
-        <div><span>時間</span><b>${f.date} · ${f.depart} → ${f.arrive}</b></div>
+        <div><span>${live?'即時／預估時間':'時間'}</span><b>${f.date} · ${depTime} → ${arrTime}</b></div>
         <div><span>航班</span><b>${f.code} · ${f.airline}</b></div>
-        <div><span>出發航廈</span><b>${f.from} · ${depTerminal}</b></div>
-        <div><span>抵達航廈</span><b>${f.to} · ${arrTerminal}</b></div>
+        <div><span>出發航廈</span><b>${f.from} · ${depTerminal}${depGate}</b></div>
+        <div><span>抵達航廈</span><b>${f.to} · ${arrTerminal}${arrGate}</b></div>
       </div>
       ${baggageMarkup(f,true)}
-      <div class="flight-state"><span class="status-dot"></span>${statusLabel}</div>`;
+      <div class="flight-state"><span class="status-dot"></span><span>${statusLabel}</span></div>
+      <p class="flight-live-note">${message|| (live?`AirLabs 即時資料 · ${new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})} 更新`:'顯示訂票資料')}</p>`;
+  }
+
+  async function updateFlightStatus(force=false){
+    const f=nextFlightRecord(),code=flightCode(f),now=Date.now(),hours=(f.dt-now)/3600000;
+    const cached=load(STORE.flightLive,null);
+    if(!force&&cached?.code===code&&now-cached.at<5*60000){nextFlight(cached.data,'AirLabs 快取 · 5 分鐘內自動沿用');return}
+    if(hours<-20){nextFlight(null,'這趟航程已完成。');return}
+    if(hours>10){nextFlight(null,`即時狀態將於起飛前約 10 小時開放；目前還有 ${Math.ceil(hours/24)} 天。`);return}
+    const key=localStorage.getItem(STORE.flightApiKey)||'';
+    if(!key){nextFlight(null,'尚未設定 AirLabs API key；可到 More → 即時航班設定。');return}
+    nextFlight(null,'正在更新即時航班資料…');
+    try{
+      const url=`https://airlabs.co/api/v9/flight?flight_iata=${encodeURIComponent(code)}&api_key=${encodeURIComponent(key)}`;
+      const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('flight api');
+      const j=await r.json();if(j.error)throw new Error(j.error.message||'flight api');
+      const live=j.response||j;
+      if(!live||String(live.dep_iata||'').toUpperCase()!==f.from||String(live.arr_iata||'').toUpperCase()!==f.to)throw new Error('flight not in live window');
+      save(STORE.flightLive,{code,data:live,at:Date.now()});nextFlight(live);
+    }catch(_){
+      if(cached?.code===code)nextFlight(cached.data,'即時更新失敗，顯示最近一次快取。');
+      else nextFlight(null,'目前查不到這一班的即時資料；請稍後再試或以航空公司通知為準。');
+    }
   }
 
   function eventDate(day,event){
@@ -120,6 +158,16 @@
     const now=new Date();
     const attractionTypes=new Set(['walk','coffee','food','boat']);
     const beforeTrip=now < new Date(`${D.meta.startDate}T00:00:00`);
+    if(beforeTrip){
+      const state=load(STORE.preflight,{}),steps=D.dayZero?.steps||[];
+      const pendingIndex=steps.findIndex(x=>!state[x.id]);
+      const index=pendingIndex<0?steps.length:pendingIndex;
+      const step=pendingIndex<0?null:steps[pendingIndex];
+      $('#next-stop-heading').textContent='接下來的準備';
+      $('#next-attraction').innerHTML=`<div class="next-stop-title"><span>Day 0 · ${step?`STEP ${String(index+1).padStart(2,'0')}`:'ALL DONE'}</span><h3>${esc(step?.title||'行前準備完成')}</h3><p>${esc(step?.action||'所有必要項目都已完成。')}</p></div><div class="next-stop-meta"><span>${esc(step?.priority||'DONE')}</span><span>出發前</span><span>Day 0</span></div><div class="card-actions">${step?`<a class="primary-link" href="${esc(step.url)}" target="_blank" rel="noopener">官方資料 ↗</a>`:''}<button class="text-btn inline" data-open-day="0">查看 Day 0 →</button></div>`;
+      return;
+    }
+    $('#next-stop-heading').textContent='接下來的景點';
     let found=null;
     for(const day of D.days){
       for(const e of day.events){
@@ -147,7 +195,13 @@
     const now=new Date();
     const start=new Date(`${D.meta.startDate}T00:00:00`), end=new Date(`${D.meta.endDate}T23:59:59`);
     let targetDay;
-    if(now<start) targetDay=D.days[0];
+    if(now<start){
+      const state=load(STORE.preflight,{}),pending=(D.dayZero?.steps||[]).filter(x=>!state[x.id]);
+      $('#tomorrow-day-badge').textContent='DAY 0';
+      const highlights=(pending.length?pending.slice(0,3):[{title:'行前準備已完成',priority:'DONE'}]).map((x,i)=>`<li><b>${pending.length?`STEP ${String((D.dayZero.steps.indexOf(x)+1)).padStart(2,'0')}`:'✓'}</b><span>${esc(x.title)}</span></li>`).join('');
+      $('#tomorrow-focus').innerHTML=`<h3>Day 0 · 行前準備</h3><p>${esc(D.dayZero?.summary||'')}</p><ul class="tomorrow-list">${highlights}</ul><button class="text-btn inline" data-open-day="0">打開 Day 0 Timeline →</button>`;
+      return;
+    }
     else if(now>end) targetDay=D.days[D.days.length-1];
     else targetDay=D.days[Math.min(activeDay,D.days.length-1)];
     $('#tomorrow-day-badge').textContent=`DAY ${targetDay.day}`;
@@ -160,10 +214,10 @@
   }
 
   function bindOpenDayButtons(){
-    $$('[data-open-day]').forEach(btn=>btn.addEventListener('click',()=>{
-      activeDay=Number(btn.dataset.openDay)||1;
+    document.addEventListener('click',e=>{const btn=e.target.closest('[data-open-day]');if(!btn)return;
+      activeDay=Number(btn.dataset.openDay);
       renderTabs();renderDay();updateWeather();setScreen('trip');
-    }));
+    });
   }
 
   const weatherCode = c => ({0:['☀︎','晴朗'],1:['☀︎','大致晴朗'],2:['◒','局部多雲'],3:['☁︎','陰天'],45:['≋','霧'],48:['≋','霧'],51:['☂','毛毛雨'],53:['☂','毛毛雨'],55:['☂','毛毛雨'],61:['☂','小雨'],63:['☂','雨'],65:['☂','大雨'],71:['❄︎','小雪'],73:['❄︎','雪'],75:['❄︎','大雪'],80:['☂','陣雨'],81:['☂','陣雨'],82:['☂','強陣雨'],95:['ϟ','雷雨']}[c]||['◌','天氣']);
@@ -342,7 +396,7 @@
       <section class="day-zero-section-head"><div><span class="kicker">PACK LAST</span><h2>Allpa 35L × 2</h2></div><p>證件與訂票完成後，再依分類收尾。</p></section>
       <div class="packing-dashboard day-zero-packing">${packingMarkup()}</div>
       <article class="card glass day-zero-custom"><div class="card-head"><div><span class="kicker">EXTRA TASKS</span><h2>臨時待辦</h2></div><button class="tiny-btn" id="reset-checklist">清空</button></div><div class="add-row"><input id="check-input" placeholder="新增這趟旅行的臨時待辦…"><button id="add-check">＋</button></div><div id="checklist"></div></article>`;
-    $$('[data-preflight]').forEach(x=>x.addEventListener('change',()=>{state[x.dataset.preflight]=x.checked;save(STORE.preflight,state);renderDayZero()}));
+    $$('[data-preflight]').forEach(x=>x.addEventListener('change',()=>{state[x.dataset.preflight]=x.checked;save(STORE.preflight,state);renderDayZero();nextAttraction();tomorrowFocus()}));
     $$('[data-pack]').forEach(x=>x.addEventListener('change',()=>{const packing=load(STORE.packing,{});packing[x.dataset.pack]=x.checked;save(STORE.packing,packing);renderDayZero()}));
     renderChecks();
     setTimeout(observeReveals,20);
@@ -350,6 +404,18 @@
 
   function renderFlights(){
     $('#flight-list').innerHTML=D.flights.map(f=>{const booked=f.status==='booked';return `<div class="flight-item"><div class="flight-item-top"><div><b>${f.from} → ${f.to}</b><small>${f.date} · ${f.depart} → ${f.arrive} · ${f.code}</small></div><span class="booked ${booked?'':'planned'}">${booked?'✓ BOOKED':'○ 待訂'}</span></div><small>${f.airline}</small>${baggageMarkup(f)}</div>`}).join('')
+  }
+
+  function initFlightStatus(){
+    const input=$('#flight-api-key'),saveBtn=$('#save-flight-api'),clearBtn=$('#clear-flight-api'),state=$('#flight-api-state');
+    const paintKeyState=()=>{const has=!!localStorage.getItem(STORE.flightApiKey);state.textContent=has?'✓ 已設定':'未設定';state.classList.toggle('planned',!has);input.value=has?'••••••••••••':''};
+    saveBtn.addEventListener('click',()=>{const key=input.value.trim();if(!key||key.includes('•'))return;localStorage.setItem(STORE.flightApiKey,key);localStorage.removeItem(STORE.flightLive);paintKeyState();updateFlightStatus(true)});
+    clearBtn.addEventListener('click',()=>{localStorage.removeItem(STORE.flightApiKey);localStorage.removeItem(STORE.flightLive);input.value='';paintKeyState();updateFlightStatus(true)});
+    input.addEventListener('focus',()=>{if(input.value.includes('•'))input.value='' });
+    $('#refresh-flight').addEventListener('click',()=>updateFlightStatus(true));
+    paintKeyState();updateFlightStatus();
+    setInterval(()=>{if(!document.hidden)updateFlightStatus()},5*60000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateFlightStatus()});
   }
 
   function renderTripReferences(){
@@ -390,5 +456,5 @@
   document.title=`${D.meta.title} · Travel Dashboard`;
   const brand=$('.brand-button b');if(brand)brand.textContent=D.meta.title;
   $('#top-date').textContent=D.meta.dateRange.replace('2026.','').replace(' — ',' — ');
-  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderFlights();renderTripReferences();bindOpenDayButtons();network();updateWeather();observeReveals();
+  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderFlights();renderTripReferences();bindOpenDayButtons();initFlightStatus();network();updateWeather();observeReveals();
 })();
