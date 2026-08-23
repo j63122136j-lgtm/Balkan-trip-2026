@@ -884,7 +884,7 @@ svg {
   const height = 747;
   svg.attr("viewBox", `0 0 ${width} ${height}`);
   svg.append("title").attr("id","route-map-title").text("Balkan 2026 斯洛維尼亞、克羅埃西亞與波士尼亞路線圖");
-  svg.append("desc").attr("id","route-map-desc").text("D4 從 Istanbul 飛 Ljubljana；D5 洞穴城堡、D6 Bled 與 Vintgar 當日往返；D7 火車到 Zagreb；D9 飛 Split；D10 跳島；D11 巴士到 Mostar，D13 火車到 Sarajevo，D15 巴士到 Dubrovnik；D17 飛 Geneva。");
+  svg.append("desc").attr("id","route-map-desc").text("D4 從 Istanbul 飛 Ljubljana；D5 洞穴城堡、D6 Bled 與 Vintgar 當日往返；D7 火車到 Zagreb；D9 巴士到 Split；D10 跳島；D11 巴士到 Mostar，D13 火車到 Sarajevo，D15 巴士到 Dubrovnik；D17 飛 Geneva。");
 
   const allCountries = feature(world, world.objects.features).features;
   const focusIds = new Set(["SVN", "HRV", "BIH"]);
@@ -910,7 +910,7 @@ svg {
     {mode:"bus", days:"", from:"Ljubljana", via:["Postojna","Predjama"], to:"Ljubljana", note:"D5 洞穴＋城堡，返回 Ljubljana"},
     {mode:"bus", days:"", from:"Ljubljana", via:["Bled","Vintgar"], to:"Ljubljana", note:"D6 Bled＋Vintgar 當日來回"},
     {mode:"train", days:"D7", from:"Ljubljana", via:[], to:"Zagreb", note:"D7 Ljubljana → Zagreb 火車"},
-    {mode:"flight", days:"D9", from:"Zagreb", via:[], to:"Split", note:"D9 Zagreb → Split 國內線（待訂）"},
+    {mode:"bus", days:"D9", from:"Zagreb", via:[], to:"Split", note:"D9 Zagreb → Split 直達巴士"},
     {mode:"boat", days:"", from:"Split", via:["Vis","Hvar"], to:"Split", note:"D10 Split 跳島：Vis／Hvar，依海況調整"},
     {mode:"bus", days:"D11", from:"Split", via:[], to:"Mostar", note:"D11 Split → Mostar 跨境巴士"},
     {mode:"bus", days:"", from:"Mostar", via:["Blagaj"], to:"Mostar", note:"D12 Mostar ↔ Blagaj"},

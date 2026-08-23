@@ -1,4 +1,4 @@
-# Balkan Trip Dashboard v4.8.3
+# Balkan Trip Dashboard v4.10.0
 
 一套可重用、offline-first 的旅行 dashboard。這版已把「畫面模板」與「旅程內容」分開。
 
@@ -18,6 +18,19 @@
 3. 在 `index.html` 把 `trips/balkan-2026.js` 改成新檔名。
 4. 修改首頁 slogan / subtitle（若需要）；`template/` 不必改。
 5. 每次發布更新 `sw.js` 的 `VERSION`，避免舊快取卡住。
+
+## v4.10.0 更新
+
+- 09/18 移除 KKday，改成 Ljubljana → Postojna Cave Park 公共交通自由行；串接 10:40／12:05 官方季節接駁、Predjama Castle 與 14:00 Postojna Cave 場次。
+- 行前清單與打包票券同步改為官方雙景點套票、園區接駁現金及 Ljubljana ↔ Postojna 公共交通備案。
+- 09/17 Istanbul 改為無門票快閃：Blue Mosque／Hagia Sophia 外觀、土耳其早餐、Arasta Bazaar 紀念品、köfte 與 baklava。
+- 來源移除 KKday，改列 Postojna Cave 官方票券及接駁資訊。
+
+## v4.9.0 更新
+
+- 09/22 Zagreb → Split 取消國內線，改為約 08:40 → 13:50 的直達早班巴士；同步移除機場接駁與安檢動線。
+- 路線圖將 Zagreb → Split 的交通方式由飛機改為巴士。
+- Mostar 09/24–09/26 更新為已確認的 Adema Buća 23 B&B，兩晚各 NT$2,018，住宿導航改用實際 Google Maps 連結。
 
 ## v4.8.3 更新
 
@@ -96,4 +109,4 @@
 
 ## 本次同步
 
-2026-08-23 更新 Bangkok 住宿為 Metropolis Suites Bangkok（Sukhumvit 39），兩晚 NT$3,300、每日拆分 NT$1,650。主行程維持 Ljubljana 連住、Bled 當日來回、Zagreb 不租車，取消十六湖，改由 Zagreb 飛 Split 並在 Split 連住兩晚，再由 Mostar、Sarajevo、Dubrovnik 前往 Geneva。
+2026-08-23 更新 Bangkok 住宿為 Metropolis Suites Bangkok（Sukhumvit 39），兩晚 NT$3,300、每日拆分 NT$1,650。主行程維持 Ljubljana 連住、Bled 當日來回、Zagreb 不租車，取消十六湖，09/22 改搭 Zagreb → Split 直達巴士並在 Split 連住兩晚；Mostar 兩晚住宿更新為 Adema Buća 23 B&B，每晚 NT$2,018。

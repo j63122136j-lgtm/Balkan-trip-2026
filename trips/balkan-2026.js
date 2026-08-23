@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.8.3"
+    "version": "4.10.0"
   },
   "route": [
     "Taipei",
@@ -153,24 +153,6 @@ window.TRIP_DATA = {
       }
     },
     {
-      "date": "09/22",
-      "code": "OU652 · 待訂",
-      "from": "ZAG",
-      "to": "SPU",
-      "depart": "12:00",
-      "arrive": "12:45",
-      "airline": "Croatia Airlines（班次與票價付款前確認）",
-      "status": "待訂",
-      "fromTerminal": "待確認",
-      "toTerminal": "待確認",
-      "baggage": {
-        "summary": "依最後購買票種；FlyEasy 通常不含託運",
-        "personal": "依票價規則",
-        "cabin": "依票價規則",
-        "checked": "建議選含 1 件 23 kg 的票種，或訂票時加購"
-      }
-    },
-    {
       "date": "09/30",
       "code": "U21506",
       "from": "DBV",
@@ -288,7 +270,7 @@ window.TRIP_DATA = {
         "priority": "需預約",
         "title": "Vintgar／鐘乳石洞／Split 跳島",
         "why": "這三段受指定時段、集合時間或海況影響，現場再決定容易破壞後續動線。",
-        "action": "購買 09/19 Vintgar 指定時段並核對官方接駁；確認 09/18 Postojna／Predjama voucher；09/23 跳島只選有海況取消或改期條款的產品。",
+        "action": "購買 09/18 Postojna Cave＋Predjama Castle 雙景點套票並選定 14:00 洞穴場次；確認 10:40／12:05 園區接駁。另購 09/19 Vintgar 指定時段；09/23 跳島只選有海況取消或改期條款的產品。",
         "url": "https://www.vintgar.si/en/my-visit/pricelist/",
         "linkLabel": "Vintgar 官方票價與時段"
       },
@@ -296,10 +278,10 @@ window.TRIP_DATA = {
         "id": "key-transport",
         "priority": "待訂",
         "title": "四段關鍵交通",
-        "why": "Zagreb 直飛 Split 與三段跨城／跨境交通決定住宿銜接，是整段巴爾幹路線的骨架。",
-        "action": "完成 09/22 ZAG→SPU、09/24 Split→Mostar、09/26 Mostar→Sarajevo、09/28 Sarajevo→Dubrovnik；逐段保存行李規則、上車點與退改條款。",
-        "url": "https://www.croatiaairlines.com/",
-        "linkLabel": "Croatia Airlines"
+        "why": "Zagreb 到 Split 的長途巴士與三段跨城／跨境交通決定住宿銜接，是整段巴爾幹路線的骨架。",
+        "action": "完成 09/22 Zagreb→Split 直達巴士、09/24 Split→Mostar、09/26 Mostar→Sarajevo、09/28 Sarajevo→Dubrovnik；逐段保存行李規則、上車點與退改條款。",
+        "url": "https://global.flixbus.com/bus-routes/bus-zagreb-split",
+        "linkLabel": "Zagreb → Split 巴士"
       },
       {
         "id": "stays-offline",
@@ -385,10 +367,12 @@ window.TRIP_DATA = {
     {
       "group": "巴爾幹重點",
       "items": [
-        "Postojna／Predjama KKday 憑證",
+        "Postojna／Predjama 官方雙景點票（洞穴 14:00 場）",
+        "Postojna 園區接駁現金 €2／人來回",
+        "Ljubljana ↔ Postojna 公共交通票／備用火車班次",
         "Vintgar Gorge 指定時段票／接駁確認",
         "Bled 來回巴士票",
-        "09/22 Zagreb → Split 國內線",
+        "09/22 Zagreb → Split 直達巴士",
         "09/23 Split 跳島團（含天候取消條款）",
         "Split → Mostar 跨境巴士票",
         "Mostar → Sarajevo 火車",
@@ -578,7 +562,7 @@ window.TRIP_DATA = {
       "weatherKey": "Istanbul",
       "stay": "Ljubljana",
       "theme": "Europe begins",
-      "summary": "Sultanahmet 精華半日，13:15 前離開市區返回 IST。",
+      "summary": "不買門票的 Istanbul 快閃：早餐、小吃、紀念品與 Sultanahmet 外觀散步，13:15 前返回 IST。",
       "events": [
         {
           "time": "05:35",
@@ -603,22 +587,32 @@ window.TRIP_DATA = {
         {
           "time": "08:00",
           "type": "walk",
-          "title": "Sultanahmet 精華圈",
-          "detail": "Blue Mosque、Hagia Sophia、Basilica Cistern 擇一入內。",
-          "duration": "4h",
+          "title": "清真寺外觀＋土耳其早餐",
+          "detail": "Blue Mosque、Hagia Sophia 外觀與 Hippodrome；找 simit、menemen、土耳其茶補眠後的體力。",
+          "duration": "2h",
           "map": "Sultanahmet Istanbul",
-          "why": "Blue Mosque、Hagia Sophia、Basilica Cistern 擇一入內。",
-          "how": "景點間步行；清真寺開放與禮拜時段現場確認。"
+          "why": "不排售票景點，把轉機時間留給吃喝與舊城氣氛。",
+          "how": "全程步行；清真寺只看外觀與免費開放區，遇禮拜時段不等待。"
         },
         {
-          "time": "12:00",
+          "time": "10:00",
+          "type": "walk",
+          "title": "Arasta Bazaar＋紀念品",
+          "detail": "挑 nazar boncuğu 藍眼睛、lokum、土耳其咖啡或小型陶瓷；不買難攜帶的大件商品。",
+          "duration": "1h30",
+          "map": "Arasta Bazaar Istanbul",
+          "why": "集中採買，不為比價跨區繞路。",
+          "how": "從 Blue Mosque 步行約 3–5 分鐘；先確認價格與包裝，再一次買齊。"
+        },
+        {
+          "time": "11:30",
           "type": "food",
-          "title": "Istanbul 午餐",
-          "detail": "快速土耳其料理，13:15 前離開市區。",
-          "duration": "45m",
+          "title": "Köfte 午餐＋Baklava 外帶",
+          "detail": "吃 köfte／piyaz，再到 Hafız Mustafa 外帶 baklava 或 lokum；13:15 前離開市區。",
+          "duration": "1h15",
           "map": "Tarihi Sultanahmet Koftecisi",
-          "why": "快速土耳其料理，13:15 前離開市區。",
-          "how": "選 Sultanahmet 回程動線上的餐廳。"
+          "why": "用一餐與一份甜點完成土耳其快閃，不產生門票支出。",
+          "how": "兩間都在 Sultanahmet 回程動線；甜點選可密封、方便帶上飛機的包裝。"
         },
         {
           "time": "13:15",
@@ -649,7 +643,7 @@ window.TRIP_DATA = {
       },
       "lodging": {
         "area": "Ljubljana · Main Station／Miklošičeva",
-        "why": "靠車站，連住三晚；洞穴團、Bled 巴士及往 Zagreb 都方便。",
+        "why": "靠車站，連住三晚；Postojna、Bled 巴士及往 Zagreb 都方便。",
         "parking": "不需車位；以大眾運輸與步行為主。",
         "map": "Miklosiceva Ljubljana hotels",
         "nightlyPrice": 3500,
@@ -672,63 +666,83 @@ window.TRIP_DATA = {
       "city": "Postojna / Predjama",
       "weatherKey": "Postojna",
       "stay": "Ljubljana",
-      "theme": "Karst half-day",
-      "summary": "KKday 鐘乳石洞＋洞穴城堡，午後回 Ljubljana 市區散步。",
+      "theme": "Karst by public transport",
+      "summary": "Postojna Cave＋Predjama Castle 自由行：公共交通到洞穴公園，搭官方季節接駁串聯城堡，傍晚返回 Ljubljana。",
       "events": [
         {
-          "time": "07:30",
+          "time": "07:45",
           "type": "move",
-          "title": "前往 KKday 集合點",
-          "detail": "時間與接送點以 voucher 為準。",
-          "duration": "30m",
-          "map": "City Hotel Ljubljana",
-          "why": "時間與接送點以 voucher 為準。",
-          "how": "前一晚截圖憑證；由住宿步行或短程 taxi。"
+          "title": "Ljubljana → Postojna Cave Park",
+          "detail": "目標搭約 08:08 直達 Postojnska jama 的巴士，約 09:05 抵達；班次未開賣時以火車到 Postojna＋步行／短程 taxi 為備案。",
+          "duration": "約 1h20",
+          "map": "Ljubljana Bus Station",
+          "why": "自行前往比跟團更省，且能依官方接駁節奏安排城堡與洞穴。",
+          "how": "07:45 前到 Ljubljana Bus Station；出發前 30 天再次確認 09/18 班次與回程票。"
         },
         {
-          "time": "09:00",
-          "type": "walk",
-          "title": "Postojna Cave 鐘乳石洞",
-          "detail": "洞穴電車＋步行。",
-          "duration": "2h",
-          "map": "Postojna Cave",
-          "why": "洞穴電車＋步行。",
-          "how": "洞內約 10°C，帶薄中層與止滑鞋。"
+          "time": "10:40",
+          "type": "move",
+          "title": "官方接駁 → Predjama Castle",
+          "detail": "持雙景點套票搭園區接駁，車程約 20 分鐘；回程票 €2／人、車上付現。",
+          "duration": "20m",
+          "map": "Postojna Cave Park shuttle stop",
+          "why": "09/18 在 2026 季節接駁營運期內，不必叫計程車。",
+          "how": "09:20 前先到售票處換票並確認接駁站牌；若滿位，請票務櫃檯協助叫 taxi。"
         },
         {
-          "time": "12:00",
+          "time": "11:00",
           "type": "walk",
           "title": "Predjama Castle 洞穴城堡",
-          "detail": "隨團前往城堡。",
-          "duration": "1h30",
+          "detail": "使用票價內含的官方 App 導覽，自由參觀約 1 小時。",
+          "duration": "1h",
           "map": "Predjama Castle",
-          "why": "隨團前往城堡。",
-          "how": "依導遊集合時間，不自行離隊。"
+          "why": "先看城堡，再回洞穴公園用餐與參加固定時段洞穴導覽。",
+          "how": "12:05 搭接駁回 Postojna Cave Park；不要錯過，下一班會壓縮洞穴報到時間。"
         },
         {
-          "time": "15:30",
-          "type": "walk",
-          "title": "返回 Ljubljana＋Prešeren Square",
-          "detail": "河岸、廣場與舊城慢走。",
-          "duration": "2h30",
-          "map": "Preseren Square Ljubljana",
-          "why": "河岸、廣場與舊城慢走。",
-          "how": "團車回城後全程步行。"
-        },
-        {
-          "time": "19:00",
+          "time": "12:30",
           "type": "food",
-          "title": "Ljubljana 晚餐",
-          "detail": "市區晚餐並整理隔天健行用品。",
-          "duration": "1h30",
-          "map": "Ljubljana dinner",
-          "why": "市區晚餐並整理隔天健行用品。",
-          "how": "選住宿回程順路餐廳。"
+          "title": "洞穴公園午餐＋報到",
+          "detail": "簡單午餐後，13:30 前到洞穴入口準備 14:00 場次。",
+          "duration": "1h15",
+          "map": "Postojna Cave Park restaurants",
+          "why": "官方要求提早到園區，並於場次前 15 分鐘開始登車。",
+          "how": "只吃園區內快速餐點；先上洗手間、穿好薄中層再排隊。"
+        },
+        {
+          "time": "14:00",
+          "type": "walk",
+          "title": "Postojna Cave 鐘乳石洞",
+          "detail": "洞穴電車＋步行導覽，約 90–120 分鐘。",
+          "duration": "約 1h45",
+          "map": "Postojna Cave",
+          "why": "固定場次需提前選票；城堡自由行後回來剛好銜接。",
+          "how": "洞內約 10°C，穿薄中層與止滑鞋；13:45 前完成登車。"
+        },
+        {
+          "time": "16:15",
+          "type": "move",
+          "title": "Postojna → Ljubljana",
+          "detail": "搭傍晚巴士或火車返回，目標 17:30–18:15 抵達 Ljubljana。",
+          "duration": "約 1h15–1h40",
+          "map": "Postojna bus station",
+          "why": "回程保留一班以上的備援，不綁死末班車。",
+          "how": "購票時同步存好下一班備案；若搭火車，洞穴公園到 Postojna Station 步行約 25–30 分鐘。"
+        },
+        {
+          "time": "18:30",
+          "type": "food",
+          "title": "Ljubljana 河岸晚餐",
+          "detail": "Prešeren Square、Ljubljanica 河岸慢走並整理隔天健行用品。",
+          "duration": "2h",
+          "map": "Preseren Square Ljubljana",
+          "why": "自由行會比半日團晚回，但仍保留市區晚餐與夜間生活感。",
+          "how": "由車站步行回住宿放東西，再沿 Miklošičeva 走到舊城。"
         }
       ],
       "lodging": {
         "area": "Ljubljana · 同一間第 2 晚",
-        "why": "半日團後不搬行李，下午補市區。",
+        "why": "洞穴自由行後不搬行李，傍晚回城吃飯。",
         "parking": "不需車位；以大眾運輸與步行為主。",
         "map": "Miklosiceva Ljubljana hotels",
         "nightlyPrice": 3500,
@@ -973,7 +987,7 @@ window.TRIP_DATA = {
       },
       "lodging": {
         "area": "Zagreb · 同一間第 2 晚",
-        "why": "不換住宿；隔天睡飽後前往 ZAG，搭國內線到 Split。",
+        "why": "不換住宿；隔天提早前往 Zagreb Bus Station，搭直達巴士到 Split。",
         "parking": "不需車位；以大眾運輸與步行為主。",
         "map": "Zrinjevac Zagreb hotels",
         "nightlyPrice": 3500,
@@ -997,50 +1011,50 @@ window.TRIP_DATA = {
       "weatherKey": "Split",
       "stay": "Split",
       "theme": "Capital to coast",
-      "summary": "睡飽退房後飛往 Split；午後安頓，再用慢步調認識舊城與海港。",
+      "summary": "搭直達早班巴士前往 Split；午後安頓，再用慢步調認識舊城與海港。",
       "events": [
         {
-          "time": "08:30",
+          "time": "07:00",
           "type": "food",
           "title": "Zagreb 早餐＋退房",
           "detail": "不排新景點，留時間整理行李。",
-          "duration": "1h30",
-          "map": "Zrinjevac Zagreb",
-          "why": "維持兩晚住宿後的從容節奏，不用清晨拉車。",
-          "how": "在住宿周邊早餐，09:45 前取行李出發。"
-        },
-        {
-          "time": "09:45",
-          "type": "move",
-          "title": "Zagreb 市區 → ZAG",
-          "detail": "搭機場巴士前往 Zagreb Airport。",
-          "duration": "約 40m＋候車",
-          "map": "Zagreb Airport",
-          "why": "國內線仍預留行李托運與安檢時間。",
-          "how": "由 Zagreb Bus Station 搭 Pleso prijevoz 機場巴士；最晚 10:30 抵達航廈。"
-        },
-        {
-          "time": "12:00",
-          "type": "flight",
-          "title": "ZAG → SPU",
-          "detail": "暫排 OU652 12:00 → 12:45；付款前核對 09/22 實際班次。",
           "duration": "45m",
-          "map": "Split Airport",
-          "why": "直接跳過十六湖，換得 Split 兩晚與完整跳島日。",
-          "how": "優先購買含託運行李的票種；若航班異動，備案改搭直達巴士。"
+          "map": "Zrinjevac Zagreb",
+          "why": "提早吃完早餐，換得午後完整的 Split 舊城時間。",
+          "how": "前晚整理行李；07:45 前取行李出發。"
         },
         {
-          "time": "13:10",
+          "time": "07:45",
           "type": "move",
-          "title": "SPU → Split 市區",
-          "detail": "機場巴士到港口／巴士站，再步行入住。",
-          "duration": "約 45–60m",
-          "map": "Split Bus Station",
-          "why": "住宿放在 Lučac／Manuš，後兩天都不用搬行李。",
-          "how": "搭機場 shuttle 到 Split Bus Station；再步行 10–18 分鐘或短程 taxi。"
+          "title": "住宿 → Zagreb Bus Station",
+          "detail": "至少提前 30 分鐘到站，確認月台與行李規則。",
+          "duration": "約 25–35m",
+          "map": "Zagreb Bus Station",
+          "why": "長途巴士月台可能臨時調整，預留找車與放置行李的時間。",
+          "how": "由 Zrinjevac／Main Station 一帶搭電車或短程 Bolt；目的地為 Avenija Marina Držića 4。"
         },
         {
-          "time": "15:00",
+          "time": "08:40",
+          "type": "move",
+          "title": "Zagreb → Split 直達巴士",
+          "detail": "優先選約 08:40 → 13:50 的早班；官網最低價約每人 NT$655–820，09/22 實價以結帳為準。",
+          "duration": "約 4h55–5h30",
+          "map": "Split Bus Station",
+          "why": "比每日 13:49 → 21:47 的直達火車快約 2.5–3 小時，也省去兩端機場交通。",
+          "how": "優先比較 Arriva／FlixBus 直達班次；確認 35L 背包是否需另付行李費，手機保存 QR code。"
+        },
+        {
+          "time": "14:15",
+          "type": "stay",
+          "title": "步行入住 Split",
+          "detail": "巴士站就在港口旁，先寄放行李再進舊城。",
+          "duration": "約 30–45m",
+          "map": "Lucac Split",
+          "why": "住宿放在 Lučac／Manuš，後兩天都不用搬行李。",
+          "how": "由 Split Bus Station 步行 10–18 分鐘或短程 taxi。"
+        },
+        {
+          "time": "15:30",
           "type": "walk",
           "title": "Diocletian’s Palace 慢走",
           "detail": "Peristyle、舊城巷弄、Matejuška，不趕博物館清單。",
@@ -1050,7 +1064,7 @@ window.TRIP_DATA = {
           "how": "全程步行；石板路穿抓地鞋，沿路依體力停留。"
         },
         {
-          "time": "18:30",
+          "time": "19:00",
           "type": "food",
           "title": "Riva 日落＋Konoba 晚餐",
           "detail": "海港散步，吃達爾馬提亞海鮮或每日黑板菜。",
@@ -1215,19 +1229,21 @@ window.TRIP_DATA = {
           "title": "Mostar 入住",
           "detail": "簡單補給後休息。",
           "duration": "—",
-          "map": "Luka Mostar",
+          "map": "Adema Buca 23 Mostar",
           "why": "簡單補給後休息。",
-          "how": "由車站步行或短程 taxi 前往 Luka／Old Town 北緣。"
+          "how": "由 Mostar Bus Station East 步行或搭短程 taxi 前往 Adema Buća 23。"
         }
       ],
       "lodging": {
-        "area": "Mostar · Luka／Old Town 北緣",
-        "why": "到老城與車站都在短程步行／taxi 範圍，連住兩晚。",
+        "area": "Mostar／Adema Buća 23 B&B",
+        "why": "住宿已確認，連住兩晚；前往古橋老城與車站皆可步行或短程 taxi。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Luka Mostar hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 1 晚",
-        "costStatus": "預估"
+        "map": "Adema Buca 23 Mostar",
+        "url": "https://maps.app.goo.gl/hkgKVSjYeEjExfup7",
+        "nightlyPrice": 2018,
+        "totalPrice": 4036,
+        "priceNote": "已確認／第 1 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -1306,13 +1322,14 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:Mostar_Old_Bridge_Hd_Wallpaper_(30160095).jpeg"
       },
       "lodging": {
-        "area": "Mostar · 同一間第 2 晚",
-        "why": "不換住宿，隔天傍晚搭景觀火車。",
+        "area": "Mostar／Adema Buća 23 B&B · 同一間第 2 晚",
+        "why": "住宿已確認；不換住宿，隔天傍晚搭景觀火車。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Luka Mostar hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 2 晚",
-        "costStatus": "預估"
+        "map": "Adema Buca 23 Mostar",
+        "url": "https://maps.app.goo.gl/hkgKVSjYeEjExfup7",
+        "nightlyPrice": 2018,
+        "priceNote": "已確認／第 2 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -1795,11 +1812,11 @@ window.TRIP_DATA = {
   "tripNotes": [
     {
       "title": "斯洛維尼亞",
-      "text": "09/17–09/19 固定住 Ljubljana；09/18 洞穴團、09/19 Bled＋Vintgar 早去晚回。Bled 不過夜，省住宿費與搬行李。"
+      "text": "09/17–09/19 固定住 Ljubljana；09/18 搭公共交通自由行 Postojna／Predjama，使用 2026/06/27–09/30 園區接駁；09/19 Bled＋Vintgar 早去晚回。Bled 不過夜，省住宿費與搬行李。"
     },
     {
       "title": "Zagreb → Split",
-      "text": "取消十六湖與租車。Zagreb 連住兩晚後，09/22 暫排 OU652 12:00→12:45 飛 Split；班次、票價與行李額付款前再次確認。"
+      "text": "取消十六湖、租車與國內線。09/22 優先搭約 08:40→13:50 的直達早班巴士；車程約 4h55–5h30，付款前確認班次、票價、上車月台與行李規則。"
     },
     {
       "title": "Split 兩晚",
@@ -1807,7 +1824,7 @@ window.TRIP_DATA = {
     },
     {
       "title": "Split → Mostar",
-      "text": "09/24 選 17:30 跨境巴士，16:20–16:30 抵達車站；邊境延誤需保留 60–90 分鐘，Mostar 住宿選 Luka／Old Town 北緣。"
+      "text": "09/24 選 17:30 跨境巴士，16:20–16:30 抵達車站；邊境延誤需保留 60–90 分鐘。Mostar 09/24–09/26 已確認 Adema Buća 23 B&B，兩晚共 NT$4,036。"
     },
     {
       "title": "Bosnia 火車",
@@ -1832,8 +1849,12 @@ window.TRIP_DATA = {
       "url": "https://www.ap-ljubljana.si/en"
     },
     {
-      "label": "KKday cave tour",
-      "url": "https://www.kkday.com/en-hk/product/620560"
+      "label": "Postojna Cave official tickets",
+      "url": "https://www.postojnska-jama.eu/en/tickets/two-adventures/"
+    },
+    {
+      "label": "Postojna Cave ↔ Predjama shuttle",
+      "url": "https://www.postojnska-jama.eu/en/information/shuttle-bus/"
     },
     {
       "label": "Vintgar Gorge official",
