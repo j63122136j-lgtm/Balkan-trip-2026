@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.8.0"
+    "version": "4.8.2"
   },
   "route": [
     "Taipei",
@@ -1126,10 +1126,10 @@ window.TRIP_DATA = {
         }
       ],
       "photo": {
-        "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hvar%20from%20the%20sea.jpg?width=1400",
-        "alt": "Hvar seen from the Adriatic",
-        "credit": "Wikimedia Commons",
-        "source": "https://commons.wikimedia.org/wiki/File:Hvar_from_the_sea.jpg"
+        "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hvar-Croatia-view-from-sea.jpg?width=1400",
+        "alt": "Hvar from the Adriatic Sea",
+        "credit": "acediscovery · Wikimedia Commons",
+        "source": "https://commons.wikimedia.org/wiki/File:Hvar-Croatia-view-from-sea.jpg"
       },
       "lodging": {
         "area": "Split · 同一間第 2 晚",

@@ -400,3 +400,37 @@
 @media(max-width:390px){
   .itinerary-main>div{display:block}.itinerary-main .event-kind{margin:6px 0 0}
 }
+
+/* Single-line trip navigator + compact spend/discovery · v4.8.1 */
+.trip-toolbar{position:sticky;top:calc(72px + var(--safe-top));z-index:60;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;margin:12px 0 16px;padding:6px;border-radius:18px;overflow:hidden}
+.trip-toolbar-title{display:flex;align-items:baseline;gap:6px;padding:0 7px 0 5px;white-space:nowrap}
+.trip-toolbar-title span{color:var(--blue);font-size:8px;font-weight:900;letter-spacing:.11em}
+.trip-toolbar-title b{font-size:16px;letter-spacing:-.03em}
+.trip-toolbar .day-tabs-wrap{position:static;min-width:0;margin:0;padding:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none}
+.trip-toolbar .day-tabs{gap:3px}.trip-toolbar .day-tab{min-width:61px;padding:6px 8px;border-radius:12px}
+.trip-toolbar .day-tab b{font-size:9px}.trip-toolbar .day-tab small{font-size:7px;margin-top:2px}
+.expense-card-compact{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px 14px;align-items:center;padding:13px 16px}
+.expense-card-compact .expense-card-head{display:block}.expense-card-compact .expense-card-head h2{margin:0;font-size:14px}
+.expense-card-compact .expense-card-head strong{display:block;margin-top:3px;font-size:18px}
+.expense-card-compact .expense-form{grid-template-columns:100px minmax(140px,1fr) 135px 88px;margin:0}
+.expense-card-compact .day-expense-list{grid-column:1/-1;margin-top:0}
+.discovery-card{margin-bottom:16px;padding:20px 22px;border-radius:28px}
+.discovery-grid{display:grid;grid-template-columns:minmax(240px,.75fr) minmax(0,1.25fr);gap:0}
+.discovery-section{min-width:0}.discovery-section h2{margin:5px 0 0;font-size:18px;letter-spacing:-.025em}
+.discovery-food{padding-right:20px}.discovery-local{padding-left:20px;border-left:1px solid var(--line)}
+.discovery-card.single .discovery-grid{grid-template-columns:1fr}.discovery-card.single .discovery-section{padding:0;border:0}
+.discovery-card .food-list,.discovery-card .local-stop-list{margin:13px 0 0}
+.discovery-card>small{display:block;margin-top:11px;color:var(--muted);font-size:8px;line-height:1.5}
+
+@media(max-width:760px){
+  .trip-toolbar{top:calc(66px + var(--safe-top));gap:4px;margin:8px 0 12px;padding:5px;border-radius:16px}
+  .trip-toolbar-title{padding:0 5px}.trip-toolbar-title span{display:none}.trip-toolbar-title b{font-size:14px}
+  .trip-toolbar .day-tabs-wrap{margin:0}.trip-toolbar .day-tab{min-width:56px;padding:6px}
+  .expense-card-compact{grid-template-columns:1fr;padding:13px;gap:9px}
+  .expense-card-compact .expense-card-head{display:flex;align-items:center;justify-content:space-between}
+  .expense-card-compact .expense-card-head strong{margin:0;font-size:17px}
+  .expense-card-compact .expense-form{grid-template-columns:90px minmax(0,1fr);grid-template-areas:"category amount" "item add"}
+  .expense-card-compact .expense-form button{min-height:42px}
+  .discovery-card{padding:17px;margin-bottom:12px;border-radius:24px}
+  .discovery-grid{grid-template-columns:1fr}.discovery-food{padding:0 0 16px}.discovery-local{padding:16px 0 0;border-left:0;border-top:1px solid var(--line)}
+}
