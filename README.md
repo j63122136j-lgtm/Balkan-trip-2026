@@ -1,4 +1,11 @@
-# Balkan Trip Dashboard v4.10.1
+# Balkan Trip Dashboard v4.11.0
+
+## v4.11.0 更新
+
+- Ljubljana 09/17–09/19 三晚住宿正式確認為 Gosposvetska cesta 4, Ljubljana 1000。
+- 三晚住宿總額更新為 NT$13,343，依每日 Budget 精確分攤為 NT$4,448、NT$4,448、NT$4,447。
+- 三個 Day 頂部住宿卡統一改為實際地址與 Google Maps 導航，並移除原本每晚 NT$3,500 的暫估。
+- Budget 已確認住宿統計改為曼谷、Ljubljana、Mostar三筆實際金額，其餘住宿仍暫估每晚 NT$3,500。
 
 ## v4.10.1 更新
 
@@ -94,7 +101,7 @@
 
 - Budget 改為固定／預計支出、每日消費與目前旅行總花費，不再顯示預算上限與剩餘額。
 - 每個 Day 分頁新增精簡消費記錄，可輸入分類、項目與新台幣金額並逐筆刪除。
-- 住宿共 16 晚：曼谷兩晚共 NT$3,300；其餘 14 晚先以每晚 NT$3,500 估列。
+- 當時住宿基準為：曼谷兩晚共 NT$3,300；其餘住宿先以每晚 NT$3,500 估列。Ljubljana 與 Mostar 後續已改為確認金額。
 - 每日消費與打包勾選使用不含版本號的 localStorage key，後續更新 dashboard 不會因版本變更而消失；舊版 Pack 會自動沿用。
 - 舊版 Budget 若已有交通、餐飲或其他實際支出，第一次開啟時會自動轉入每日消費總計。
 
@@ -113,4 +120,4 @@
 
 ## 本次同步
 
-2026-08-23 更新 Bangkok 住宿為 Metropolis Suites Bangkok（Sukhumvit 39），兩晚 NT$3,300、每日拆分 NT$1,650。主行程維持 Ljubljana 連住、Bled 當日來回、Zagreb 不租車，取消十六湖，09/22 改搭 Zagreb → Split 直達巴士並在 Split 連住兩晚；Mostar 兩晚住宿更新為 Adema Buća 23 B&B，每晚 NT$2,018。
+2026-08-25 更新 Ljubljana 住宿為 Gosposvetska cesta 4，09/17–09/19 三晚共 NT$13,343。Bangkok 兩晚為 Metropolis Suites Bangkok，共 NT$3,300；Mostar 兩晚為 Adema Buća 23 B&B，每晚 NT$2,018。主行程維持 Ljubljana 連住、Bled 當日來回、Zagreb 不租車，取消十六湖，09/22 搭 Zagreb → Split 直達巴士並在 Split 連住兩晚。

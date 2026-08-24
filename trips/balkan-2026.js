@@ -1,5 +1,5 @@
 /* Balkan 2026 — trip content only. Duplicate this file to reuse the template.
-   Synced from the reviewed itinerary on 2026-08-23. */
+   Synced from the reviewed itinerary on 2026-08-25. */
 window.TRIP_DATA = {
   "meta": {
     "title": "Balkan 2026",
@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.10.1"
+    "version": "4.11.0"
   },
   "route": [
     "Taipei",
@@ -642,13 +642,14 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:Blue_Mosque_and_Hagia_Sophia_panorama,_Istanbul,_Turkey_(9603565867).jpg"
       },
       "lodging": {
-        "area": "Ljubljana · Main Station／Miklošičeva",
-        "why": "靠車站，連住三晚；Postojna、Bled 巴士及往 Zagreb 都方便。",
+        "area": "Ljubljana · Gosposvetska cesta 4",
+        "why": "住宿已確認，連住三晚；步行可到巴士／火車站及舊城。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Miklosiceva Ljubljana hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 1 晚",
-        "costStatus": "預估"
+        "map": "Gosposvetska cesta 4 Ljubljana 1000",
+        "url": "https://www.google.com/maps/search/?api=1&query=Gosposvetska+cesta+4%2C+Ljubljana+1000",
+        "nightlyPrice": 4448,
+        "priceNote": "已確認／3 晚共 NT$13,343／第 1 晚分攤",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -737,17 +738,18 @@ window.TRIP_DATA = {
           "duration": "2h",
           "map": "Preseren Square Ljubljana",
           "why": "自由行會比半日團晚回，但仍保留市區晚餐與夜間生活感。",
-          "how": "由車站步行回住宿放東西，再沿 Miklošičeva 走到舊城。"
+          "how": "由車站沿 Trg Osvobodilne fronte／Gosposvetska cesta 步行回住宿，再前往舊城。"
         }
       ],
       "lodging": {
-        "area": "Ljubljana · 同一間第 2 晚",
-        "why": "洞穴自由行後不搬行李，傍晚回城吃飯。",
+        "area": "Ljubljana · Gosposvetska cesta 4 · 第 2 晚",
+        "why": "住宿已確認；洞穴自由行後不搬行李，傍晚回城吃飯。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Miklosiceva Ljubljana hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 2 晚",
-        "costStatus": "預估"
+        "map": "Gosposvetska cesta 4 Ljubljana 1000",
+        "url": "https://www.google.com/maps/search/?api=1&query=Gosposvetska+cesta+4%2C+Ljubljana+1000",
+        "nightlyPrice": 4448,
+        "priceNote": "已確認／3 晚共 NT$13,343／第 2 晚分攤",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -836,13 +838,14 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:Lake_bled_2021.jpg"
       },
       "lodging": {
-        "area": "Ljubljana · 同一間第 3 晚",
-        "why": "Bled 住宿較貴，單程約一小時，當日來回更符合預算。",
+        "area": "Ljubljana · Gosposvetska cesta 4 · 第 3 晚",
+        "why": "住宿已確認；Bled 當日來回，三晚不搬行李。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Miklosiceva Ljubljana hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 3 晚",
-        "costStatus": "預估"
+        "map": "Gosposvetska cesta 4 Ljubljana 1000",
+        "url": "https://www.google.com/maps/search/?api=1&query=Gosposvetska+cesta+4%2C+Ljubljana+1000",
+        "nightlyPrice": 4447,
+        "priceNote": "已確認／3 晚共 NT$13,343／第 3 晚分攤",
+        "costStatus": "已確認"
       },
       "food": [
         {
