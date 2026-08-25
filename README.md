@@ -1,4 +1,12 @@
-# Balkan Trip Dashboard v4.12.0
+# Balkan Trip Dashboard v4.13.0
+
+## v4.13.0 更新
+
+- 移除手機無法正常使用的互動式道路地圖與 `route-map.html`。
+- 首頁恢復固定版 Balkan 路線圖，不再依賴外部地圖服務或載入圖磚。
+- 路線更新為 Ljubljana → Zagreb → Split → Mostar → Sarajevo → Dubrovnik。
+- 移除 Plitvice Lakes 與租車路線，Zagreb → Split 改為巴士。
+- Day 標示更新為 D4、D5、D6、D7、D9、D11、D12、D13、D15 與 D17。
 
 ## v4.12.0 更新
 
