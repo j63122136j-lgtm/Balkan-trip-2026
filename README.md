@@ -1,4 +1,9 @@
-# Balkan Trip Dashboard v4.13.0
+# Balkan Trip Dashboard v4.13.1
+
+## v4.13.1 更新
+
+- 首頁改為 network-first，避免 GitHub Pages 更新後仍被舊 Service Worker 畫面卡住。
+- 路線圖加入版本參數，部署新版時不會沿用舊圖片快取。
 
 ## v4.13.0 更新
 
