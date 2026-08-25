@@ -1,4 +1,10 @@
-# Balkan Trip Dashboard v4.13.1
+# Balkan Trip Dashboard v4.14.0
+
+## v4.14.0 更新
+
+- D4 Istanbul 航線完整連接至 Ljubljana。
+- 補上 D7 Ljubljana → Zagreb 巴士路線。
+- D13 火車路線更正為 Mostar → Sarajevo，不再由 Blagaj 起線。
 
 ## v4.13.1 更新
 

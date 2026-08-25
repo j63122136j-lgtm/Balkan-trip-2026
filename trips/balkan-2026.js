@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.13.1"
+    "version": "4.14.0"
   },
   "route": [
     "Taipei",
