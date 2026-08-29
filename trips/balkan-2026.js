@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.14.0"
+    "version": "4.15.0"
   },
   "route": [
     "Taipei",
@@ -671,14 +671,14 @@ window.TRIP_DATA = {
       "summary": "Postojna Cave＋Predjama Castle 自由行：公共交通到洞穴公園，搭官方季節接駁串聯城堡，傍晚返回 Ljubljana。",
       "events": [
         {
-          "time": "07:45",
+          "time": "06:45",
           "type": "move",
           "title": "Ljubljana → Postojna Cave Park",
-          "detail": "目標搭約 08:08 直達 Postojnska jama 的巴士，約 09:05 抵達；班次未開賣時以火車到 Postojna＋步行／短程 taxi 為備案。",
+          "detail": "07:15 離開住宿，目標 07:35 抵達車站；搭約 08:08 直達 Postojnska jama 的巴士，約 09:05 抵達。",
           "duration": "約 1h20",
           "map": "Ljubljana Bus Station",
           "why": "自行前往比跟團更省，且能依官方接駁節奏安排城堡與洞穴。",
-          "how": "07:45 前到 Ljubljana Bus Station；出發前 30 天再次確認 09/18 班次與回程票。"
+          "how": "步行前往 Ljubljana Bus Station，保留約 33 分鐘找月台；班次未開賣時以火車到 Postojna＋步行／短程 taxi 為備案。"
         },
         {
           "time": "10:40",
@@ -771,17 +771,17 @@ window.TRIP_DATA = {
       "summary": "早去晚回 Bled：Vintgar Gorge 健行、湖畔散步與奶油蛋糕。",
       "events": [
         {
-          "time": "07:00",
+          "time": "06:20",
           "type": "move",
-          "title": "Ljubljana → Bled",
-          "detail": "約 08:20 抵達，轉免費／季節接駁前往 Vintgar。",
-          "duration": "約 1h20",
+          "title": "住宿 → Ljubljana Bus Station → Bled",
+          "detail": "06:20 離開住宿，目標 06:40 到站；搭約 07:00 巴士，約 08:20 抵達 Bled。",
+          "duration": "步行約 20m＋巴士約 1h20",
           "map": "Bled Bus Station",
           "why": "約 08:20 抵達，轉免費／季節接駁前往 Vintgar。",
-          "how": "Ljubljana Bus Station 搭早班巴士；接駁營運與班距出發前確認。"
+          "how": "到站後至少保留 20 分鐘找月台；Vintgar 接駁營運與班距出發前確認。"
         },
         {
-          "time": "09:00",
+          "time": "09:30",
           "type": "walk",
           "title": "Vintgar Gorge 峽谷健行",
           "detail": "峽谷步道與出口接駁，約 3 小時。",
@@ -811,14 +811,14 @@ window.TRIP_DATA = {
           "how": "步行為主；不必強求完整環湖與高強度登高。"
         },
         {
-          "time": "17:15",
+          "time": "17:00",
           "type": "food",
           "title": "Bled 奶油蛋糕＋提早晚餐",
-          "detail": "保留回程巴士緩衝。",
-          "duration": "1h15",
+          "detail": "18:20 前結束用餐，目標 18:35 抵達 Bled Bus Station。",
+          "duration": "1h20",
           "map": "Park Cafe Bled",
           "why": "保留回程巴士緩衝。",
-          "how": "用餐後步行回 Bled Bus Station。"
+          "how": "用餐後步行回 Bled Bus Station，為 19:00 發車保留約 25 分鐘。"
         },
         {
           "time": "19:00",
@@ -864,7 +864,7 @@ window.TRIP_DATA = {
       "weatherKey": "Ljubljana",
       "stay": "Zagreb",
       "theme": "City & rail",
-      "summary": "白天補齊 Ljubljana，傍晚搭火車前往 Zagreb。",
+      "summary": "白天補齊 Ljubljana，搭 16:45 火車前往 Zagreb，晚餐前抵達。",
       "events": [
         {
           "time": "09:00",
@@ -881,33 +881,33 @@ window.TRIP_DATA = {
           "type": "walk",
           "title": "Central Market＋Ljubljana Castle",
           "detail": "市場午餐、城堡與 Ljubljanica 河畔。",
-          "duration": "4h",
+          "duration": "2h45",
           "map": "Ljubljana Castle",
           "why": "市場午餐、城堡與 Ljubljanica 河畔。",
           "how": "市場旁搭纜車上城堡；下山後取行李。"
         },
         {
-          "time": "17:15",
+          "time": "15:00",
           "type": "move",
           "title": "取行李＋前往車站",
-          "detail": "預留找月台與補給時間。",
+          "detail": "15:00 回住宿取行李，目標 15:45 前抵達車站。",
           "duration": "45m",
           "map": "Ljubljana Railway Station",
           "why": "預留找月台與補給時間。",
-          "how": "步行回住宿取行李，再到主站。"
+          "how": "步行回住宿取行李，再到主站；為 16:45 發車保留至少 60 分鐘。"
         },
         {
-          "time": "18:25",
+          "time": "16:45",
           "type": "move",
           "title": "Ljubljana → Zagreb",
-          "detail": "火車約 20:43 抵達。",
-          "duration": "2h18",
+          "detail": "依 2026 國際時刻表，火車約 19:10 抵達。",
+          "duration": "約 2h25",
           "map": "Zagreb Glavni kolodvor",
-          "why": "火車約 20:43 抵達。",
+          "why": "比 18:25 班次早約 1 小時 36 分抵達 Zagreb，入住與晚餐更從容。",
           "how": "護照隨身；班次與月台在出發前再次核對。"
         },
         {
-          "time": "21:00",
+          "time": "19:30",
           "type": "stay",
           "title": "Zagreb 入住＋簡單晚餐",
           "detail": "抵達後不再排景點。",
@@ -1017,20 +1017,20 @@ window.TRIP_DATA = {
       "summary": "搭直達早班巴士前往 Split；午後安頓，再用慢步調認識舊城與海港。",
       "events": [
         {
-          "time": "07:00",
+          "time": "06:30",
           "type": "food",
           "title": "Zagreb 早餐＋退房",
           "detail": "不排新景點，留時間整理行李。",
-          "duration": "45m",
+          "duration": "40m",
           "map": "Zrinjevac Zagreb",
           "why": "提早吃完早餐，換得午後完整的 Split 舊城時間。",
-          "how": "前晚整理行李；07:45 前取行李出發。"
+          "how": "前晚整理行李；07:20 前取行李離開住宿。"
         },
         {
-          "time": "07:45",
+          "time": "07:20",
           "type": "move",
           "title": "住宿 → Zagreb Bus Station",
-          "detail": "至少提前 30 分鐘到站，確認月台與行李規則。",
+          "detail": "目標 07:45 抵達 Avenija Marina Držića 4，為 08:40 發車保留約 55 分鐘。",
           "duration": "約 25–35m",
           "map": "Zagreb Bus Station",
           "why": "長途巴士月台可能臨時調整，預留找車與放置行李的時間。",
@@ -1115,7 +1115,7 @@ window.TRIP_DATA = {
           "time": "07:15",
           "type": "move",
           "title": "步行到 Split Port 集合",
-          "detail": "時間、碼頭與行程以 tour voucher 為準。",
+          "detail": "目標 07:15 前抵達碼頭，為暫定 08:00 開船保留至少 45 分鐘；最終依 voucher。",
           "duration": "20–30m",
           "map": "Split Port",
           "why": "住 Lučac／Manuš 可步行到碼頭，不必清晨叫車。",
@@ -1174,7 +1174,7 @@ window.TRIP_DATA = {
       "weatherKey": "Split",
       "stay": "Mostar",
       "theme": "Coast & border",
-      "summary": "用市場、咖啡與 Marjan 收尾 Split；16:30 到站，17:30 跨境前往 Mostar。",
+      "summary": "用市場、咖啡與 Marjan 收尾 Split；16:20 前到站，17:30 跨境前往 Mostar。",
       "events": [
         {
           "time": "08:30",
@@ -1200,17 +1200,17 @@ window.TRIP_DATA = {
           "time": "14:00",
           "type": "food",
           "title": "Split 午餐＋取行李",
-          "detail": "15:45 前回住宿取 Allpa。",
-          "duration": "1h45",
+          "detail": "15:30 前回住宿取 Allpa。",
+          "duration": "1h30",
           "map": "Split Old Town",
           "why": "用足 Split 第二天，又不壓縮跨境緩衝。",
           "how": "餐廳只選舊城／住宿周邊，避免排隊名店。"
         },
         {
-          "time": "16:20",
+          "time": "15:50",
           "type": "move",
           "title": "前往 Split Bus Station",
-          "detail": "跨境班次至少提前 30–40 分鐘。",
+          "detail": "15:50 離開住宿，目標 16:20 前到站，為 17:30 跨境班次保留至少 70 分鐘。",
           "duration": "約 20–30m",
           "map": "Split Bus Station",
           "why": "跨境班次至少提前 30–40 分鐘。",
@@ -1220,11 +1220,11 @@ window.TRIP_DATA = {
           "time": "17:30",
           "type": "move",
           "title": "Split → Mostar",
-          "detail": "跨境巴士，約 20:50 抵達。",
+          "detail": "跨境巴士，正常約 20:55 抵達；邊境延誤時可能更晚。",
           "duration": "約 3h20–5h",
-          "map": "Mostar Bus Station East",
-          "why": "跨境巴士，約 20:50 抵達。",
-          "how": "邊境可能延誤；準備少量現金行李費。"
+          "map": "Mostar Bus Station",
+          "why": "保留跨境與行李裝卸緩衝，不把抵達後行程排滿。",
+          "how": "確認票面標示的 Mostar East／West 站；邊境可能延誤，準備少量現金行李費。"
         },
         {
           "time": "21:15",
@@ -1234,7 +1234,7 @@ window.TRIP_DATA = {
           "duration": "—",
           "map": "Adema Buca 23 Mostar",
           "why": "簡單補給後休息。",
-          "how": "由 Mostar Bus Station East 步行或搭短程 taxi 前往 Adema Buća 23。"
+          "how": "依票面抵達的 Mostar East／West 站，搭短程 taxi 前往 Adema Buća 23。"
         }
       ],
       "lodging": {
@@ -1371,14 +1371,14 @@ window.TRIP_DATA = {
           "duration": "4h",
           "map": "Mostar Old Bazaar",
           "why": "午餐後取行李。",
-          "how": "活動集中老城，15:45 前離開住宿。"
+          "how": "活動集中老城，15:30 前回住宿取行李。"
         },
         {
-          "time": "16:15",
+          "time": "15:40",
           "type": "move",
           "title": "前往 Mostar Station",
-          "detail": "提早購票與確認月台。",
-          "duration": "30m",
+          "detail": "15:40 離開住宿，目標 16:10 抵達車站，為 17:09 發車保留約 59 分鐘。",
+          "duration": "約 30m",
           "map": "Mostar Railway Station",
           "why": "提早購票與確認月台。",
           "how": "步行或請住宿代叫 taxi。"
@@ -1515,14 +1515,14 @@ window.TRIP_DATA = {
       "weatherKey": "Dubrovnik",
       "stay": "Dubrovnik",
       "theme": "Critical border",
-      "summary": "07:15 跨境巴士，午後抵 Gruž，傍晚走 Dubrovnik 老城主軸。",
+      "summary": "07:15 跨境巴士，午後抵 Gruž；老城行程依邊境延誤彈性順延。",
       "events": [
         {
-          "time": "06:30",
+          "time": "06:00",
           "type": "move",
           "title": "前往 Sarajevo Bus Station",
-          "detail": "07:15 班次提前報到。",
-          "duration": "30m",
+          "detail": "06:00 離開住宿，目標 06:20–06:30 抵達，為 07:15 發車保留至少 45 分鐘。",
+          "duration": "約 20–30m",
           "map": "Sarajevo Bus Station",
           "why": "07:15 班次提前報到。",
           "how": "taxi 最穩；備現金行李費。"
@@ -1538,17 +1538,17 @@ window.TRIP_DATA = {
           "how": "跨境預留 60–90 分鐘浮動，護照與票券隨身。"
         },
         {
-          "time": "14:00",
+          "time": "15:00",
           "type": "stay",
           "title": "入住＋午餐",
-          "detail": "先放行李再去老城。",
-          "duration": "2h",
+          "detail": "抵達後先放行李與午餐；若邊境延誤，後續整段順延。",
+          "duration": "約 1h30",
           "map": "Gruz Dubrovnik",
           "why": "先放行李再去老城。",
           "how": "Gruž 住宿可步行；Lapad 東側搭公車或短程 taxi。"
         },
         {
-          "time": "16:30",
+          "time": "17:00",
           "type": "walk",
           "title": "Dubrovnik Old Town",
           "detail": "Pile Gate、Stradun、Old Port。",
@@ -1666,7 +1666,7 @@ window.TRIP_DATA = {
           "how": "搭公車往返 Pile Gate，11:00 前回住宿取行李。"
         },
         {
-          "time": "12:15",
+          "time": "12:00",
           "type": "move",
           "title": "前往 DBV",
           "detail": "預留國際線報到時間。",
@@ -1686,10 +1686,10 @@ window.TRIP_DATA = {
           "how": "依 easyJet 規定提早報到並核對隨身行李尺寸。"
         },
         {
-          "time": "18:10",
+          "time": "18:10後",
           "type": "move",
           "title": "GVA → Geneva Cornavin",
-          "detail": "機場火車進市區。",
+          "detail": "領取行李後搭第一班合適的機場火車進市區，不綁死單一班次。",
           "duration": "約 20m",
           "map": "Geneve Cornavin",
           "why": "機場火車進市區。",
@@ -1827,15 +1827,15 @@ window.TRIP_DATA = {
     },
     {
       "title": "Split → Mostar",
-      "text": "09/24 選 17:30 跨境巴士，16:20–16:30 抵達車站；邊境延誤需保留 60–90 分鐘。Mostar 09/24–09/26 已確認 Adema Buća 23 B&B，兩晚共 NT$4,036。"
+      "text": "09/24 選 17:30 跨境巴士，15:50 離開住宿、16:20 前抵達車站；邊境延誤需保留 60–90 分鐘。Mostar 09/24–09/26 已確認 Adema Buća 23 B&B，兩晚共 NT$4,036。"
     },
     {
       "title": "Bosnia 火車",
-      "text": "09/26 規劃 Mostar 17:09 → Sarajevo 19:07；2026 班表仍須在開賣後，以 ŽFBH 官方時刻與 Mostar 車站紙票確認。"
+      "text": "09/26 規劃 Mostar 17:09 → Sarajevo 19:07；15:40 離開住宿、16:10 到站。2026 班表仍須在開賣後，以 ŽFBH 官方時刻與 Mostar 車站紙票確認。"
     },
     {
       "title": "Sarajevo → Dubrovnik",
-      "text": "09/28 07:15 跨境巴士是關鍵移動日；住宿選 Gruž／Lapad 東側，抵達、老城與 DBV 機場動線最順。"
+      "text": "09/28 07:15 跨境巴士是關鍵移動日；06:00 離開住宿、06:20–06:30 到站。住宿選 Gruž／Lapad 東側，抵達、老城與 DBV 機場動線最順。"
     },
     {
       "title": "城市杯收集",
