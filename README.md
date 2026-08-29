@@ -1,4 +1,10 @@
-# Balkan Trip Dashboard v4.15.0
+# Balkan Trip Dashboard v4.16.0
+
+## v4.16.0 更新
+
+- 09/26 Mostar → Sarajevo 改為 19:56 → 21:54 季節景觀火車；19:15 前到站，保留約 41 分鐘。
+- Sarajevo 09/26–09/28 兩晚住宿確認為 Azize Šaćirbegović 124 B&B，兩晚共 NT$3,000。
+- 住宿總額更新為 NT$48,179，旅程預計總支出更新為 NT$162,078。
 
 ## v4.15.0 更新
 

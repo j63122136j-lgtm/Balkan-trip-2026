@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.15.0"
+    "version": "4.16.0"
   },
   "route": [
     "Taipei",
@@ -1351,7 +1351,7 @@ window.TRIP_DATA = {
       "weatherKey": "Mostar",
       "stay": "Sarajevo",
       "theme": "Scenic rail",
-      "summary": "Mostar 清晨與午餐後，搭傍晚景觀火車到 Sarajevo。",
+      "summary": "Mostar 清晨與午後慢遊，搭 19:56 季節景觀火車到 Sarajevo。",
       "events": [
         {
           "time": "07:30",
@@ -1371,37 +1371,37 @@ window.TRIP_DATA = {
           "duration": "4h",
           "map": "Mostar Old Bazaar",
           "why": "午餐後取行李。",
-          "how": "活動集中老城，15:30 前回住宿取行李。"
+          "how": "活動集中老城，18:30 前回住宿取行李。"
         },
         {
-          "time": "15:40",
+          "time": "18:45",
           "type": "move",
           "title": "前往 Mostar Station",
-          "detail": "15:40 離開住宿，目標 16:10 抵達車站，為 17:09 發車保留約 59 分鐘。",
+          "detail": "18:45 離開住宿，目標 19:15 抵達車站，為 19:56 發車保留約 41 分鐘。",
           "duration": "約 30m",
           "map": "Mostar Railway Station",
           "why": "提早購票與確認月台。",
           "how": "步行或請住宿代叫 taxi。"
         },
         {
-          "time": "17:09",
+          "time": "19:56",
           "type": "move",
           "title": "Mostar → Sarajevo 景觀火車",
-          "detail": "約 19:07 抵達。",
+          "detail": "季節景觀火車，約 21:54 抵達。",
           "duration": "約 2h",
           "map": "Sarajevo Railway Station",
-          "why": "約 19:07 抵達。",
+          "why": "配合 09/26 週六季節班次，保留完整 Mostar 午後。",
           "how": "時刻以 ŽFBH 官方表與車站紙票為準，優先選河谷側座位。"
         },
         {
-          "time": "19:30",
+          "time": "22:15",
           "type": "stay",
           "title": "Sarajevo 入住",
           "detail": "簡單晚餐。",
           "duration": "—",
-          "map": "Marijin Dvor Sarajevo",
+          "map": "Azize Sacirbegovic 124 Sarajevo",
           "why": "簡單晚餐。",
-          "how": "車站步行或短程電車／taxi 到 Skenderija、Marijin Dvor。"
+          "how": "由 Sarajevo Railway Station 搭 taxi 前往 Azize Šaćirbegović 124。"
         }
       ],
       "photo": {
@@ -1411,13 +1411,15 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:Mostar_Old_Bridge_Hd_Wallpaper_(30160095).jpeg"
       },
       "lodging": {
-        "area": "Sarajevo · Skenderija／Marijin Dvor",
-        "why": "靠火車與巴士站，電車可到 Baščaršija，連住兩晚。",
+        "area": "Sarajevo · Azize Šaćirbegović 124 B&B",
+        "why": "住宿已確認，連住兩晚；晚間抵達建議由火車站搭 taxi。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Marijin Dvor Sarajevo hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 1 晚",
-        "costStatus": "預估"
+        "map": "Azize Sacirbegovic 124 Sarajevo",
+        "url": "https://maps.app.goo.gl/ppD6jAMDoNpMUpFT6",
+        "nightlyPrice": 1500,
+        "totalPrice": 3000,
+        "priceNote": "已確認／兩晚共 NT$3,000／第 1 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -1490,13 +1492,15 @@ window.TRIP_DATA = {
         }
       ],
       "lodging": {
-        "area": "Sarajevo · 同一間第 2 晚",
+        "area": "Sarajevo · Azize Šaćirbegović 124 B&B · 第 2 晚",
         "why": "不搬房，隔天 07:15 跨境巴士。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Marijin Dvor Sarajevo hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 2 晚",
-        "costStatus": "預估"
+        "map": "Azize Sacirbegovic 124 Sarajevo",
+        "url": "https://maps.app.goo.gl/ppD6jAMDoNpMUpFT6",
+        "nightlyPrice": 1500,
+        "totalPrice": 3000,
+        "priceNote": "已確認／兩晚共 NT$3,000／第 2 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -1831,7 +1835,7 @@ window.TRIP_DATA = {
     },
     {
       "title": "Bosnia 火車",
-      "text": "09/26 規劃 Mostar 17:09 → Sarajevo 19:07；15:40 離開住宿、16:10 到站。2026 班表仍須在開賣後，以 ŽFBH 官方時刻與 Mostar 車站紙票確認。"
+      "text": "09/26 規劃 Mostar 19:56 → Sarajevo 21:54；18:45 離開住宿、19:15 到站。Sarajevo 兩晚已確認 Azize Šaćirbegović 124 B&B，共 NT$3,000。"
     },
     {
       "title": "Sarajevo → Dubrovnik",
