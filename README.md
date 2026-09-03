@@ -1,4 +1,10 @@
-# Balkan Trip Dashboard v4.17.0
+# Balkan Trip Dashboard v4.18.0
+
+## v4.18.0 更新
+
+- Zagreb 09/20–09/21 兩晚住宿確認為 Airbnb／Petra Berislavićeva 14，兩晚共 NT$5,174。
+- Zagreb 住宿卡、Google Maps導航、火車抵達及前往巴士站動線已同步更新。
+- 住宿總額更新為 NT$43,967，旅程預計總支出更新為 NT$157,866。
 
 ## v4.17.0 更新
 
@@ -166,4 +172,4 @@
 
 ## 本次同步
 
-2026-09-03 同步 Google 試算表最新住宿：Split 09/22–09/23 入住 Airbnb／Ul. Antuna Branka Šimića 2，兩晚共 NT$4,614；住宿導航、港口集合、跨境巴士動線及 Budget 均已更新。
+2026-09-03 同步 Google 試算表最新住宿：Zagreb 09/20–09/21 入住 Airbnb／Petra Berislavićeva 14，兩晚共 NT$5,174；Split 09/22–09/23 入住 Airbnb／Ul. Antuna Branka Šimića 2，兩晚共 NT$4,614。住宿導航、港口集合、跨城交通動線及 Budget 均已更新。

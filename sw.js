@@ -1,4 +1,4 @@
-const VERSION='balkan-v4.17.0';
+const VERSION='balkan-v4.18.0';
 const APP_CACHE=`${VERSION}-app`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const APP_SHELL=['./','./index.html','./template/styles.css','./trips/balkan-2026.js','./template/app.js','./manifest.webmanifest','./assets/balkan-route-map-v4.13.png','./assets/hvar-day10.jpg','./assets/icons/icon.svg','./assets/icons/icon-192.png','./assets/icons/icon-512.png','./assets/icons/apple-touch-icon.png'];

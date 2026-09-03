@@ -363,7 +363,7 @@
     const confirmedTotal=confirmedNights.reduce((s,d)=>s+Number(d.lodging.nightlyPrice),0);
     const fixed=[...(D.fixedExpenses||[]),{
       id:'stays',label:'住宿',amount:lodgingTotal,status:'部分確認',
-      note:`${lodgingDays.length} 晚：已確認 ${confirmedNights.length} 晚共 ${fmt(confirmedTotal)}（曼谷 ${fmt(3300)}、Ljubljana ${fmt(13343)}、Split ${fmt(4614)}、Mostar ${fmt(4036)}、Sarajevo ${fmt(3000)}）；其餘 ${estimatedNights.length} 晚以每晚 ${fmt(3500)} 估列`
+      note:`${lodgingDays.length} 晚：已確認 ${confirmedNights.length} 晚共 ${fmt(confirmedTotal)}（曼谷 ${fmt(3300)}、Ljubljana ${fmt(13343)}、Zagreb ${fmt(5174)}、Split ${fmt(4614)}、Mostar ${fmt(4036)}、Sarajevo ${fmt(3000)}）；其餘 ${estimatedNights.length} 晚以每晚 ${fmt(3500)} 估列`
     }];
     const expenses=getExpenses();
     const fixedTotal=fixed.reduce((sum,x)=>sum+(Number(x.amount)||0),0);

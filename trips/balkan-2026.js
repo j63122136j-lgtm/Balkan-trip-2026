@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.17.0"
+    "version": "4.18.0"
   },
   "route": [
     "Taipei",
@@ -909,12 +909,12 @@ window.TRIP_DATA = {
         {
           "time": "19:30",
           "type": "stay",
-          "title": "Zagreb 入住＋簡單晚餐",
-          "detail": "抵達後不再排景點。",
+          "title": "Zagreb Airbnb 入住＋簡單晚餐",
+          "detail": "前往 Petra Berislavićeva 14；抵達後不再排景點。",
           "duration": "—",
-          "map": "Zrinjevac Zagreb",
+          "map": "Petra Berislavićeva 14 Zagreb",
           "why": "抵達後不再排景點。",
-          "how": "車站步行或短程電車／Bolt 到住宿。"
+          "how": "由 Zagreb Glavni kolodvor 步行約 10–15 分鐘，背包較累時搭短程電車／Bolt。"
         }
       ],
       "photo": {
@@ -924,13 +924,14 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:Ljubljana_-_Gallus_waterfront_and_river_Ljubljanica.JPG"
       },
       "lodging": {
-        "area": "Zagreb · Zrinjevac／Main Station 附近",
-        "why": "車站抵達方便，連住兩晚且步行可達市中心。",
+        "area": "Zagreb／Airbnb · Petra Berislavićeva 14",
+        "why": "已確認連住兩晚；步行可達主火車站、Zrinjevac與市中心。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Zrinjevac Zagreb hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 1 晚",
-        "costStatus": "預估"
+        "map": "Petra Berislavićeva 14 Zagreb",
+        "url": "https://maps.app.goo.gl/vnKgkQrRziB3qSGL6",
+        "nightlyPrice": 2587,
+        "priceNote": "已確認／兩晚共 NT$5,174／第 1 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -989,13 +990,14 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:St._Mark%27s_Church,_Zagreb_(js).jpg"
       },
       "lodging": {
-        "area": "Zagreb · 同一間第 2 晚",
+        "area": "Zagreb／Airbnb · Petra Berislavićeva 14（第 2 晚）",
         "why": "不換住宿；隔天提早前往 Zagreb Bus Station，搭直達巴士到 Split。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Zrinjevac Zagreb hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 2 晚",
-        "costStatus": "預估"
+        "map": "Petra Berislavićeva 14 Zagreb",
+        "url": "https://maps.app.goo.gl/vnKgkQrRziB3qSGL6",
+        "nightlyPrice": 2587,
+        "priceNote": "已確認／兩晚共 NT$5,174／第 2 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -1022,7 +1024,7 @@ window.TRIP_DATA = {
           "title": "Zagreb 早餐＋退房",
           "detail": "不排新景點，留時間整理行李。",
           "duration": "40m",
-          "map": "Zrinjevac Zagreb",
+          "map": "Petra Berislavićeva 14 Zagreb",
           "why": "提早吃完早餐，換得午後完整的 Split 舊城時間。",
           "how": "前晚整理行李；07:20 前取行李離開住宿。"
         },
@@ -1034,7 +1036,7 @@ window.TRIP_DATA = {
           "duration": "約 25–35m",
           "map": "Zagreb Bus Station",
           "why": "長途巴士月台可能臨時調整，預留找車與放置行李的時間。",
-          "how": "由 Zrinjevac／Main Station 一帶搭電車或短程 Bolt；目的地為 Avenija Marina Držića 4。"
+          "how": "由 Petra Berislavićeva 14 搭電車或短程 Bolt；目的地為 Avenija Marina Držića 4。"
         },
         {
           "time": "08:40",
@@ -1825,7 +1827,7 @@ window.TRIP_DATA = {
     },
     {
       "title": "Zagreb → Split",
-      "text": "取消十六湖、租車與國內線。09/22 優先搭約 08:40→13:50 的直達早班巴士；車程約 4h55–5h30，付款前確認班次、票價、上車月台與行李規則。"
+      "text": "09/20–09/21 已確認入住 Petra Berislavićeva 14，兩晚共 NT$5,174。取消十六湖、租車與國內線；09/22 優先搭約 08:40→13:50 的直達早班巴士，付款前確認班次、月台與行李規則。"
     },
     {
       "title": "Split 兩晚",
