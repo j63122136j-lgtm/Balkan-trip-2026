@@ -1,4 +1,10 @@
-# Balkan Trip Dashboard v4.16.0
+# Balkan Trip Dashboard v4.17.0
+
+## v4.17.0 更新
+
+- Split 09/22–09/23 兩晚住宿確認為 Airbnb／Ul. Antuna Branka Šimića 2，兩晚共 NT$4,614。
+- Split 住宿卡、Google Maps 導航、港口／跨境巴士動線與 Budget 已同步更新。
+- 住宿總額更新為 NT$45,793，旅程預計總支出更新為 NT$159,692。
 
 ## v4.16.0 更新
 
@@ -160,4 +166,4 @@
 
 ## 本次同步
 
-2026-08-25 更新 Ljubljana 住宿為 Gosposvetska cesta 4，09/17–09/19 三晚共 NT$13,343。Bangkok 兩晚為 Metropolis Suites Bangkok，共 NT$3,300；Mostar 兩晚為 Adema Buća 23 B&B，每晚 NT$2,018。主行程維持 Ljubljana 連住、Bled 當日來回、Zagreb 不租車，取消十六湖，09/22 搭 Zagreb → Split 直達巴士並在 Split 連住兩晚。
+2026-09-03 同步 Google 試算表最新住宿：Split 09/22–09/23 入住 Airbnb／Ul. Antuna Branka Šimića 2，兩晚共 NT$4,614；住宿導航、港口集合、跨境巴士動線及 Budget 均已更新。

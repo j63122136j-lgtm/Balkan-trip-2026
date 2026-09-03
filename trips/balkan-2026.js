@@ -1,5 +1,5 @@
 /* Balkan 2026 — trip content only. Duplicate this file to reuse the template.
-   Synced from the reviewed itinerary on 2026-08-25. */
+   Synced from the reviewed itinerary on 2026-09-03. */
 window.TRIP_DATA = {
   "meta": {
     "title": "Balkan 2026",
@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.16.0"
+    "version": "4.17.0"
   },
   "route": [
     "Taipei",
@@ -1049,12 +1049,12 @@ window.TRIP_DATA = {
         {
           "time": "14:15",
           "type": "stay",
-          "title": "步行入住 Split",
-          "detail": "巴士站就在港口旁，先寄放行李再進舊城。",
-          "duration": "約 30–45m",
-          "map": "Lucac Split",
-          "why": "住宿放在 Lučac／Manuš，後兩天都不用搬行李。",
-          "how": "由 Split Bus Station 步行 10–18 分鐘或短程 taxi。"
+          "title": "前往 Split 住宿",
+          "detail": "約 13:50 抵達後，先到 Ul. Antuna Branka Šimića 2 寄放行李再進舊城。",
+          "duration": "約 20–35m",
+          "map": "Ul. Antuna Branka Šimića 2 Split",
+          "why": "住宿連住兩晚，安頓後再輕裝逛舊城與港灣。",
+          "how": "背 Allpa 可步行約 25–35 分鐘；想省體力就由 Split Bus Station 搭短程 taxi／市區公車。"
         },
         {
           "time": "15:30",
@@ -1084,13 +1084,14 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:View_of_Diocletian%27s_Palace,_Split_02.jpg"
       },
       "lodging": {
-        "area": "Split · Lučac／Manuš／Bačvice 北側",
-        "why": "連住兩晚；步行可到港口、古城與 09/24 跨境巴士站。",
+        "area": "Split／Airbnb · Ul. Antuna Branka Šimića 2",
+        "why": "已確認連住兩晚；可步行或搭短程市區交通往返港口、舊城與中央巴士站。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Lucac Split hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 1 晚",
-        "costStatus": "預估"
+        "map": "Ul. Antuna Branka Šimića 2 Split",
+        "url": "https://maps.app.goo.gl/iNytHn9Ch7AVdkr39",
+        "nightlyPrice": 2307,
+        "priceNote": "已確認／兩晚共 NT$4,614／第 1 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -1112,14 +1113,14 @@ window.TRIP_DATA = {
       "summary": "完整保留給跳島；不用擔心當天再趕 17:30 跨境巴士。",
       "events": [
         {
-          "time": "07:15",
+          "time": "06:45",
           "type": "move",
-          "title": "步行到 Split Port 集合",
-          "detail": "目標 07:15 前抵達碼頭，為暫定 08:00 開船保留至少 45 分鐘；最終依 voucher。",
-          "duration": "20–30m",
+          "title": "住宿 → Split Port 集合",
+          "detail": "06:45 離開住宿，目標 07:15 前抵達碼頭，為暫定 08:00 開船保留至少 45 分鐘；最終依 voucher。",
+          "duration": "約 25–35m",
           "map": "Split Port",
-          "why": "住 Lučac／Manuš 可步行到碼頭，不必清晨叫車。",
-          "how": "前晚截圖 voucher；帶護照影本、防曬、防風層、暈船藥與水。"
+          "why": "由已訂住宿提早出門，保留找集合點與報到的時間。",
+          "how": "背小包步行或搭短程 taxi；前晚截圖 voucher，帶護照影本、防曬、防風層、暈船藥與水。"
         },
         {
           "time": "08:00",
@@ -1149,13 +1150,14 @@ window.TRIP_DATA = {
         "source": "https://commons.wikimedia.org/wiki/File:Hvar-Croatia-view-from-sea.jpg"
       },
       "lodging": {
-        "area": "Split · 同一間第 2 晚",
+        "area": "Split／Airbnb · Ul. Antuna Branka Šimića 2（第 2 晚）",
         "why": "不搬行李；步行往返跳島集合碼頭，隔天也方便取行李搭跨境巴士。",
         "parking": "不需車位；以大眾運輸與步行為主。",
-        "map": "Lucac Split hotels",
-        "nightlyPrice": 3500,
-        "priceNote": "預估／第 2 晚",
-        "costStatus": "預估"
+        "map": "Ul. Antuna Branka Šimića 2 Split",
+        "url": "https://maps.app.goo.gl/iNytHn9Ch7AVdkr39",
+        "nightlyPrice": 2307,
+        "priceNote": "已確認／兩晚共 NT$4,614／第 2 晚",
+        "costStatus": "已確認"
       },
       "food": [
         {
@@ -1214,7 +1216,7 @@ window.TRIP_DATA = {
           "duration": "約 20–30m",
           "map": "Split Bus Station",
           "why": "跨境班次至少提前 30–40 分鐘。",
-          "how": "由 Lučac／Manuš 步行；護照與票券放隨身包。"
+          "how": "由 Ul. Antuna Branka Šimića 2 步行約 25–35 分鐘，或搭短程 taxi／市區公車；護照與票券放隨身包。"
         },
         {
           "time": "17:30",
@@ -1827,7 +1829,7 @@ window.TRIP_DATA = {
     },
     {
       "title": "Split 兩晚",
-      "text": "09/22 抵達後慢走舊城，09/23 完整跳島，09/24 市場、咖啡與 Marjan 第一觀景台；不再用跳島日硬接跨境巴士。"
+      "text": "09/22–09/23 已確認入住 Ul. Antuna Branka Šimića 2，兩晚共 NT$4,614。09/22 抵達後慢走舊城，09/23 完整跳島，09/24 市場、咖啡與 Marjan 第一觀景台；不再用跳島日硬接跨境巴士。"
     },
     {
       "title": "Split → Mostar",
