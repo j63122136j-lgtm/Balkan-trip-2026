@@ -237,7 +237,13 @@
 
   function renderTabs(){
     const dayZero=`<button class="day-tab day-zero-tab ${activeDay===0?'active':''}" data-day="0"><b>Day 0</b><small>行前</small></button>`;
-    $('#day-tabs').innerHTML=dayZero+D.days.map(d=>`<button class="day-tab ${d.day===activeDay?'active':''}" data-day="${d.day}"><b>Day ${d.day}</b><small>${d.date}</small></button>`).join('');
+    const tabCity=d=>{
+      if(d.tabCity)return d.tabCity;
+      if(d.stay==='Flight')return d.city.split('→').pop().trim();
+      if(d.stay==='Home')return 'Taipei';
+      return d.stay;
+    };
+    $('#day-tabs').innerHTML=dayZero+D.days.map(d=>`<button class="day-tab ${d.day===activeDay?'active':''}" data-day="${d.day}" aria-label="Day ${d.day} · ${esc(d.date)} · ${esc(tabCity(d))}"><b>Day ${d.day}</b><small>${esc(tabCity(d))}</small></button>`).join('');
     $$('.day-tab').forEach(b=>b.addEventListener('click',()=>{activeDay=+b.dataset.day;renderTabs();renderDay();updateWeather();}));
   }
 
