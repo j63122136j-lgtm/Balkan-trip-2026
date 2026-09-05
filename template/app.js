@@ -156,7 +156,7 @@
 
   function nextAttraction(){
     const now=new Date();
-    const attractionTypes=new Set(['walk','coffee','food','boat']);
+    const attractionTypes=new Set(['walk','coffee','food','boat','shop']);
     const beforeTrip=now < new Date(`${D.meta.startDate}T00:00:00`);
     if(beforeTrip){
       const state=load(STORE.preflight,{}),steps=D.dayZero?.steps||[];
@@ -242,7 +242,7 @@
   }
 
   const eventGuides={};
-  const eventKinds={move:['↗','交通'],flight:['✈','航班'],walk:['●','步行'],coffee:['☕','休息'],food:['◐','用餐'],stay:['⌂','住宿'],boat:['≈','船程']};
+  const eventKinds={move:['↗','交通'],flight:['✈','航班'],walk:['●','步行'],coffee:['☕','休息'],food:['◐','用餐'],shop:['▣','採買'],rest:['◌','休息'],stay:['⌂','住宿'],boat:['≈','船程']};
   function guideFor(e){
     const guide=eventGuides[e.title]||{};
     const fallback={
@@ -251,6 +251,8 @@
       walk:'景點之間以步行串聯；開啟 Google Maps 導航，下雨或體力不足時改搭市區交通。',
       coffee:'依當下位置選順路店家，以步行為主，不為單一店家大幅折返。',
       food:'優先選當下街區的順路餐廳；步行前往並保留現場候位時間。',
+      shop:'先確認現場庫存、付款及退稅規定；購買後保留完整收據。',
+      rest:'返回住宿放置採買品並休息，依體力決定是否縮短後續行程。',
       stay:'依住宿確認信的地址開啟導航；入住前先確認寄放行李與門禁方式。',
       boat:'集合碼頭、報到時間與停靠點以 Tour voucher 及當日海況通知為準。'
     };

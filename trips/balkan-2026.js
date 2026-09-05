@@ -1,5 +1,5 @@
 /* Balkan 2026 — trip content only. Duplicate this file to reuse the template.
-   Synced from the reviewed itinerary on 2026-09-03. */
+   Synced from the reviewed itinerary on 2026-09-05. */
 window.TRIP_DATA = {
   "meta": {
     "title": "Balkan 2026",
@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.18.0"
+    "version": "4.19.0"
   },
   "route": [
     "Taipei",
@@ -442,37 +442,67 @@ window.TRIP_DATA = {
       "weatherKey": "Bangkok",
       "stay": "Bangkok",
       "theme": "Reset",
-      "summary": "慢早餐、咖啡、採買與按摩，讓身體進入旅行節奏。",
+      "summary": "慢早餐後到 CentralWorld 集中逛 Apple Store 與 mont-bell，再回住宿休息，傍晚逛夜市。",
       "events": [
         {
           "time": "10:00",
           "type": "coffee",
           "title": "慢早餐＋咖啡",
           "detail": "睡飽再出門。",
-          "duration": "2h",
+          "duration": "1h15",
           "map": "coffee near Metropolis Suites Bangkok",
           "why": "睡飽再出門。",
           "how": "步行或 MRT，活動集中在住宿周邊。"
         },
         {
-          "time": "13:00",
-          "type": "walk",
-          "title": "採買＋按摩＋街區散步",
-          "detail": "不排硬景點，保留休息。",
-          "duration": "4–5h",
-          "map": "Sukhumvit Bangkok",
-          "why": "不排硬景點，保留休息。",
-          "how": "使用 MRT/BTS；兩個 Allpa 的旅行用品一次補齊。"
+          "time": "11:30",
+          "type": "move",
+          "title": "前往 CentralWorld",
+          "detail": "搭 BTS 到 Chit Lom，再走空橋前往 CentralWorld。",
+          "duration": "約 30m",
+          "map": "CentralWorld Bangkok",
+          "why": "Apple Store 與 mont-bell 在同一商場區域，可一次完成採買。",
+          "how": "Phrom Phong BTS → Chit Lom BTS，沿 Ratchaprasong Skywalk 步行前往。"
         },
         {
-          "time": "19:00",
-          "type": "food",
-          "title": "Bangkok 晚餐",
-          "detail": "提早吃、提早休息。",
+          "time": "12:00",
+          "type": "shop",
+          "title": "Apple Central World",
+          "detail": "先確認預購／現場庫存、退稅文件與產品規格；若購買新機，現場完成基本檢查。",
           "duration": "1h30",
-          "map": "Bangkok dinner",
-          "why": "提早吃、提早休息。",
-          "how": "選住宿附近餐廳，避免跨區塞車。"
+          "map": "Apple Central World Bangkok",
+          "why": "官方 Apple Store，營業時間 10:00–22:00。",
+          "how": "店面位於 CentralWorld 外側 Ratchaprasong 廣場；保留護照與完整收據供退稅使用。"
+        },
+        {
+          "time": "13:30",
+          "type": "shop",
+          "title": "mont-bell CentralWorld",
+          "detail": "前往 5 樓挑選旅行用品，以兩個 Allpa 35L 真正缺少的品項為主。",
+          "duration": "1h30",
+          "map": "mont-bell CentralWorld Bangkok",
+          "why": "與 Apple 同區，不需跨城折返。",
+          "how": "由 Apple Store 步行進 CentralWorld，上 5 樓；購買前先比較尺寸、重量與是否能塞入隨身背包。"
+        },
+        {
+          "time": "15:30",
+          "type": "rest",
+          "title": "返回 Phrom Phong＋按摩／休息",
+          "detail": "把採買品放回住宿，按摩或休息後再出門。",
+          "duration": "2h",
+          "map": "Metropolis Suites Bangkok Tapestry Collection by Hilton",
+          "why": "避免整天背著採買品，也替晚上的夜市保留體力。",
+          "how": "Chit Lom BTS → Phrom Phong BTS，再步行或短程叫車回住宿。"
+        },
+        {
+          "time": "18:00",
+          "type": "food",
+          "title": "JODD FAIRS Ratchada 夜市",
+          "detail": "逛夜市、吃小吃；MRT Thailand Cultural Centre Exit 4。",
+          "duration": "3h",
+          "map": "JODD FAIRS Ratchada",
+          "why": "把晚餐、散步與泰國夜市一次完成。",
+          "how": "由 Phrom Phong／Asok 前往 MRT Sukhumvit，搭 Blue Line 到 Thailand Cultural Centre；Exit 4 步行約 3–5 分鐘。"
         }
       ],
       "lodging": {
@@ -1973,7 +2003,8 @@ window.TRIP_DATA = {
       {kind:'補給', name:'Sukhumvit 39 深夜便利商店', note:'抵達 Metropolis Suites 後只補水與早餐，不額外繞路。', map:'convenience store near Metropolis Suites Bangkok'}
     ],
     2: [
-      {kind:'咖啡', name:'Factory Coffee — BKK', note:'Phaya Thai 旗艦店；安排在白天、關門前抵達。', map:'Factory Coffee BKK Phaya Thai'},
+      {kind:'採買', name:'Apple Central World', note:'12:00 到店；先確認庫存、規格與退稅文件，購買後保留完整包裝與收據。', map:'Apple Central World Bangkok'},
+      {kind:'戶外用品', name:'mont-bell CentralWorld', note:'位於 CentralWorld 5 樓；與 Apple 同區完成兩個 Allpa 35L 的旅行用品補給。', map:'mont-bell CentralWorld Bangkok'},
       {kind:'夜市', name:'JODD FAIRS Ratchada', note:'17:00 後開逛；MRT Thailand Cultural Centre Exit 4，晚餐直接在市場解決。', map:'JODD FAIRS Ratchada'},
       {kind:'城市杯', name:'Starbucks Times Square Sukhumvit', note:'泰國／Bangkok 杯；Asok 動線內，有喜歡再買，不為庫存跨區。', map:'Starbucks Times Square Sukhumvit Bangkok'}
     ],
@@ -2049,12 +2080,4 @@ window.TRIP_DATA = {
   };
   D.days.forEach(day => { day.localStops = stops[day.day] || []; });
 
-  const bangkokDay = D.days.find(day => day.day === 2);
-  bangkokDay.events[2] = {
-    time:'18:00', type:'food', title:'JODD FAIRS Ratchada 夜市',
-    detail:'逛夜市、吃小吃；17:00–01:00，MRT Thailand Cultural Centre Exit 4。',
-    duration:'3h', map:'JODD FAIRS Ratchada',
-    why:'把晚餐、散步與泰國夜市一次完成。',
-    how:'從 Metropolis Suites 叫 Grab 到 Phrom Phong／Asok，轉 MRT Blue Line 到 Thailand Cultural Centre；Exit 4 步行約 3–5 分鐘，回程留意末班車。'
-  };
 })();

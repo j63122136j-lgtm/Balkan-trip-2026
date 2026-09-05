@@ -1,4 +1,10 @@
-# Balkan Trip Dashboard v4.18.0
+# Balkan Trip Dashboard v4.19.0
+
+## v4.19.0 更新
+
+- 09/15 曼谷新增 Apple Central World 與 mont-bell CentralWorld 5 樓，兩間集中在同一區採買。
+- 動線改為 Phrom Phong → Chit Lom／CentralWorld → 返回住宿放採買品與休息 → JODD FAIRS Ratchada。
+- 保留原本慢早餐、按摩與夜市安排，09/16 飛行日前半天不塞入大型採購。
 
 ## v4.18.0 更新
 
