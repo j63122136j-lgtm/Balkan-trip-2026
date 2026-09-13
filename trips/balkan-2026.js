@@ -1,5 +1,5 @@
 /* Balkan 2026 — trip content only. Duplicate this file to reuse the template.
-   Synced from the reviewed itinerary on 2026-09-05. */
+   Synced from the reviewed itinerary on 2026-09-07. */
 window.TRIP_DATA = {
   "meta": {
     "title": "Balkan 2026",
@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.20.0"
+    "version": "4.24.0"
   },
   "route": [
     "Taipei",
@@ -214,6 +214,27 @@ window.TRIP_DATA = {
       "amount": 79528,
       "status": "已付款",
       "note": "6 段已確認航班"
+    },
+    {
+      "id": "outbound-airport-transfer",
+      "label": "去程機場接送",
+      "amount": 1685,
+      "status": "已預約",
+      "note": "09/14 17:30｜竹南三隻貓媽媽 → 桃園機場第一航廈｜兩人"
+    },
+    {
+      "id": "postojna-klook",
+      "label": "09/18 Postojna Klook",
+      "amount": 8354,
+      "status": "已付款",
+      "note": "2 人｜08:00 InterContinental Ljubljana 集合｜09/17 08:00 前可取消｜訂單 MFK191511"
+    },
+    {
+      "id": "split-island-klook",
+      "label": "09/23 Split 跳島 Klook",
+      "amount": 8714,
+      "status": "已付款",
+      "note": "2 人｜07:00 共和廣場出發｜11 小時｜09/22 00:00 前可取消｜訂單 KJQ575284"
     }
   ],
   "dayZero": {
@@ -270,9 +291,9 @@ window.TRIP_DATA = {
         "priority": "需預約",
         "title": "Vintgar／鐘乳石洞／Split 跳島",
         "why": "這三段受指定時段、集合時間或海況影響，現場再決定容易破壞後續動線。",
-        "action": "購買 09/18 Postojna Cave＋Predjama Castle 雙景點套票並選定 14:00 洞穴場次；確認 10:40／12:05 園區接駁。另購 09/19 Vintgar 指定時段；09/23 跳島只選有海況取消或改期條款的產品。",
-        "url": "https://www.vintgar.si/en/my-visit/pricelist/",
-        "linkLabel": "Vintgar 官方票價與時段"
+        "action": "09/18 Klook 半日團已付款：07:45 前抵達 InterContinental Ljubljana，訂單 MFK191511。09/23 Split 五島快艇已付款：06:40 前抵達共和廣場，07:00 出發，訂單 KJQ575284。另購 09/19 Vintgar 09:30 All-in-One Pass。",
+        "url": "https://tickets.vintgar.si/",
+        "linkLabel": "Vintgar 官方訂票"
       },
       {
         "id": "key-transport",
@@ -306,7 +327,7 @@ window.TRIP_DATA = {
         "priority": "出發前 24h",
         "title": "Allpa 35L 最終打包＋航班複核",
         "why": "最後一次以最嚴格的行李額為準，避免第一段報到才重新分裝。",
-        "action": "依下方清單打包並秤重；再次確認所有航班時間、航廈、報到截止、行李額與機場交通，兩人的證件與藥品都放隨身包。",
+        "action": "依下方清單打包並秤重；再次確認所有航班時間、航廈、報到截止與行李額，並於 09/14 17:20 前完成裝車、17:30 搭預約接送前往桃園機場第一航廈；兩人的證件與藥品都放隨身包。",
         "url": "https://j63122136j-lgtm.github.io/Balkan-trip-2026/",
         "linkLabel": "Dashboard 航班總覽"
       }
@@ -367,13 +388,13 @@ window.TRIP_DATA = {
     {
       "group": "巴爾幹重點",
       "items": [
-        "Postojna／Predjama 官方雙景點票（洞穴 14:00 場）",
-        "Postojna 園區接駁現金 €2／人來回",
-        "Ljubljana ↔ Postojna 公共交通票／備用火車班次",
-        "Vintgar Gorge 指定時段票／接駁確認",
-        "Bled 來回巴士票",
+        "09/18 Klook 憑證（訂單 MFK191511）",
+        "09/18 07:30 離開住宿；07:45 前抵達 InterContinental Ljubljana",
+        "09/19 Vintgar Gorge 09:30 All-in-One Pass",
+        "Ljubljana ↔ Bled 來回巴士票",
         "09/22 Zagreb → Split 直達巴士",
-        "09/23 Split 跳島團（含天候取消條款）",
+        "09/23 Split 跳島 Klook 憑證（訂單 KJQ575284）",
+        "09/23 06:10 離開住宿；06:40 前抵達共和廣場",
         "Split → Mostar 跨境巴士票",
         "Mostar → Sarajevo 火車",
         "Sarajevo → Dubrovnik 跨境巴士票",
@@ -391,17 +412,17 @@ window.TRIP_DATA = {
       "weatherKey": "Bangkok",
       "stay": "Bangkok",
       "theme": "Departure",
-      "summary": "整理行李後前往桃園機場，晚班機飛曼谷。",
+      "summary": "17:30 搭預約接送直達桃園機場第一航廈，晚班機飛曼谷。",
       "events": [
         {
-          "time": "18:00",
+          "time": "17:30",
           "type": "move",
-          "title": "前往桃園機場",
-          "detail": "整理行李，18:00 前出發。",
-          "duration": "約 2h",
-          "map": "Taoyuan International Airport",
-          "why": "整理行李，18:00 前出發。",
-          "how": "搭高鐵／機捷或預約接送；國際線預留至少 3 小時。"
+          "title": "預約接送｜竹南 → TPE T1",
+          "detail": "17:30 從「竹南三隻貓媽媽」出發；兩人車資 NT$1,685。",
+          "duration": "約 1h20–1h40",
+          "map": "Taoyuan International Airport Terminal 1",
+          "why": "已預約到府接送，省去高鐵與機捷兩次轉乘。",
+          "how": "17:20 前完成裝車；預計 18:50–19:10 抵達第一航廈，直接辦理 SL395 報到。"
         },
         {
           "time": "21:20",
@@ -697,83 +718,73 @@ window.TRIP_DATA = {
       "city": "Postojna / Predjama",
       "weatherKey": "Postojna",
       "stay": "Ljubljana",
-      "theme": "Karst by public transport",
-      "summary": "Postojna Cave＋Predjama Castle 自由行：公共交通到洞穴公園，搭官方季節接駁串聯城堡，傍晚返回 Ljubljana。",
+      "theme": "Klook half-day",
+      "summary": "Klook Postojna Cave＋Predjama Castle 半日小團：2 人已付款 NT$8,354，08:00 於 InterContinental Ljubljana 集合。",
       "events": [
         {
-          "time": "06:45",
+          "time": "07:30",
           "type": "move",
-          "title": "Ljubljana → Postojna Cave Park",
-          "detail": "07:15 離開住宿，目標 07:35 抵達車站；搭約 08:08 直達 Postojnska jama 的巴士，約 09:05 抵達。",
-          "duration": "約 1h20",
-          "map": "Ljubljana Bus Station",
-          "why": "自行前往比跟團更省，且能依官方接駁節奏安排城堡與洞穴。",
-          "how": "步行前往 Ljubljana Bus Station，保留約 33 分鐘找月台；班次未開賣時以火車到 Postojna＋步行／短程 taxi 為備案。"
+          "title": "住宿 → Klook 集合點",
+          "detail": "07:30 離開 Gosposvetska cesta 4，07:45 前抵達 InterContinental Ljubljana；08:00 準時出發。",
+          "duration": "步行約 5–10m",
+          "map": "InterContinental Ljubljana",
+          "why": "活動要求至少提早 15 分鐘報到，避免過時不候。",
+          "how": "出門前開啟 Klook 憑證與訂單 MFK191511；集合點為 Slovenska cesta 59。"
         },
         {
-          "time": "10:40",
+          "time": "08:00",
           "type": "move",
-          "title": "官方接駁 → Predjama Castle",
-          "detail": "持雙景點套票搭園區接駁，車程約 20 分鐘；回程票 €2／人、車上付現。",
-          "duration": "20m",
-          "map": "Postojna Cave Park shuttle stop",
-          "why": "09/18 在 2026 季節接駁營運期內，不必叫計程車。",
-          "how": "09:20 前先到售票處換票並確認接駁站牌；若滿位，請票務櫃檯協助叫 taxi。"
+          "title": "Ljubljana → Predjama Castle",
+          "detail": "搭 Klook 小團交通前往 Predjama；費用已含往返交通、導遊、門票、語音導覽與稅款。",
+          "duration": "依當日車況",
+          "map": "Predjama Castle",
+          "why": "不用自行銜接長途巴士與園區接駁，行程較穩定。",
+          "how": "上車後向導遊確認景點順序與 Ljubljana 回程下車點。"
         },
         {
-          "time": "11:00",
+          "time": "約 09:00",
           "type": "walk",
           "title": "Predjama Castle 洞穴城堡",
-          "detail": "使用票價內含的官方 App 導覽，自由參觀約 1 小時。",
+          "detail": "依團體安排參觀城堡，使用內含的語音導覽。",
           "duration": "1h",
           "map": "Predjama Castle",
-          "why": "先看城堡，再回洞穴公園用餐與參加固定時段洞穴導覽。",
-          "how": "12:05 搭接駁回 Postojna Cave Park；不要錯過，下一班會壓縮洞穴報到時間。"
+          "why": "城堡建於峭壁洞穴中，是本日第一個主要景點。",
+          "how": "景點時間以導遊現場通知為準，不自行脫隊。"
         },
         {
-          "time": "12:30",
-          "type": "food",
-          "title": "洞穴公園午餐＋報到",
-          "detail": "簡單午餐後，13:30 前到洞穴入口準備 14:00 場次。",
-          "duration": "1h15",
-          "map": "Postojna Cave Park restaurants",
-          "why": "官方要求提早到園區，並於場次前 15 分鐘開始登車。",
-          "how": "只吃園區內快速餐點；先上洗手間、穿好薄中層再排隊。"
+          "time": "約 10:30",
+          "type": "walk",
+          "title": "Postojna Cave 鐘乳石洞",
+          "detail": "洞穴電車＋導覽步行，實際入場時間依當日團體安排。",
+          "duration": "約 1h15–1h30",
+          "map": "Postojna Cave",
+          "why": "門票與導覽已包含在 Klook 訂單內。",
+          "how": "洞內約 10°C，穿薄中層與止滑鞋；跟著團體動線前進。"
         },
         {
           "time": "14:00",
-          "type": "walk",
-          "title": "Postojna Cave 鐘乳石洞",
-          "detail": "洞穴電車＋步行導覽，約 90–120 分鐘。",
-          "duration": "約 1h45",
-          "map": "Postojna Cave",
-          "why": "固定場次需提前選票；城堡自由行後回來剛好銜接。",
-          "how": "洞內約 10°C，穿薄中層與止滑鞋；13:45 前完成登車。"
-        },
-        {
-          "time": "16:15",
           "type": "move",
           "title": "Postojna → Ljubljana",
-          "detail": "搭傍晚巴士或火車返回，目標 17:30–18:15 抵達 Ljubljana。",
-          "duration": "約 1h15–1h40",
-          "map": "Postojna bus station",
-          "why": "回程保留一班以上的備援，不綁死末班車。",
-          "how": "購票時同步存好下一班備案；若搭火車，洞穴公園到 Postojna Station 步行約 25–30 分鐘。"
+          "detail": "半日團預計約 14:00 回到 Ljubljana；塞車時可能延後。",
+          "duration": "全程約 6h",
+          "map": "InterContinental Ljubljana",
+          "why": "下午不再安排有時段壓力的付費景點。",
+          "how": "下車後先回住宿休息，再依體力前往舊城。"
         },
         {
-          "time": "18:30",
+          "time": "15:00",
           "type": "food",
-          "title": "Ljubljana 河岸晚餐",
-          "detail": "Prešeren Square、Ljubljanica 河岸慢走並整理隔天健行用品。",
-          "duration": "2h",
+          "title": "午餐／休息＋Ljubljana 河岸",
+          "detail": "回城後補吃午餐、休息；傍晚再走 Prešeren Square 與 Ljubljanica 河岸。",
+          "duration": "彈性",
           "map": "Preseren Square Ljubljana",
-          "why": "自由行會比半日團晚回，但仍保留市區晚餐與夜間生活感。",
-          "how": "由車站沿 Trg Osvobodilne fronte／Gosposvetska cesta 步行回住宿，再前往舊城。"
+          "why": "半日團後保留恢復時間，也方便準備隔天 Bled 健行。",
+          "how": "睡前下載 Bled 巴士票與 Vintgar 憑證；09/17 08:00 前仍可取消本團。"
         }
       ],
       "lodging": {
         "area": "Ljubljana · Gosposvetska cesta 4 · 第 2 晚",
-        "why": "住宿已確認；洞穴自由行後不搬行李，傍晚回城吃飯。",
+        "why": "住宿已確認；距 Klook 集合點近，半日團後不搬行李。",
         "parking": "不需車位；以大眾運輸與步行為主。",
         "map": "Gosposvetska cesta 4 Ljubljana 1000",
         "url": "https://www.google.com/maps/search/?api=1&query=Gosposvetska+cesta+4%2C+Ljubljana+1000",
@@ -798,47 +809,47 @@ window.TRIP_DATA = {
       "weatherKey": "Bled",
       "stay": "Ljubljana",
       "theme": "Vintgar & lake",
-      "summary": "早去晚回 Bled：Vintgar Gorge 健行、湖畔散步與奶油蛋糕。",
+      "summary": "早去晚回 Bled：09:30 Vintgar 完整 5.7 km 動線、湖畔低強度散步與奶油蛋糕；當日有 UTMB 賽事人潮。",
       "events": [
         {
           "time": "06:20",
           "type": "move",
           "title": "住宿 → Ljubljana Bus Station → Bled",
-          "detail": "06:20 離開住宿，目標 06:40 到站；搭約 07:00 巴士，約 08:20 抵達 Bled。",
+          "detail": "06:20 離開住宿，06:40 到站；搭約 07:00 巴士，約 08:20 抵達 Bled Central Bus Station。",
           "duration": "步行約 20m＋巴士約 1h20",
           "map": "Bled Bus Station",
-          "why": "約 08:20 抵達，轉免費／季節接駁前往 Vintgar。",
-          "how": "到站後至少保留 20 分鐘找月台；Vintgar 接駁營運與班距出發前確認。"
+          "why": "車站到發車保留 20 分鐘，符合至少 15 分鐘的交通緩衝。",
+          "how": "約 08:30 轉 VINTGAR Shuttle：Bled Central 至 VINTGAR LIP 約每 15 分鐘，續段約每 7 分鐘；目標 09:10 前抵達入口。"
         },
         {
           "time": "09:30",
           "type": "walk",
           "title": "Vintgar Gorge 峽谷健行",
-          "detail": "峽谷步道與出口接駁，約 3 小時。",
+          "detail": "單向峽谷 1.6 km 約 45–60 分鐘，再走 King of Triglav Trail 4.1 km；全程 5.7 km 約 3 小時。",
           "duration": "3h",
           "map": "Vintgar Gorge",
-          "why": "峽谷步道與出口接駁，約 3 小時。",
-          "how": "穿抓地鞋；依官方單向動線與接駁規定行走。"
+          "why": "All-in-One Pass 需預約 09:30 時段；健行本身不用另申請許可。",
+          "how": "穿抓地鞋並帶水；依官方單向動線完成回程步道，不把入口接駁誤認成出口接駁。"
         },
         {
-          "time": "12:30",
+          "time": "12:30–13:15",
           "type": "food",
           "title": "返回 Bled 午餐",
-          "detail": "補充體力後再走湖畔。",
+          "detail": "完成回程步道後搭接駁回 Bled，約 13:15 再吃午餐。",
           "duration": "1h",
           "map": "Bled restaurants",
           "why": "補充體力後再走湖畔。",
-          "how": "搭接駁回 Bled，選巴士站或湖畔順路餐廳。"
+          "how": "選巴士站或湖畔順路餐廳；若健行延誤，優先縮短湖畔散步。"
         },
         {
-          "time": "14:00",
+          "time": "14:30",
           "type": "walk",
           "title": "Lake Bled 湖畔散步",
-          "detail": "環湖低強度段；湖心島視時間選擇。",
-          "duration": "3h",
+          "detail": "以湖東／湖南岸低強度路段為主；湖心島視時間選擇。",
+          "duration": "約 2h",
           "map": "Lake Bled",
-          "why": "環湖低強度段；湖心島視時間選擇。",
-          "how": "步行為主；不必強求完整環湖與高強度登高。"
+          "why": "前段已走 5.7 km，下午不必再完整環湖或登 Ojstrica。",
+          "how": "09/19 有 Julian Alps Trail Run by UTMB；Mala Zaka 一帶人潮多，遇管制就留在湖東側。"
         },
         {
           "time": "17:00",
@@ -1142,33 +1153,33 @@ window.TRIP_DATA = {
       "weatherKey": "Split",
       "stay": "Split",
       "theme": "Island day",
-      "summary": "完整保留給跳島；不用擔心當天再趕 17:30 跨境巴士。",
+      "summary": "Klook 藍洞、Vis 與 Hvar 五島快艇：2 人已付款 NT$8,714，07:00 共和廣場出發，全程約 11 小時。",
       "events": [
         {
-          "time": "06:45",
+          "time": "06:10",
           "type": "move",
-          "title": "住宿 → Split Port 集合",
-          "detail": "06:45 離開住宿，目標 07:15 前抵達碼頭，為暫定 08:00 開船保留至少 45 分鐘；最終依 voucher。",
-          "duration": "約 25–35m",
-          "map": "Split Port",
-          "why": "由已訂住宿提早出門，保留找集合點與報到的時間。",
-          "how": "背小包步行或搭短程 taxi；前晚截圖 voucher，帶護照影本、防曬、防風層、暈船藥與水。"
+          "title": "住宿 → 共和廣場集合",
+          "detail": "06:10 離開住宿，目標 06:40 前抵達 Republic Square；為 07:00 出發保留至少 20 分鐘。",
+          "duration": "約 25–30m",
+          "map": "Republic Square Split",
+          "why": "已確認的集合點不是 Split Bus Station／Port，必須直接前往共和廣場。",
+          "how": "背小包搭短程 taxi 最穩；前晚截圖 Klook 憑證與訂單 KJQ575284，帶防曬、防風層、暈船藥與水。"
         },
         {
-          "time": "08:00",
+          "time": "07:00",
           "type": "boat",
           "title": "Blue Cave／Vis／Hvar 跳島",
-          "detail": "實際停靠與順序依海況、船長及所選產品。",
-          "duration": "約 10h",
+          "detail": "藍洞、Vis、Hvar 等五島快艇行程；舒適遮陽座位，實際停靠與順序依海況及船長安排。",
+          "duration": "約 11h",
           "map": "Blue Cave Croatia",
           "why": "把海島體驗放在無跨境壓力的一整天。",
-          "how": "選可因天候取消／改期的產品；海況不佳就改 Marjan＋Split local day。"
+          "how": "兩人實付 NT$8,714；09/22 00:00 前可取消。海況不佳時依 Klook／業者通知辦理取消或改期。"
         },
         {
-          "time": "18:30",
+          "time": "18:00後",
           "type": "food",
           "title": "回 Split 晚餐＋早點休息",
-          "detail": "依回港時間彈性安排，不再塞景點。",
+          "detail": "約 11 小時行程結束後依實際下船時間用餐，不再塞景點。",
           "duration": "2h",
           "map": "Matejuska Split",
           "why": "隔天還有完整上午與午後，再搭 17:30 跨境巴士。",
@@ -1853,7 +1864,7 @@ window.TRIP_DATA = {
   "tripNotes": [
     {
       "title": "斯洛維尼亞",
-      "text": "09/17–09/19 固定住 Ljubljana；09/18 搭公共交通自由行 Postojna／Predjama，使用 2026/06/27–09/30 園區接駁；09/19 Bled＋Vintgar 早去晚回。Bled 不過夜，省住宿費與搬行李。"
+      "text": "09/17–09/19 固定住 Ljubljana；09/18 Klook Postojna／Predjama 半日團已付款 NT$8,354，07:45 前到 InterContinental Ljubljana。09/19 Bled＋Vintgar 早去晚回，09:30 All-in-One Pass、完整 5.7 km 約 3 小時；當日有 UTMB 賽事人潮。"
     },
     {
       "title": "Zagreb → Split",
@@ -1861,7 +1872,7 @@ window.TRIP_DATA = {
     },
     {
       "title": "Split 兩晚",
-      "text": "09/22–09/23 已確認入住 Ul. Antuna Branka Šimića 2，兩晚共 NT$4,614。09/22 抵達後慢走舊城，09/23 完整跳島，09/24 市場、咖啡與 Marjan 第一觀景台；不再用跳島日硬接跨境巴士。"
+      "text": "09/22–09/23 已確認入住 Ul. Antuna Branka Šimića 2，兩晚共 NT$4,614。09/23 Klook 五島快艇已付款 NT$8,714，06:40 前到共和廣場、07:00 出發、約 11 小時；訂單 KJQ575284。09/24 市場、咖啡與 Marjan 第一觀景台後再搭跨境巴士。"
     },
     {
       "title": "Split → Mostar",
@@ -1890,16 +1901,20 @@ window.TRIP_DATA = {
       "url": "https://www.ap-ljubljana.si/en"
     },
     {
-      "label": "Postojna Cave official tickets",
-      "url": "https://www.postojnska-jama.eu/en/tickets/two-adventures/"
+      "label": "Klook Postojna half-day tour",
+      "url": "https://www.klook.com/en-US/activity/176878-postojna-cave-predjama-castle-half-day-tour-from-ljubljana/"
     },
     {
-      "label": "Postojna Cave ↔ Predjama shuttle",
-      "url": "https://www.postojnska-jama.eu/en/information/shuttle-bus/"
+      "label": "Vintgar official tickets",
+      "url": "https://tickets.vintgar.si/"
     },
     {
       "label": "Vintgar Gorge official",
       "url": "https://www.vintgar.si/en/"
+    },
+    {
+      "label": "Julian Alps Trail Run schedule",
+      "url": "https://julianalps.utmb.world/races-runners/runners/event-schedule"
     },
     {
       "label": "Slovenian Railways",

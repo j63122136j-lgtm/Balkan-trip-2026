@@ -323,16 +323,24 @@
 .header-weather button{width:24px;height:24px;border:0;border-radius:50%;background:var(--bg);color:var(--text);font-size:12px;font-weight:800;cursor:pointer}
 .header-weather-note{display:none}
 
+/* Itinerary-aware local time replaces the low-value network status pill · v4.22 */
+.local-clock{display:flex;align-items:baseline;gap:5px;padding:7px 9px;border:1px solid var(--line);border-radius:999px;background:var(--surface-solid);white-space:nowrap;font-variant-numeric:tabular-nums}
+.local-clock span{font-size:7px;font-weight:900;letter-spacing:.10em;color:var(--blue)}
+.local-clock strong{font-size:13px;letter-spacing:-.025em}
+
 @media(max-width:1050px){
   .header-weather-text,.header-weather-range{display:none}
 }
 
 @media(max-width:760px){
+  .local-clock{display:flex;padding:6px 7px;gap:4px}
+  .local-clock strong{font-size:12px}
   .header-weather{gap:4px;padding:5px 5px 5px 8px}
   .header-weather strong{font-size:15px}.header-weather button{width:22px;height:22px}
 }
 
 @media(max-width:430px){
+  .local-clock span{display:none}
   .header-weather-city{display:none}
 }
 

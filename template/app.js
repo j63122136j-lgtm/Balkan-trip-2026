@@ -47,6 +47,30 @@
     activeDay=Math.min(Math.floor((now-start)/86400000)+1,D.days.length);
   }
 
+  function dayPrimaryCity(day){
+    if(!day)return 'Taipei';
+    if(day.tabCity)return day.tabCity;
+    if(day.stay==='Flight')return day.city.split('→').pop().trim();
+    if(day.stay==='Home')return 'Taipei';
+    return day.stay;
+  }
+
+  const localTimeZones={
+    Taipei:{code:'TPE',zone:'Asia/Taipei'},Bangkok:{code:'BKK',zone:'Asia/Bangkok'},
+    Istanbul:{code:'IST',zone:'Europe/Istanbul'},Ljubljana:{code:'LJU',zone:'Europe/Ljubljana'},
+    Zagreb:{code:'ZAG',zone:'Europe/Zagreb'},Split:{code:'SPU',zone:'Europe/Zagreb'},
+    Mostar:{code:'OMO',zone:'Europe/Sarajevo'},Sarajevo:{code:'SJJ',zone:'Europe/Sarajevo'},
+    Dubrovnik:{code:'DBV',zone:'Europe/Zagreb'},Geneva:{code:'GVA',zone:'Europe/Zurich'},
+    Shanghai:{code:'PVG',zone:'Asia/Shanghai'}
+  };
+  function updateLocalClock(){
+    const city=activeDay===0?'Taipei':dayPrimaryCity(D.days[activeDay-1]);
+    const clock=localTimeZones[city]||localTimeZones.Taipei;
+    $('#local-clock-city').textContent=clock.code;
+    $('#local-clock-time').textContent=new Intl.DateTimeFormat('zh-TW',{timeZone:clock.zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());
+    $('#local-clock').title=`${city} 當地時間`;
+  }
+
   function updateTripCountdown(){
     const toLocalDate=iso=>{const [y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d)};
     const today=new Date();today.setHours(0,0,0,0);
@@ -216,7 +240,7 @@
   function bindOpenDayButtons(){
     document.addEventListener('click',e=>{const btn=e.target.closest('[data-open-day]');if(!btn)return;
       activeDay=Number(btn.dataset.openDay);
-      renderTabs();renderDay();updateWeather();setScreen('trip');
+      renderTabs();renderDay();updateWeather();updateLocalClock();setScreen('trip');
     });
   }
 
@@ -237,14 +261,8 @@
 
   function renderTabs(){
     const dayZero=`<button class="day-tab day-zero-tab ${activeDay===0?'active':''}" data-day="0"><b>Day 0</b><small>行前</small></button>`;
-    const tabCity=d=>{
-      if(d.tabCity)return d.tabCity;
-      if(d.stay==='Flight')return d.city.split('→').pop().trim();
-      if(d.stay==='Home')return 'Taipei';
-      return d.stay;
-    };
-    $('#day-tabs').innerHTML=dayZero+D.days.map(d=>`<button class="day-tab ${d.day===activeDay?'active':''}" data-day="${d.day}" aria-label="Day ${d.day} · ${esc(d.date)} · ${esc(tabCity(d))}"><b>Day ${d.day}</b><small>${esc(tabCity(d))}</small></button>`).join('');
-    $$('.day-tab').forEach(b=>b.addEventListener('click',()=>{activeDay=+b.dataset.day;renderTabs();renderDay();updateWeather();}));
+    $('#day-tabs').innerHTML=dayZero+D.days.map(d=>`<button class="day-tab ${d.day===activeDay?'active':''}" data-day="${d.day}" aria-label="Day ${d.day} · ${esc(d.date)} · ${esc(dayPrimaryCity(d))}"><b>Day ${d.day}</b><small>${esc(dayPrimaryCity(d))}</small></button>`).join('');
+    $$('.day-tab').forEach(b=>b.addEventListener('click',()=>{activeDay=+b.dataset.day;renderTabs();renderDay();updateWeather();updateLocalClock();}));
   }
 
   const eventGuides={};
@@ -381,7 +399,7 @@
       const rows=expenses.filter(x=>x.day===day),tripDay=D.days.find(d=>d.day===day);
       return {day,date:tripDay?.date||rows[0]?.date||'',city:tripDay?.city||'舊版匯入',rows,total:rows.reduce((sum,x)=>sum+(Number(x.amount)||0),0)};
     });
-    $('#budget-dashboard').innerHTML=`<div class="cost-summary"><div class="cost-stat glass"><small>FIXED / ESTIMATED</small><b>${fmt(fixedTotal)}</b><span>機票＋16 晚住宿</span></div><div class="cost-stat glass"><small>DAILY SPEND</small><b>${fmt(spentTotal)}</b><span>${expenses.length} 筆旅途消費</span></div><div class="cost-stat total glass"><small>CURRENT TOTAL</small><b>${fmt(fixedTotal+spentTotal)}</b><span>目前預計旅行總花費</span></div></div><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">KNOWN COSTS</span><h2>已有／預計支出</h2></div><strong>${fmt(fixedTotal)}</strong></div><div class="fixed-cost-list">${fixed.map(x=>`<div class="fixed-cost-row"><div><b>${esc(x.label)}</b><span>${esc(x.note)}</span></div><em>${esc(x.status)}</em><strong>${fmt(x.amount)}</strong></div>`).join('')}</div></section><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">TRIP SPENDING</span><h2>每日消費總計</h2></div><strong>${fmt(spentTotal)}</strong></div>${categoryTotals.length?`<div class="category-totals">${categoryTotals.map(x=>`<span>${esc(x.category)} <b>${fmt(x.amount)}</b></span>`).join('')}</div>`:''}${grouped.length?`<div class="daily-cost-groups">${grouped.map(g=>`<article><div class="daily-cost-head"><div><b>${g.day?`Day ${g.day} · ${g.date}`:'舊版匯入'}</b><span>${esc(g.city)}</span></div><strong>${fmt(g.total)}</strong></div>${g.rows.map(x=>`<div class="daily-cost-row"><span>${esc(x.category)}</span><b>${esc(x.item)}</b><strong>${fmt(x.amount)}</strong></div>`).join('')}</article>`).join('')}</div>`:'<div class="budget-empty"><b>還沒有每日消費</b><span>進入任一天的行程分頁，就能新增當日支出。</span></div>'}</section><p class="cost-note">固定支出不必在每日消費重複輸入；每日紀錄儲存在目前瀏覽器，清除網站資料或更換裝置不會自動同步。</p>`;
+    $('#budget-dashboard').innerHTML=`<div class="cost-summary"><div class="cost-stat glass"><small>FIXED / ESTIMATED</small><b>${fmt(fixedTotal)}</b><span>機票＋接送＋16 晚住宿</span></div><div class="cost-stat glass"><small>DAILY SPEND</small><b>${fmt(spentTotal)}</b><span>${expenses.length} 筆旅途消費</span></div><div class="cost-stat total glass"><small>CURRENT TOTAL</small><b>${fmt(fixedTotal+spentTotal)}</b><span>目前預計旅行總花費</span></div></div><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">KNOWN COSTS</span><h2>已有／預計支出</h2></div><strong>${fmt(fixedTotal)}</strong></div><div class="fixed-cost-list">${fixed.map(x=>`<div class="fixed-cost-row"><div><b>${esc(x.label)}</b><span>${esc(x.note)}</span></div><em>${esc(x.status)}</em><strong>${fmt(x.amount)}</strong></div>`).join('')}</div></section><section class="cost-panel glass"><div class="cost-panel-head"><div><span class="kicker">TRIP SPENDING</span><h2>每日消費總計</h2></div><strong>${fmt(spentTotal)}</strong></div>${categoryTotals.length?`<div class="category-totals">${categoryTotals.map(x=>`<span>${esc(x.category)} <b>${fmt(x.amount)}</b></span>`).join('')}</div>`:''}${grouped.length?`<div class="daily-cost-groups">${grouped.map(g=>`<article><div class="daily-cost-head"><div><b>${g.day?`Day ${g.day} · ${g.date}`:'舊版匯入'}</b><span>${esc(g.city)}</span></div><strong>${fmt(g.total)}</strong></div>${g.rows.map(x=>`<div class="daily-cost-row"><span>${esc(x.category)}</span><b>${esc(x.item)}</b><strong>${fmt(x.amount)}</strong></div>`).join('')}</article>`).join('')}</div>`:'<div class="budget-empty"><b>還沒有每日消費</b><span>進入任一天的行程分頁，就能新增當日支出。</span></div>'}</section><p class="cost-note">固定支出不必在每日消費重複輸入；每日紀錄儲存在目前瀏覽器，清除網站資料或更換裝置不會自動同步。</p>`;
   }
 
   function packingMarkup(){
@@ -442,13 +460,12 @@
   }
   const notes=$('#notes');notes.value=localStorage.getItem(STORE.notes)||'';notes.addEventListener('input',()=>localStorage.setItem(STORE.notes,notes.value));
 
-  function network(){const el=$('#network-state');el.textContent=navigator.onLine?'ONLINE':'OFFLINE';el.classList.toggle('offline',!navigator.onLine)}window.addEventListener('online',network);window.addEventListener('offline',network);
   function observeReveals(){const els=$$('.reveal:not(.visible)');const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});els.forEach(e=>io.observe(e))}
   function parallax(){const y=window.scrollY;$$('[data-parallax]').forEach(e=>e.style.transform=`translateY(${y*Number(e.dataset.parallax)}px)`)}window.addEventListener('scroll',()=>requestAnimationFrame(parallax),{passive:true});
 
-  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('#install-btn').hidden=false;});
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
   async function install(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null}else alert('iPhone：Safari → 分享 →「加入主畫面」。')}
-  $('#install-btn').addEventListener('click',install);$('#install-btn-more').addEventListener('click',install);
+  $('#install-btn-more').addEventListener('click',install);
   if('serviceWorker' in navigator)window.addEventListener('load',()=>{
     let refreshing=false;
     navigator.serviceWorker.addEventListener('controllerchange',()=>{
@@ -462,5 +479,7 @@
   document.title=`${D.meta.title} · Travel Dashboard`;
   const brand=$('.brand-button b');if(brand)brand.textContent=D.meta.title;
   $('#top-date').textContent=D.meta.dateRange.replace('2026.','').replace(' — ',' — ');
-  initTheme();resolveActiveDay();updateTripCountdown();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderFlights();renderTripReferences();bindOpenDayButtons();initFlightStatus();network();updateWeather();observeReveals();
+  initTheme();resolveActiveDay();updateTripCountdown();updateLocalClock();nextFlight();nextAttraction();tomorrowFocus();renderTabs();renderDay();initCurrency();renderBudget();renderFlights();renderTripReferences();bindOpenDayButtons();initFlightStatus();updateWeather();observeReveals();
+  setInterval(updateLocalClock,30000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateLocalClock()});
 })();
