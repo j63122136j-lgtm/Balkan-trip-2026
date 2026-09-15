@@ -428,6 +428,13 @@
 .discovery-card.single .discovery-grid{grid-template-columns:1fr}.discovery-card.single .discovery-section{padding:0;border:0}
 .discovery-card .food-list,.discovery-card .local-stop-list{margin:13px 0 0}
 .discovery-card>small{display:block;margin-top:11px;color:var(--muted);font-size:8px;line-height:1.5}
+.discovery-card .food-list a{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:13px}
+.food-heading{display:flex;align-items:center;gap:7px;min-width:0}.food-heading b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.food-pick{flex:0 0 auto;padding:3px 6px;border-radius:999px;background:color-mix(in srgb,var(--blue) 12%,transparent);color:var(--blue);font-size:7px;font-style:normal;font-weight:900;letter-spacing:.04em}
+.food-list a>span,.food-list a>p,.food-list .food-meta{grid-column:1;display:block;margin:0}
+.food-list a>p{color:var(--muted);font-size:9px;line-height:1.45}
+.food-list .food-meta{color:var(--text);font-size:8px;font-weight:800;letter-spacing:.02em}
+.food-list a>i{grid-column:2;grid-row:1/5}
 
 @media(max-width:760px){
   .trip-toolbar{top:calc(66px + var(--safe-top));gap:4px;margin:8px 0 12px;padding:5px;border-radius:16px}
