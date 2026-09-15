@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.24.0"
+    "version": "4.27.0"
   },
   "route": [
     "Taipei",
@@ -920,11 +920,11 @@ window.TRIP_DATA = {
         {
           "time": "12:00",
           "type": "walk",
-          "title": "Central Market＋Ljubljana Castle",
-          "detail": "市場午餐、城堡與 Ljubljanica 河畔。",
+          "title": "舊城午餐＋Ljubljana Castle",
+          "detail": "Klobasarna／Druga Violina 午餐、城堡與 Ljubljanica 河畔；Central Market 週日不列為依賴點。",
           "duration": "2h45",
           "map": "Ljubljana Castle",
-          "why": "市場午餐、城堡與 Ljubljanica 河畔。",
+          "why": "避開週日休市風險，再走城堡與 Ljubljanica 河畔。",
           "how": "市場旁搭纜車上城堡；下山後取行李。"
         },
         {
@@ -2094,5 +2094,101 @@ window.TRIP_DATA = {
     ]
   };
   D.days.forEach(day => { day.localStops = stops[day.day] || []; });
+
+  /* Route-aware restaurant choices. Prices are broad local bands rather than
+     promises; the card always keeps a fast fallback for transfer-heavy days. */
+  const restaurants = {
+    1: [
+      {name:'Sukhumvit 39 深夜補給',pick:'抵達備案',dish:'便利商店、粥或簡單熱食',note:'深夜抵達只補水與早餐，不再繞路找名店。',price:'฿',booking:'現場即可',map:'convenience store near Metropolis Suites Bangkok'}
+    ],
+    2: [
+      {name:"Kub Kao' Kub Pla EmQuartier",pick:'早午餐主選',dish:'泰式家常菜、打拋與冬蔭功',note:'住宿旁先吃再搭 BTS，不影響 CentralWorld 採買。',price:'฿฿',booking:'尖峰可候位',map:"Kub Kao Kub Pla EmQuartier Bangkok"},
+      {name:'JODD FAIRS Ratchada',pick:'晚餐主選',dish:'夜市小吃、海鮮與泰式甜點',note:'依原行程直接在夜市解決晚餐，少量多攤分食。',price:'฿',booking:'免訂位',map:'JODD FAIRS Ratchada'},
+      {name:'Pier 21 Food Terminal',pick:'平價備選',dish:'船麵、打拋飯與芒果糯米',note:'Asok 轉車順路；先儲值餐卡，用完可退餘額。',price:'฿',booking:'免訂位',map:'Pier 21 Food Terminal Asok'}
+    ],
+    3: [
+      {name:'Pier 21 Food Terminal',pick:'午餐主選',dish:'便宜快速的泰式熟食',note:'飛行日下午在 Asok 吃完即回住宿整理行李。',price:'฿',booking:'免訂位',map:'Pier 21 Food Terminal Asok'},
+      {name:"Kub Kao' Kub Pla EmQuartier",pick:'住宿旁備選',dish:'泰式家常菜',note:'不想前往 Asok 時改在 Phrom Phong 用餐。',price:'฿฿',booking:'尖峰可候位',map:"Kub Kao Kub Pla EmQuartier Bangkok"}
+    ],
+    4: [
+      {name:'Tarihi Sultanahmet Köftecisi',pick:'午餐主選',dish:'köfte＋piyaz＋ayran',note:'就在 Sultanahmet 動線上，出餐快，最符合轉機日。',price:'₺₺',booking:'通常現場排隊',map:'Tarihi Sultanahmet Koftecisi'},
+      {name:'Pudding Shop Lale Restaurant',pick:'不排隊備選',dish:'烤肉、陶罐料理與土耳其家常菜',note:'距主要景點近；主選排太久就直接換這間。',price:'₺₺',booking:'現場即可',map:'Pudding Shop Lale Restaurant Istanbul'},
+      {name:'Hafız Mustafa 1864 Sultanahmet',pick:'外帶甜點',dish:'baklava、lokum 與土耳其咖啡',note:'午餐後外帶回機場，不另外跨區。',price:'₺₺',booking:'免訂位',map:'Hafiz Mustafa 1864 Sultanahmet'}
+    ],
+    5: [
+      {name:'Moji Štruklji',pick:'回城主選',dish:'甜／鹹 štruklji',note:'半日團回城後在 Central Market 周邊快速補午餐。',price:'€',booking:'現場即可',map:'Moji Struklji Ljubljana'},
+      {name:'Klobasarna',pick:'快速備選',dish:'Kranjska 香腸＋jota 燉湯',note:'份量適合補體力，舊城動線內。',price:'€',booking:'免訂位',map:'Klobasarna Ljubljana'},
+      {name:'Gostilna Sokol',pick:'晚餐主選',dish:'goulash 與傳統斯洛維尼亞料理',note:'想坐下來完整吃一餐再選；晚餐時段可能候位。',price:'€€',booking:'建議訂位',map:'Gostilna Sokol Ljubljana'}
+    ],
+    6: [
+      {name:"Oštarija Peglez'n",pick:'健行後主選',dish:'鱒魚、燉飯與斯洛維尼亞料理',note:'湖畔／巴士站動線方便，健行回來再決定是否候位。',price:'€€',booking:'午餐尖峰建議訂位',map:'Ostarija Peglezn Bled'},
+      {name:'Gostilna Pri Planincu',pick:'巴士站備選',dish:'披薩、烤肉與家常料理',note:'靠近 Bled Bus Station，回程時間受壓縮時最好用。',price:'€€',booking:'現場即可',map:'Gostilna Pri Planincu Bled'},
+      {name:'Café Park',pick:'甜點必吃',dish:'Original Bled cream cake',note:'只排奶油蛋糕與咖啡，不必在此吃完整正餐。',price:'€',booking:'免訂位',map:'Cafe Park Bled'}
+    ],
+    7: [
+      {name:'Klobasarna',pick:'週日午餐主選',dish:'Kranjska 香腸與 jota',note:'Central Market 週日不可靠；此店週日營業至下午，先吃再上城堡。',price:'€',booking:'免訂位',map:'Klobasarna Ljubljana'},
+      {name:'Druga Violina',pick:'週日備選',dish:'傳統斯洛維尼亞套餐',note:'舊城內可坐下來吃；出發前仍核對當日營業。',price:'€',booking:'可現場候位',map:'Druga Violina Ljubljana'},
+      {name:'Pingvin',pick:'Zagreb 抵達備案',dish:'熱壓三明治與快速宵夜',note:'入住後只想快速吃東西時使用，不再安排景點。',price:'€',booking:'免訂位',map:'Pingvin Zagreb'}
+    ],
+    8: [
+      {name:'La Štruk',pick:'午餐主選',dish:'烤／煮 zagorski štrukli',note:'老城步行動線內，份量可兩人分著點不同口味。',price:'€',booking:'熱門時段候位',map:'La Struk Zagreb'},
+      {name:'Heritage Croatian Food',pick:'順路備選',dish:'克羅埃西亞冷盤、燉菜與在地小食',note:'Petrinjska 14，離住宿非常近；座位少，適合午餐。',price:'€€',booking:'座位少',map:'Heritage Croatian Food Zagreb Petrinjska 14'},
+      {name:'Ficlek',pick:'晚餐主選',dish:'Zagreb 家常菜與烤肉',note:'靠近 Dolac／Tkalčićeva，完成上下城後順路。',price:'€€',booking:'晚餐建議訂位',map:'Ficlek Zagreb'}
+    ],
+    9: [
+      {name:'Villa Spiza',pick:'晚餐主選',dish:'每日黑板菜與達爾馬提亞家常料理',note:'座位少、不接受訂位；隊伍太長不要硬等。',price:'€€',booking:'現金／現場候位',map:'Villa Spiza Split'},
+      {name:'Konoba Fetivi',pick:'海鮮備選',dish:'烤魚、黑燉飯與達爾馬提亞料理',note:'Matejuška 附近，適合 Riva 日落後用餐。',price:'€€',booking:'建議訂位',map:'Konoba Fetivi Split'},
+      {name:'Kantun Paulina',pick:'快速備選',dish:'ćevapi＋kajmak',note:'抵達日若太累，外帶後直接回住宿。',price:'€',booking:'現金／免訂位',map:'Kantun Paulina Split'}
+    ],
+    10: [
+      {name:'Kantun Paulina',pick:'回港主選',dish:'ćevapi、烤肉三明治',note:'跳島後快速、份量足；晚歸時直接外帶。',price:'€',booking:'現金／免訂位',map:'Kantun Paulina Split'},
+      {name:'Buffet Fife',pick:'坐下吃備選',dish:'魚湯、燉肉與平價海鮮',note:'在 Matejuška；仍有體力且不用久候再選。',price:'€',booking:'現場候位',map:'Buffet Fife Split'},
+      {name:'Bobis',pick:'超晚備案',dish:'burek、鹹麵包與甜點',note:'船程延誤或暈船不舒服時，買清淡外帶回住宿。',price:'€',booking:'免訂位',map:'Bobis bakery Split Old Town'}
+    ],
+    11: [
+      {name:'Villa Spiza',pick:'午餐主選',dish:'當日黑板菜',note:'11:30 前後先吃可避開部分人潮；最晚 15:30 要回住宿。',price:'€€',booking:'現金／不接受訂位',map:'Villa Spiza Split'},
+      {name:'Kantun Paulina',pick:'快速備選',dish:'ćevapi＋kajmak',note:'不想排隊時改外帶，保住跨境巴士緩衝。',price:'€',booking:'現金／免訂位',map:'Kantun Paulina Split'},
+      {name:'Bobis',pick:'車上補給',dish:'burek、三明治與麵包',note:'上車前買不易滴漏的品項，邊境段備用。',price:'€',booking:'免訂位',map:'Bobis bakery Split Bus Station'}
+    ],
+    12: [
+      {name:'Restoran Vrelo',pick:'Blagaj 午餐主選',dish:'Buna 河鱒魚與波士尼亞料理',note:'就在河源／Tekke 動線；景觀位可現場詢問。',price:'KM 20–40／人',booking:'景觀位建議訂位',map:'Restoran Vrelo Blagaj'},
+      {name:'Hindin Han',pick:'Mostar 晚餐主選',dish:'烤肉、鱒魚與波士尼亞料理',note:'古橋附近河景餐廳，夕陽後順路。',price:'KM 20–40／人',booking:'晚餐建議訂位',map:'Hindin Han Mostar'},
+      {name:'Tima-Irma',pick:'份量型備選',dish:'ćevapi 與雙人烤肉拼盤',note:'老城核心、份量大；兩人先點少量再追加。',price:'KM 8–20／人',booking:'現場候位',map:'Tima Irma Mostar'}
+    ],
+    13: [
+      {name:'Tima-Irma',pick:'午餐主選',dish:'ćevapi、烤肉拼盤',note:'清晨古橋後回老城吃，不影響傍晚取行李。',price:'KM 8–20／人',booking:'現場候位',map:'Tima Irma Mostar'},
+      {name:'Food House Mostar',pick:'清爽備選',dish:'波士尼亞家常菜與素食選項',note:'想少吃烤肉時使用，仍在老城步行區。',price:'KM 10–25／人',booking:'現場即可',map:'Food House Mostar'},
+      {name:'Buregdžinica Visak',pick:'火車外帶',dish:'burek／sirnica＋優格',note:'只買不易滴漏的份量，18:45 前仍以到站為優先。',price:'KM 5–12／人',booking:'免訂位',map:'Buregdzinica Visak Mostar'}
+    ],
+    14: [
+      {name:'Ćevabdžinica Željo',pick:'晚餐主選',dish:'Sarajevo ćevapi＋somun',note:'Baščaršija 經典；Yellow Fortress 下山後順路。',price:'KM 8–18／人',booking:'現場翻桌快',map:'Cevabdzinica Zeljo Sarajevo'},
+      {name:'Buregdžinica Bosna',pick:'午餐主選',dish:'burek、sirnica、zeljanica',note:'銅匠街後快速吃，搭配優格；留時間前往 Tunnel Museum。',price:'KM 5–12／人',booking:'免訂位',map:'Buregdzinica Bosna Sarajevo'},
+      {name:'Aščinica ASDŽ',pick:'燉菜備選',dish:'sogan-dolma、begova čorba 等家常菜',note:'吃膩烤肉時選；菜色售完就換下一項。',price:'KM 10–25／人',booking:'現場即可',map:'Ascinica ASDZ Sarajevo'}
+    ],
+    15: [
+      {name:'Bistro Glorijet',pick:'抵達午餐主選',dish:'鮮魚、海鮮燉飯與達爾馬提亞料理',note:'Gruž 市場旁，放完背包後最順路；週一正常營業。',price:'€€',booking:'可訂位',map:'Bistro Glorijet Dubrovnik'},
+      {name:'Barba',pick:'老城快速備選',dish:'章魚漢堡與炸海鮮',note:'跨境巴士延誤時仍能快速解決晚餐。',price:'€€',booking:'不訂位／可能排隊',map:'Barba Dubrovnik'},
+      {name:'Taj Mahal Old Town',pick:'正式晚餐',dish:'Bosnian grill、sahan 與烤肉',note:'不是印度菜；想完整用餐才選，避免臨時久候。',price:'€€€',booking:'強烈建議訂位',map:'Taj Mahal Old Town Dubrovnik'}
+    ],
+    16: [
+      {name:'Barba',pick:'城牆後午餐',dish:'炸魚、章魚漢堡與海鮮小吃',note:'Old Port 動線近、吃得快，適合接下午 Lokrum。',price:'€€',booking:'不訂位／可能排隊',map:'Barba Dubrovnik'},
+      {name:'Taj Mahal Old Town',pick:'最後晚餐主選',dish:'波士尼亞烤肉與傳統料理',note:'已在考慮名單內；確定要吃就提前訂 18:30。',price:'€€€',booking:'強烈建議訂位',map:'Taj Mahal Old Town Dubrovnik'},
+      {name:'Lady Pi-Pi',pick:'景觀備選',dish:'炭烤海鮮與肉類',note:'階梯多且常排隊；只有體力與候位時間都足夠才去。',price:'€€€',booking:'多為現場候位',map:'Lady Pi-Pi Dubrovnik'}
+    ],
+    17: [
+      {name:'Bains des Pâquis',pick:'Geneva 晚餐主選',dish:'湖畔起司鍋',note:'由 Cornavin／Pâquis 步行可到，抵達日晚餐最有瑞士感。',price:'CHF 25–35／人',booking:'依當日規定',map:'Bains des Paquis Geneva'},
+      {name:'Parfums de Beyrouth',pick:'晚到備選',dish:'shawarma、falafel 與黎巴嫩拼盤',note:'靠近 Cornavin、營業晚、出餐快；班機延誤時最穩。',price:'CHF 10–20／人',booking:'免訂位',map:'Parfums de Beyrouth Geneva'},
+      {name:'Chez Ma Cousine',pick:'平價備選',dish:'半隻烤雞、薯條與沙拉',note:'比傳統瑞士餐廳便宜，想吃飽但不想吃鍋時選。',price:'CHF 18–25／人',booking:'現場即可',map:'Chez Ma Cousine Geneva'}
+    ],
+    18: [
+      {name:'Boréal Coffee Cornavin',pick:'早餐主選',dish:'咖啡、可頌與輕食',note:'退房後前往車站順路，吃完直接搭機場火車。',price:'CHF 8–18／人',booking:'免訂位',map:'Boreal Coffee Rue du Mont Blanc 17 Geneva'},
+      {name:'Cornavin 車站 Migros',pick:'省時備選',dish:'三明治、沙拉與飲料',note:'時間不足就直接外帶，先確保 09:00 前往 GVA。',price:'CHF 6–15／人',booking:'免訂位',map:'Migros Geneve Cornavin'},
+      {name:'GVA Airport 餐飲區',pick:'最後備案',dish:'安檢前後簡餐',note:'先完成報到與退稅，再依登機門附近店家選擇。',price:'CHF 15–30／人',booking:'免訂位',map:'Geneva Airport restaurants'}
+    ],
+    19: [
+      {name:'PVG 轉機區餐飲',pick:'轉機主選',dish:'麵食、飯類或便利補給',note:'先確認下一段登機門與行李狀態，再選同一管制區內店家。',price:'機場價',booking:'免訂位',map:'Shanghai Pudong Airport Terminal 1 restaurants'}
+    ]
+  };
+  D.days.forEach(day => { day.food = restaurants[day.day] || day.food || []; });
 
 })();
