@@ -1,4 +1,12 @@
-# Balkan Trip Dashboard v4.24.0
+# Balkan Trip Dashboard v4.27.0
+
+## v4.27.0 更新
+
+- 全部 19 天補齊順路餐廳，依每日動線提供主選、備選與交通日快速方案。
+- 餐廳卡片新增價位、訂位／候位提示與當日選擇理由。
+- 09/20 Ljubljana 週日午餐不再依賴 Central Market，改列 Klobasarna／Druga Violina。
+- Dubrovnik 抵達日優先 Gruž 的 Bistro Glorijet；Geneva 晚抵提供 Bains des Pâquis 與 Cornavin 快速備案。
+- 快取版本提升至 v4.27.0。
 
 ## v4.24.0 更新
 
