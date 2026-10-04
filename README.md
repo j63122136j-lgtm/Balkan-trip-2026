@@ -1,4 +1,12 @@
-# Balkan Trip Dashboard v4.27.0
+# Balkan Trip Dashboard v4.28.0
+
+## v4.28.0 更新
+
+- 以 2026-10-04 更新的 Google 試算表同步 19 天實際行程、住宿與交通。
+- 最終兩人總額為 NT$164,065：機票 79,528、住宿 46,093、簽證 1,191、門票／活動 24,789、交通 12,464。
+- 09/18 改為 Ljubljana 市區與城堡；09/19 改為實際參加的 Highlights of Slovenia 套裝行程與 Pletna 船。
+- 更新 Sarajevo、Dubrovnik、Geneva 實際住宿，以及 Mostar→Sarajevo 火車兩人實付 BAM 33.80。
+- 補入旅途中實際造訪的餐廳、咖啡店與 Google Maps 連結，快取版本提升至 v4.28.0。
 
 ## v4.27.0 更新
 
@@ -7,6 +15,20 @@
 - 09/20 Ljubljana 週日午餐不再依賴 Central Market，改列 Klobasarna／Druga Violina。
 - Dubrovnik 抵達日優先 Gruž 的 Bistro Glorijet；Geneva 晚抵提供 Bains des Pâquis 與 Cornavin 快速備案。
 - 快取版本提升至 v4.27.0。
+
+## v4.26.0 更新
+
+- 統一 Dashboard 與 Google 試算表的費用口徑，目前兩人預計總額為 NT$163,345。
+- 新增土耳其 e-Visa 三次共 NT$1,191、其他門票／活動 NT$9,559，以及其他交通 NT$10,347。
+- 修正試算表誤將 Mostar 住宿重複列入雙人機票的 NT$4,036 差額。
+- 快取版本提升至 v4.26.0。
+
+## v4.25.0 更新
+
+- 行前提醒新增「泰國入境：TDAC＋免簽資格」，列為最高優先。
+- 9/15 入境的兩位旅客須分別完成免費 TDAC，並將確認資料離線保存。
+- 提醒依 2026/09/15 生效的泰國官方名單再次確認免簽資格，避免誤用收費代辦網站。
+- 快取版本提升至 v4.25.0。
 
 ## v4.24.0 更新
 

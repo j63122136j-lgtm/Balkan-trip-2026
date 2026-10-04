@@ -1,5 +1,5 @@
 /* Balkan 2026 — trip content only. Duplicate this file to reuse the template.
-   Synced from the reviewed itinerary on 2026-09-07. */
+   Synced from the completed trip ledger on 2026-10-04. */
 window.TRIP_DATA = {
   "meta": {
     "title": "Balkan 2026",
@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.27.0"
+    "version": "4.28.0"
   },
   "route": [
     "Taipei",
@@ -235,6 +235,27 @@ window.TRIP_DATA = {
       "amount": 8714,
       "status": "已付款",
       "note": "2 人｜07:00 共和廣場出發｜11 小時｜09/22 00:00 前可取消｜訂單 KJQ575284"
+    },
+    {
+      "id": "turkey-evisa",
+      "label": "土耳其 e-Visa",
+      "amount": 1191,
+      "status": "已付款",
+      "note": "共申請 3 次｜每次約 NT$397"
+    },
+    {
+      "id": "planned-admissions",
+      "label": "其他門票／活動",
+      "amount": 9559,
+      "status": "預估",
+      "note": "Vintgar、Ljubljana Castle、失戀博物館、Blagaj、Tunnel of Hope、Dubrovnik City Walls＋纜車／Lokrum"
+    },
+    {
+      "id": "planned-ground-transport",
+      "label": "其他交通",
+      "amount": 10347,
+      "status": "預估",
+      "note": "Bled 往返與接駁、跨城火車／巴士、跨境巴士及 Geneva 市區交通；購票後改實付"
     }
   ],
   "dayZero": {
@@ -249,6 +270,15 @@ window.TRIP_DATA = {
         "action": "確認兩人護照皆載有身分證字號、以 10/02 回程日計仍有 6 個月以上效期與空白頁；紙本影本、手機與雲端各留一份。",
         "url": "https://www.boca.gov.tw/",
         "linkLabel": "外交部領事事務局"
+      },
+      {
+        "id": "thailand-tdac",
+        "priority": "最高｜立即處理",
+        "title": "泰國入境：TDAC＋免簽資格",
+        "why": "09/15 抵達泰國；所有非泰國籍旅客都必須在抵達日前 3 天內完成免費 TDAC。",
+        "action": "今天替兩人分別填寫 Thailand Digital Arrival Card，核對護照、SL395 航班、DMK 入境口岸與 Bangkok 住宿地址；完成後將 QR／確認信截圖存進兩支手機。並依 2026/09/15 生效的泰國官方名單再次確認台灣普通護照免簽資格，不要在代辦網站付費。",
+        "url": "https://tdac.immigration.go.th/arrival-card/",
+        "linkLabel": "TDAC 泰國移民局官方網站"
       },
       {
         "id": "taiwan-permit",
@@ -1893,6 +1923,14 @@ window.TRIP_DATA = {
   ],
   "sources": [
     {
+      "label": "Thailand Digital Arrival Card (official)",
+      "url": "https://tdac.immigration.go.th/arrival-card/"
+    },
+    {
+      "label": "Thailand visa measures effective 15 Sep 2026",
+      "url": "https://consular.mfa.go.th/th/content/1-9-69-00?cate=5ddbe42115e39c4768007e1d"
+    },
+    {
       "label": "Metro Istanbul",
       "url": "https://www.metro.istanbul/en/"
     },
@@ -2190,5 +2228,177 @@ window.TRIP_DATA = {
     ]
   };
   D.days.forEach(day => { day.food = restaurants[day.day] || day.food || []; });
+})();
 
+/* v4.28.0 — actual-trip reconciliation.
+   The Google Sheet is the source of truth for completed activities and costs.
+   Keeping these overrides together makes the reconciliation easy to audit
+   without rewriting the original planning history above. */
+(() => {
+  const D = window.TRIP_DATA;
+  D.meta.version = '4.28.0';
+  D.meta.actualTotal = 164065;
+  D.meta.syncedAt = '2026-10-04';
+
+  D.fixedExpenses = [
+    {id:'flights', label:'雙人機票', amount:79528, status:'實付', note:'全程航班合計'},
+    {id:'turkey-evisa', label:'土耳其 e-Visa', amount:1191, status:'實付', note:'共申請 3 次'},
+    {id:'admissions', label:'門票／活動', amount:24789, status:'實付', note:'Ljubljana Castle、Highlights of Slovenia、Zagreb Museum of Broken Relationships、Split 五島快艇'},
+    {id:'ground-transport', label:'公車／火車／接送', amount:12464, status:'實付', note:'機場接送、跨城與跨境巴士／火車及返家交通'}
+  ];
+
+  const byDay = Object.fromEntries(D.days.map(day => [day.day, day]));
+  const setDay = (number, patch) => Object.assign(byDay[number], patch);
+  const setLodging = (number, patch) => Object.assign(byDay[number].lodging, patch);
+
+  setDay(5, {
+    city:'Ljubljana', weatherKey:'Ljubljana', theme:'Ljubljana city day',
+    summary:'Central Market、Ljubljana 舊城與城堡；搭纜車上下山，兩人門票與纜車合計 NT$1,339。',
+    events:[
+      {time:'10:00',type:'walk',title:'Central Market＋Dragon Bridge',detail:'逛中央市場、龍橋與 Ljubljanica 河岸。',duration:'約 2h',map:'Ljubljana Central Market',why:'從住宿步行進舊城最順。',how:'市場採買後沿河往 Prešeren Square。'},
+      {time:'12:30',type:'food',title:'Ljubljana 午餐',detail:'在舊城吃肋排與斯洛維尼亞料理。',duration:'約 1h30',map:'Ljubljana Old Town restaurants',why:'實際旅程中的市區休息站。',how:'用餐後步行至纜車下站。'},
+      {time:'14:30',type:'walk',title:'Ljubljana Castle＋來回纜車',detail:'城堡門票 €15／人、來回纜車 €3.30／人。',duration:'約 2h',map:'Ljubljana Castle',why:'俯瞰 Ljubljana 市區。',how:'由 Krekov trg 搭 funicular 上山。'},
+      {time:'17:00',type:'walk',title:'Prešeren Square＋河岸散步',detail:'Triple Bridge、廣場與河岸咖啡。',duration:'彈性',map:'Preseren Square Ljubljana',why:'以慢步調結束市區日。',how:'全程步行回住宿。'}
+    ]
+  });
+  setLodging(5, {why:'住宿已確認；Ljubljana 市區日不搬行李。'});
+
+  setDay(6, {
+    city:'Predjama / Postojna / Bled', weatherKey:'Bled', theme:'Highlights of Slovenia',
+    summary:'完成 12 小時 Highlights of Slovenia：Predjama Castle、Postojna Cave、Lake Bled 與 Bled Castle，另自費搭 Pletna 船。',
+    events:[
+      {time:'07:50',type:'move',title:'InterContinental Ljubljana 集合',detail:'08:00 出發，參加 Highlights of Slovenia with tickets included。',duration:'約 12h',map:'InterContinental Ljubljana',why:'原廠小團含主要景點門票與交通。',how:'由住宿步行到集合點。'},
+      {time:'上午',type:'walk',title:'Predjama Castle＋Postojna Cave',detail:'洞穴城堡、鐘乳石洞電車與導覽。',duration:'依團體安排',map:'Postojna Cave',why:'斯洛維尼亞喀斯特地形重點。',how:'洞內低溫，穿保暖層並跟隨導遊。'},
+      {time:'下午',type:'walk',title:'Lake Bled＋Bled Castle',detail:'湖畔、城堡觀景與 Bled cream cake。',duration:'依團體安排',map:'Bled Castle',why:'同日完成 Bled 經典景觀。',how:'以導遊集合時間為準。'},
+      {time:'下午',type:'walk',title:'Pletna 傳統船',detail:'自費 €20／人，由船夫站立划槳往返湖心島。',duration:'約 1h',map:'Pletna boat Bled',why:'實際加購的 Bled 湖體驗。',how:'現場付款並依船班集合。'},
+      {time:'約 20:00',type:'move',title:'返回 Ljubljana',detail:'兩人套裝行程 €344.76，門票／活動總計記錄為 NT$14,080。',duration:'依車況',map:'InterContinental Ljubljana',why:'完成當日長程套裝行程。',how:'下車後步行回住宿。'}
+    ]
+  });
+  setLodging(6, {why:'住宿已確認；套裝行程當日往返 Ljubljana。'});
+
+  setDay(7, {summary:'Ljubljana 最後散步後搭 16:45 跨國火車前往 Zagreb，約 19:10 抵達；兩人票價約 NT$670。'});
+  setDay(9, {
+    summary:'10:15 從 Zagreb Bus Station 搭直達巴士，15:30 抵達 Split。',
+    events:[
+      {time:'08:30',type:'move',title:'退房＋前往 Zagreb Bus Station',detail:'提早抵達月台並準備行李艙費用。',duration:'約 30m',map:'Zagreb Bus Station',why:'長途巴士需預留找月台時間。',how:'由市中心搭電車或計程車。'},
+      {time:'10:15',type:'move',title:'Zagreb → Split 直達巴士',detail:'15:30 抵達；兩人車票計入 NT$1,956。',duration:'5h15',map:'Split Bus Station',why:'已完成的 FlixBus 直達班次。',how:'出示 App QR code，行李放下層。'},
+      {time:'16:00',type:'stay',title:'Split 入住',detail:'前往 Ul. Antuna Branka Šimića 2 放行李。',duration:'約 30m',map:'Ul. Antuna Branka Šimića 2 Split',why:'先安頓再逛舊城。',how:'步行或短程市區交通。'},
+      {time:'17:00',type:'walk',title:'Diocletian’s Palace＋Riva',detail:'Peristyle、舊城巷弄與海港散步。',duration:'彈性',map:"Diocletian's Palace Split",why:'抵達日的低強度行程。',how:'全程步行。'}
+    ]
+  });
+
+  setDay(12, {
+    summary:'搭車前往 Blagaj，遊 Buna River 與 Tekke；在 Crveni Han 午餐後回 Mostar Old Bazaar 與 Stari Most。',
+    events:[
+      {time:'08:30',type:'move',title:'Mostar → Blagaj',detail:'前往 Blagaj Tekke 與 Buna River。',duration:'約 30m',map:'Blagaj Tekke',why:'上午較涼、遊客較少。',how:'搭市區巴士或計程車。'},
+      {time:'09:15',type:'walk',title:'Blagaj Tekke＋Buna River',detail:'河源、修道院與河畔散步。',duration:'約 2h30',map:'Blagaj Tekke',why:'Mostar 周邊經典半日點。',how:'依開放狀況入內。'},
+      {time:'12:00',type:'food',title:'Crveni Han 午餐',detail:'在 Blagaj 河畔吃波士尼亞料理。',duration:'約 1h30',map:'https://maps.app.goo.gl/nc78KuaKQjvy5tXS9',why:'實際用餐地點。',how:'用餐後返回 Mostar。'},
+      {time:'15:30',type:'walk',title:'Old Bazaar＋Stari Most',detail:'老城石板街、古橋與河岸。',duration:'約 3h',map:'Stari Most Mostar',why:'將古橋留到午後與夕陽。',how:'全程步行。'}
+    ]
+  });
+
+  setDay(13, {
+    summary:'11:00 退房後在 Mostar 慢遊，19:56 搭景觀火車，21:54 抵達 Sarajevo；兩人實付 BAM 33.80（約 NT$625）。'
+  });
+  byDay[13].events[4] = {time:'22:15',type:'stay',title:'Sarajevo 入住',detail:'抵達後前往 Studio Apartment Velvet。',duration:'—',map:'Studio Apartment Velvet Sarajevo',why:'晚間抵達，以電車或計程車前往住宿。',how:'向司機出示住宿 Google Maps。'};
+  setLodging(13, {
+    area:'Sarajevo · Studio Apartment Velvet', why:'已確認連住兩晚；晚間由火車站前往住宿。', map:'Studio Apartment Velvet Sarajevo',
+    url:'https://maps.app.goo.gl/UD32XoGy7z1f9UEV7', nightlyPrice:1500, totalPrice:3000,
+    priceNote:'已確認／兩晚共 NT$3,000／第 1 晚', costStatus:'已確認'
+  });
+
+  setDay(14, {
+    summary:'Sarajevo 一日：在地早午餐與咖啡、Latin Bridge、War Tunnel Museum、Baščaršija，最後到 Yellow Fortress 看夕陽。',
+    events:[
+      {time:'09:30',type:'food',title:'Ćevabdžinica Zmaj Hrasno 早午餐',detail:'以 ćevapi 開始 Sarajevo 一日。',duration:'約 1h',map:'Ćevabdžinica Zmaj Hrasno Sarajevo',why:'實際用餐地點。',how:'由住宿步行或搭電車。'},
+      {time:'11:00',type:'food',title:'Brasserie & Coffee',detail:'咖啡休息後進入市區歷史軸線。',duration:'約 1h',map:'Brasserie & Coffee Sarajevo',why:'實際停留的咖啡店。',how:'依當日交通銜接。'},
+      {time:'12:30',type:'walk',title:'Latin Bridge＋奧匈街區',detail:'沿城市歷史軸線步行。',duration:'約 1h30',map:'Latin Bridge Sarajevo',why:'認識城市近代史。',how:'全程步行。'},
+      {time:'15:00',type:'walk',title:'War Tunnel Museum',detail:'了解 Sarajevo 圍城歷史。',duration:'約 2h',map:'Sarajevo Tunnel Museum',why:'Sarajevo 重要戰爭史場域。',how:'搭計程車往返最省時間。'},
+      {time:'17:30',type:'walk',title:'Baščaršija＋Sebilj',detail:'銅匠街、清真寺與 Bosnian coffee。',duration:'約 2h',map:'Bascarsija Sarajevo',why:'Sarajevo 舊城核心。',how:'步行逛街。'},
+      {time:'日落前',type:'walk',title:'Yellow Fortress',detail:'俯瞰 Sarajevo 夕陽與城市全景。',duration:'約 1h',map:'Yellow Fortress Sarajevo',why:'一日行程收尾。',how:'上坡可搭計程車，下山步行。'}
+    ]
+  });
+  setLodging(14, {
+    area:'Sarajevo · Studio Apartment Velvet · 第 2 晚', why:'不搬房，隔天搭跨境巴士。', map:'Studio Apartment Velvet Sarajevo',
+    url:'https://maps.app.goo.gl/UD32XoGy7z1f9UEV7', nightlyPrice:1500, totalPrice:3000,
+    priceNote:'已確認／兩晚共 NT$3,000／第 2 晚', costStatus:'已確認'
+  });
+
+  setDay(15, {
+    summary:'09:30 抵達 Sarajevo Bus Station，10:00 搭跨境巴士，約 15:45 抵達 Dubrovnik；晚餐吃 Kunlun Restaurant。',
+    events:[
+      {time:'09:00',type:'move',title:'前往 Sarajevo Bus Station',detail:'提早到站確認月台與行李費。',duration:'約 30m',map:'Sarajevo Bus Station',why:'跨境巴士預留報到時間。',how:'搭計程車最穩。'},
+      {time:'10:00',type:'move',title:'Sarajevo → Dubrovnik',detail:'約 15:45 抵達；兩人交通費記錄為 NT$3,022。',duration:'約 5h45＋邊境浮動',map:'Dubrovnik Bus Station',why:'完成 Bosnia→Croatia 跨境移動。',how:'護照與票券隨身，行李放下層。'},
+      {time:'16:15',type:'stay',title:'Dubrovnik 入住',detail:'前往 PalmTreeParadise2 放行李。',duration:'約 30m',map:'https://maps.app.goo.gl/5NYA2xddm8fU2fUx7',why:'先安頓再進老城。',how:'由 Gruž 搭市區公車或步行。'},
+      {time:'19:00',type:'food',title:'Kunlun Restaurant 晚餐',detail:'抵達 Dubrovnik 後的第一餐。',duration:'約 1h30',map:'Kunlun Restaurant Dubrovnik',why:'實際用餐地點。',how:'依住宿位置搭公車前往。'}
+    ]
+  });
+  setLodging(15, {
+    area:'Dubrovnik · PalmTreeParadise2', why:'已確認連住兩晚；靠近 Gruž 巴士總站。', map:'PalmTreeParadise2 Dubrovnik',
+    url:'https://maps.app.goo.gl/5NYA2xddm8fU2fUx7', nightlyPrice:3131, totalPrice:6262,
+    priceNote:'已確認／兩晚共 NT$6,262／第 1 晚', costStatus:'已確認'
+  });
+
+  setDay(16, {
+    summary:'Dubrovnik Old Town 徒步日：Gundulić Square、Old Port 與城內巷弄；沒有購買城牆門票。',
+    events:[
+      {time:'09:00',type:'walk',title:'Pile Gate＋Stradun',detail:'從城門進入 Dubrovnik Old Town。',duration:'約 2h',map:'Pile Gate Dubrovnik',why:'早上避開部分團客。',how:'搭市區公車到 Pile。'},
+      {time:'11:30',type:'walk',title:'Gundulić Square＋Old Port',detail:'市場、港口與老城巷弄。',duration:'約 2h',map:'Old Port Dubrovnik',why:'實際走訪路線。',how:'全程步行；本日未購買城牆票。'},
+      {time:'13:30',type:'food',title:'Spaghetteria Toni 午餐',detail:'舊城內義大利麵。',duration:'約 1h30',map:'https://maps.app.goo.gl/r5QGFUhFaNSsZMaq9',why:'實際用餐地點。',how:'由 Old Port 步行前往。'},
+      {time:'19:00',type:'food',title:'Serenada Bistro 晚餐',detail:'Dubrovnik 最後一晚用餐。',duration:'約 1h30',map:'https://maps.app.goo.gl/RfVQq8koiZGunQxY9',why:'實際用餐地點。',how:'搭市區公車往返；兩人交通約 NT$180。'}
+    ]
+  });
+  setLodging(16, {
+    area:'Dubrovnik · PalmTreeParadise2 · 第 2 晚', why:'不換住宿，隔天搭 38 號公車前往機場。', map:'PalmTreeParadise2 Dubrovnik',
+    url:'https://maps.app.goo.gl/5NYA2xddm8fU2fUx7', nightlyPrice:3131, totalPrice:6262,
+    priceNote:'已確認／兩晚共 NT$6,262／第 2 晚', costStatus:'已確認'
+  });
+
+  setDay(17, {
+    summary:'上午在 Serenada 喝咖啡、吃 Pizza，12:00 搭 38 號公車往 DBV；15:30 飛 Geneva，晚餐吃 Auberge de Savièse。',
+    events:[
+      {time:'09:00',type:'food',title:'Serenada 咖啡＋Pizza',detail:'Dubrovnik 最後一餐後回住宿取行李。',duration:'約 1h30',map:'https://maps.app.goo.gl/RfVQq8koiZGunQxY9',why:'實際用餐地點。',how:'預留回住宿與搭車時間。'},
+      {time:'12:00',type:'move',title:'38 號公車 → DBV',detail:'搭市郊公車前往 Dubrovnik Airport。',duration:'依路況',map:'Dubrovnik Airport',why:'已購票並依房東建議銜接機場。',how:'確認 Mocici／機場方向，上車向司機出示票券。'},
+      {time:'15:30',type:'flight',title:'DBV → GVA',detail:'U21506 · 17:25 抵達。',duration:'1h55',map:'Geneva Airport',why:'前往旅程最後一站。',how:'抵達後使用住宿提供的 Geneva Transport Card QR code。'},
+      {time:'18:10後',type:'move',title:'GVA → ibis budget Genève Aéroport',detail:'搭 10 號公車至 Vernier, Balexert-Pailly。',duration:'約 6m',map:'ibis budget Geneve Aeroport',why:'飯店在站點對面。',how:'上車前準備住宿提供的交通 QR code。'},
+      {time:'19:30',type:'food',title:'Auberge de Savièse 晚餐',detail:'品嘗瑞士起司鍋。',duration:'約 1h30',map:'https://maps.app.goo.gl/SV9Lo1djqQifTN6s5',why:'實際用餐地點。',how:'搭大眾運輸前往市區。'}
+    ]
+  });
+  setLodging(17, {
+    area:'ibis budget Genève Aéroport', why:'已確認一晚；位於 Balexert 對面，公車可直達機場與市區。', map:'ibis budget Geneve Aeroport',
+    url:'https://maps.app.goo.gl/2agWsAHXMYvRzBF2A', nightlyPrice:6364,
+    priceNote:'已確認／1 晚共 NT$6,364', costStatus:'已確認'
+  });
+
+  setDay(18, {
+    summary:'09:00 由 Genève-Cornavin／飯店前往 GVA，12:00 搭 MU218 飛往 Shanghai。',
+    events:[
+      {time:'09:00',type:'move',title:'Geneva 市區／飯店 → GVA',detail:'使用 Geneva Transport Card 前往機場。',duration:'約 15–30m',map:'Geneva Airport',why:'為中午長程航班預留報到時間。',how:'可搭公車或由 Cornavin 搭火車。'},
+      {time:'12:00',type:'flight',title:'GVA → PVG',detail:'MU218 · 05:30+1 抵達。',duration:'長程航班',map:'Shanghai Pudong Airport',why:'返亞洲航段。',how:'依機場看板前往登機門。'}
+    ]
+  });
+  setDay(19, {
+    summary:'05:30 抵達浦東，在 4F V59 貴賓室休息；12:20 搭 MU5007，14:25 抵達桃園後返家。',
+    events:[
+      {time:'05:30',type:'stay',title:'抵達 PVG＋V59 貴賓室',detail:'到 4F V59，使用 Trip.com QR code 休息與用餐。',duration:'約 6h',map:'Shanghai Pudong Airport Terminal 1',why:'長時間轉機休息。',how:'先確認 MU5007 登機門再進貴賓室。'},
+      {time:'12:20',type:'flight',title:'PVG → TPE',detail:'MU5007 · 14:25 抵達。',duration:'約 2h05',map:'Taoyuan International Airport',why:'返台最後一段。',how:'10:45 前回到登機門。'},
+      {time:'14:25',type:'move',title:'抵達台灣、回家',detail:'返家交通記錄 NT$950，Balkan 2026 完成。',duration:'—',map:'Taipei',why:'完成 19 天旅程。',how:'入境取行李後返家。'}
+    ]
+  });
+
+  D.tripNotes = [
+    {title:'實際總支出',text:'兩人合計 NT$164,065：機票 79,528、住宿 46,093、簽證 1,191、門票／活動 24,789、公車／火車／接送 12,464。'},
+    {title:'斯洛維尼亞',text:'09/18 Ljubljana 市區與城堡；09/19 參加 €344.76 的 Highlights of Slovenia，走 Predjama、Postojna、Bled Castle，另自費 Pletna €20／人。'},
+    {title:'跨城交通',text:'Ljubljana→Zagreb 火車、Zagreb→Split 巴士、Split→Mostar 巴士、Mostar→Sarajevo 火車、Sarajevo→Dubrovnik 巴士均已完成。Mostar→Sarajevo 兩人實付 BAM 33.80。'},
+    {title:'最後三站',text:'Sarajevo 住 Studio Apartment Velvet；Dubrovnik 住 PalmTreeParadise2；Geneva 住 ibis budget Genève Aéroport，住宿交通卡可搭市區公車。'}
+  ];
+
+  const actualFood = {
+    12:[{name:'Crveni Han',pick:'實際午餐',dish:'Blagaj 河畔波士尼亞料理',note:'Buna River／Tekke 行程中用餐。',price:'BAM',booking:'已造訪',map:'https://maps.app.goo.gl/nc78KuaKQjvy5tXS9'}],
+    14:[{name:'Ćevabdžinica Zmaj Hrasno',pick:'實際早午餐',dish:'ćevapi',note:'Sarajevo 一日遊起點。',price:'BAM',booking:'已造訪',map:'Ćevabdžinica Zmaj Hrasno Sarajevo'},{name:'Brasserie & Coffee',pick:'實際咖啡',dish:'咖啡與輕食',note:'進市區景點前休息。',price:'BAM',booking:'已造訪',map:'Brasserie & Coffee Sarajevo'}],
+    15:[{name:'Kunlun Restaurant',pick:'實際晚餐',dish:'中式料理',note:'抵達 Dubrovnik 當晚。',price:'€',booking:'已造訪',map:'Kunlun Restaurant Dubrovnik'}],
+    16:[{name:'Spaghetteria Toni',pick:'實際午餐',dish:'義大利麵',note:'Dubrovnik Old Town。',price:'€€',booking:'已造訪',map:'https://maps.app.goo.gl/r5QGFUhFaNSsZMaq9'},{name:'Serenada Bistro',pick:'實際晚餐',dish:'Bistro 料理',note:'Dubrovnik 最後一晚。',price:'€€',booking:'已造訪',map:'https://maps.app.goo.gl/RfVQq8koiZGunQxY9'}],
+    17:[{name:'Serenada Bistro',pick:'實際早餐',dish:'咖啡與 Pizza',note:'前往機場前。',price:'€',booking:'已造訪',map:'https://maps.app.goo.gl/RfVQq8koiZGunQxY9'},{name:'Auberge de Savièse',pick:'實際晚餐',dish:'瑞士起司鍋',note:'抵達 Geneva 當晚。',price:'CHF',booking:'已造訪',map:'https://maps.app.goo.gl/SV9Lo1djqQifTN6s5'}]
+  };
+  Object.entries(actualFood).forEach(([day, food]) => { byDay[day].food = food; });
 })();
