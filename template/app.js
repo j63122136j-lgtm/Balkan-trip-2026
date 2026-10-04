@@ -388,7 +388,7 @@
     const estimatedNights=lodgingDays.filter(d=>d.lodging.costStatus!=='已確認');
     const confirmedTotal=confirmedNights.reduce((s,d)=>s+Number(d.lodging.nightlyPrice),0);
     const fixed=[...(D.fixedExpenses||[]),{
-      id:'stays',label:'住宿',amount:lodgingTotal,status:'部分確認',
+      id:'stays',label:'住宿',amount:lodgingTotal,status:estimatedNights.length?'部分確認':'已確認',
       note:`${lodgingDays.length} 晚：已確認 ${confirmedNights.length} 晚共 ${fmt(confirmedTotal)}${estimatedNights.length?`；其餘 ${estimatedNights.length} 晚仍為預估`:''}`
     }];
     const expenses=getExpenses();

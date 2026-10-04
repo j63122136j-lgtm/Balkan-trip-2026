@@ -11,7 +11,7 @@ window.TRIP_DATA = {
     "bags": "Allpa 35L × 2",
     "returnPrice": 32242,
     "currency": "TWD",
-    "version": "4.28.0"
+    "version": "4.28.1"
   },
   "route": [
     "Taipei",
@@ -2230,21 +2230,21 @@ window.TRIP_DATA = {
   D.days.forEach(day => { day.food = restaurants[day.day] || day.food || []; });
 })();
 
-/* v4.28.0 — actual-trip reconciliation.
+/* v4.28.1 — actual-trip reconciliation.
    The Google Sheet is the source of truth for completed activities and costs.
    Keeping these overrides together makes the reconciliation easy to audit
    without rewriting the original planning history above. */
 (() => {
   const D = window.TRIP_DATA;
-  D.meta.version = '4.28.0';
-  D.meta.actualTotal = 164065;
+  D.meta.version = '4.28.1';
+  D.meta.actualTotal = 164418;
   D.meta.syncedAt = '2026-10-04';
 
   D.fixedExpenses = [
     {id:'flights', label:'雙人機票', amount:79528, status:'實付', note:'全程航班合計'},
     {id:'turkey-evisa', label:'土耳其 e-Visa', amount:1191, status:'實付', note:'共申請 3 次'},
     {id:'admissions', label:'門票／活動', amount:24789, status:'實付', note:'Ljubljana Castle、Highlights of Slovenia、Zagreb Museum of Broken Relationships、Split 五島快艇'},
-    {id:'ground-transport', label:'公車／火車／接送', amount:12464, status:'實付', note:'機場接送、跨城與跨境巴士／火車及返家交通'}
+    {id:'ground-transport', label:'公車／火車／接送', amount:12817, status:'實付', note:'機場接送、跨城與跨境巴士／火車、09/30 Dubrovnik 38 號公車及返家交通'}
   ];
 
   const byDay = Object.fromEntries(D.days.map(day => [day.day, day]));
@@ -2358,7 +2358,7 @@ window.TRIP_DATA = {
     summary:'上午在 Serenada 喝咖啡、吃 Pizza，12:00 搭 38 號公車往 DBV；15:30 飛 Geneva，晚餐吃 Auberge de Savièse。',
     events:[
       {time:'09:00',type:'food',title:'Serenada 咖啡＋Pizza',detail:'Dubrovnik 最後一餐後回住宿取行李。',duration:'約 1h30',map:'https://maps.app.goo.gl/RfVQq8koiZGunQxY9',why:'實際用餐地點。',how:'預留回住宿與搭車時間。'},
-      {time:'12:00',type:'move',title:'38 號公車 → DBV',detail:'搭市郊公車前往 Dubrovnik Airport。',duration:'依路況',map:'Dubrovnik Airport',why:'已購票並依房東建議銜接機場。',how:'確認 Mocici／機場方向，上車向司機出示票券。'},
+      {time:'12:00',type:'move',title:'38 號公車 → DBV',detail:'由 Bus Station Dubrovnik 搭 38 號公車前往 Dubrovnik Airport；兩人實付 NT$353。',duration:'依路況',map:'Dubrovnik Airport',why:'已購票並依房東建議銜接機場。',how:'確認 Mocici／機場方向，上車向司機出示票券。'},
       {time:'15:30',type:'flight',title:'DBV → GVA',detail:'U21506 · 17:25 抵達。',duration:'1h55',map:'Geneva Airport',why:'前往旅程最後一站。',how:'抵達後使用住宿提供的 Geneva Transport Card QR code。'},
       {time:'18:10後',type:'move',title:'GVA → ibis budget Genève Aéroport',detail:'搭 10 號公車至 Vernier, Balexert-Pailly。',duration:'約 6m',map:'ibis budget Geneve Aeroport',why:'飯店在站點對面。',how:'上車前準備住宿提供的交通 QR code。'},
       {time:'19:30',type:'food',title:'Auberge de Savièse 晚餐',detail:'品嘗瑞士起司鍋。',duration:'約 1h30',map:'https://maps.app.goo.gl/SV9Lo1djqQifTN6s5',why:'實際用餐地點。',how:'搭大眾運輸前往市區。'}
@@ -2387,7 +2387,7 @@ window.TRIP_DATA = {
   });
 
   D.tripNotes = [
-    {title:'實際總支出',text:'兩人合計 NT$164,065：機票 79,528、住宿 46,093、簽證 1,191、門票／活動 24,789、公車／火車／接送 12,464。'},
+    {title:'實際總支出',text:'兩人合計 NT$164,418：機票 79,528、住宿 46,093、簽證 1,191、門票／活動 24,789、公車／火車／接送 12,817。'},
     {title:'斯洛維尼亞',text:'09/18 Ljubljana 市區與城堡；09/19 參加 €344.76 的 Highlights of Slovenia，走 Predjama、Postojna、Bled Castle，另自費 Pletna €20／人。'},
     {title:'跨城交通',text:'Ljubljana→Zagreb 火車、Zagreb→Split 巴士、Split→Mostar 巴士、Mostar→Sarajevo 火車、Sarajevo→Dubrovnik 巴士均已完成。Mostar→Sarajevo 兩人實付 BAM 33.80。'},
     {title:'最後三站',text:'Sarajevo 住 Studio Apartment Velvet；Dubrovnik 住 PalmTreeParadise2；Geneva 住 ibis budget Genève Aéroport，住宿交通卡可搭市區公車。'}
